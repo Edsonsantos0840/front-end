@@ -12,6 +12,10 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      backdropBlur: {
+        xs: '2px',
+        xl: '40px',
+      },
     },
   },
   plugins: [],
