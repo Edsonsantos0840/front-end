@@ -2,8 +2,6 @@
 import { Block } from "@/app/middleware/blockedPage";
 import { cookies } from "next/headers";
 
-
-
 export async function CommentsSubmit(
   formData: FormData
 ) {
