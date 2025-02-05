@@ -1,5 +1,5 @@
 export interface CommentProps {
-    _id?: string ,
+    _id: string ,
     comments: string ,
     user: {
         _id: string,

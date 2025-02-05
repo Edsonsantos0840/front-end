@@ -1,93 +1,87 @@
-// 'use client'
 
-// import { CommentProps } from "@/app/types/commentType"
-// import Image from "next/image"
-// import { useState } from "react"
-// import { CiEdit } from "react-icons/ci"
-
-// interface ComentsUpdateprops { 
-//     data: CommentProps[]
-// }
-
-// export default function CardShowComments({data}: ComentsUpdateprops) {
-//     const [commentEdit, setCommentEdit] = useState(false)
-//   return (
-//     <ul>
-//           {data.map((comment) => (
-//             <li key={comment._id} className="mb-4 flex gap-4">
-//               {
-//                 commentEdit === false &&
-//                  <>
-//                 <Image
-//                 src={comment.user?.image}
-//                 alt={"imagem de perfil de " + comment.user?.name}
-//                 width={40}
-//                 height={40}
-//                 className="rounded-full"
-//               />
-//               <strong>{comment.user?.name || "Usuário anônimo"}</strong>{" "}
-//               {comment.comments}
-//               <span className="text-gray-500 text-sm"></span>
-//                  </> 
-//               }
-//               <div className="flex">
-//                 <button onClick={() => setCommentEdit(true)}><CiEdit size={20} /></button>
-//               </div>
-//             </li>
-//           ))}
-//         </ul>
-//   )
-// }
 "use client";
 
-import { CommentProps } from "@/app/types/commentType";
-import Image from "next/image";
+import { useState } from "react";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { CiEdit } from "react-icons/ci";
+import BtnEdit from "../buttons/BtnEdit";
+import { CommentProps } from "@/app/types/commentType";
+import { CommentsUpdateSubmit } from "./CommentsUpdateSubmit";
+import Image from "next/image";
+import { useComments } from "@/app/hooks/useComments";
+
 
 interface ComentsUpdateprops {
   data: CommentProps[];
+  productId: string;
+  user: {
+    _id: string;
+    name: string;
+    email: string;
+    image?: string;
+    tipo?: string;
+  };
 }
 
-export default function CardShowComments({ data }: ComentsUpdateprops) {
+export default function CardShowComments({ data, productId, user }: ComentsUpdateprops) {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
+  const { mutate } = useComments(productId);
 
-  // Tipagem correta
-  const editingCommentId: string | null = searchParams.get("edit");
+  const [selectedComment, setSelectedComment] = useState<string>("");
 
   function handleEdit(commentId: string) {
+    setSelectedComment(commentId);
+
+    // Atualiza a URL sem recarregar a página
     const newParams = new URLSearchParams(searchParams.toString());
     newParams.set("edit", commentId);
     router.push(`${pathname}?${newParams.toString()}`, { scroll: false });
   }
 
+  async function handleUpdate(formData: FormData) {
+    const dataComment = {
+      comments: formData.get("comments"),
+      user: user._id,
+      product: productId,
+    };
+
+    await CommentsUpdateSubmit(dataComment, selectedComment);
+    mutate(dataComment); // 🔄 Recarrega os comentários após atualização
+  }
+
   return (
-    <ul>
+    <ul className="w-full">
       {data.map((comment) => (
-        <li key={comment._id} className="mb-4 flex gap-4">
-          {editingCommentId !== comment._id && (
+        <li key={comment._id} className="mb-4 flex gap-4 w-full justify-between items-center">
+          {selectedComment !== comment._id ? (
             <>
-              <Image
-                src={comment.user?.image}
-                alt={"imagem de perfil de " + comment.user?.name}
-                width={40}
-                height={40}
-                className="rounded-full"
-              />
-              <strong>{comment.user?.name || "Usuário anônimo"}</strong> {comment.comments}
-            </>
-          )}
-          <div className="flex">
-            {editingCommentId === comment._id ? (
-               <></>
-            ) : (
+              <div>
+                <div className="flex gap-5 p-2">
+                  <Image
+                    src={user.image || ""}
+                    alt={`foto do usuário ${user.name}`}
+                    width={40}
+                    height={40}
+                    className="rounded-full shadow-lg"
+                  />
+                  <strong>{user.name || "Usuário anônimo"}</strong>
+                </div>
+                <p>{comment.comments}</p>
+              </div>
               <button onClick={() => handleEdit(comment._id)}>
                 <CiEdit size={20} />
               </button>
-            )}
-          </div>
+            </>
+          ) : (
+            <div className="w-full">
+              <form action={handleUpdate} className="flex justify-between items-center gap-5 w-full">
+                <input type="text" name="comments" className="w-full px-4 h-10" defaultValue={comment.comments} />
+                <BtnEdit />
+              </form>
+            </div>
+          )}
         </li>
       ))}
     </ul>

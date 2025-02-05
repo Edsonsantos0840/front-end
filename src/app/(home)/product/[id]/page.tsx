@@ -4,7 +4,7 @@ import Container from "@/app/components/containers/Container";
 import CommentRegister from "@/app/components/form/CommentRegister";
 import LikeRegister from "@/app/components/form/LikeRegister";
 import { ProdutoProps } from "@/app/types/produtoTypes";
-
+import { Block } from "@/app/middleware/blockedPage";
 
 
 export default async function ProductOne({
@@ -12,9 +12,9 @@ export default async function ProductOne({
 }: {
   params: { id: string };
 }) {
-
+  
   const { id } = await params;
-
+  const { user } = await Block(); // Chama no Server Component
   const url = `${process.env.BASE_URL}/products/${id}`;
   const urlLikes = `${process.env.BASE_URL}/likes`;
 
@@ -24,10 +24,13 @@ export default async function ProductOne({
     fetch(urlLikes, { next: { tags: ["likes"] } }),
   ]);
 
-  // Verifica se todas as requisições foram bem-sucedidas
-  // if (!productRes.ok || !commentsRes.ok || !likesRes.ok) {
-  //   throw new Error("Erro ao buscar os dados");
-  // }
+  const  userComments = {
+    _id: '',
+    name: '',
+    email: '',
+    image: '',
+    tipo: ''
+  }
 
   // Extração dos dados das respostas
   const [product, likes]: [ProdutoProps, string] = await Promise.all([
@@ -53,12 +56,12 @@ export default async function ProductOne({
                 </p>
               </div>
             </section>
-          )}
+          )}               
         </>
         <LikeRegister id={product._id} />
         <h2>{likes.length}</h2>
         <CommentRegister id={product._id} />
-        <CardComments id={id} />
+        <CardComments id={id} user={user?.data || userComments}/>
       </div>
     </main>
      </Container>

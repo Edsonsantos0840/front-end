@@ -68,5 +68,6 @@ export const ErrorResSchema = z.object({
     error: z.string()
 })
 
+export type User = z.infer<typeof UserSchema>;
 export type Product = z.infer<typeof ProductSchema>;
 export type Comments = z.infer<typeof ProductSchema>;
