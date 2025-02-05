@@ -9,6 +9,7 @@ import { CommentProps } from "@/app/types/commentType";
 import { CommentsUpdateSubmit } from "./CommentsUpdateSubmit";
 import Image from "next/image";
 import { useComments } from "@/app/hooks/useComments";
+import BtnDelete from "../buttons/BtnDelete";
 
 
 interface ComentsUpdateprops {
@@ -70,9 +71,12 @@ export default function CardShowComments({ data, productId, user }: ComentsUpdat
                 </div>
                 <p>{comment.comments}</p>
               </div>
-              <button onClick={() => handleEdit(comment._id)}>
+             <div className="space-x-5" >
+             <button onClick={() => handleEdit(comment._id)}>
                 <CiEdit size={20} />
-              </button>
+             </button>
+             <BtnDelete commentId={comment._id}/>
+             </div>
             </>
           ) : (
             <div className="w-full">
