@@ -1,9 +1,9 @@
 "use server";
 
-
 import { cookies } from "next/headers";
+import { revalidateTag } from "next/cache";
 
-async function handleDelete(url: string) {
+async function handleDeleteLike(url: string) {
   const token = (await cookies()).get("MA_MARMORE")?.value;
 
   try {
@@ -14,12 +14,18 @@ async function handleDelete(url: string) {
         Authorization: `Bearer ${token}`,
       },
     });
+
     if (!res.ok) {
-      console.log(`${res.status} Houve um erro ao deletar `);
+      console.log("Houve um erro ao deletar");
+      return;
     }
+
+    // Revalida os dados dos likes na página
+    revalidateTag("likes");
 
   } catch (error) {
     console.log(error);
   }
 }
-export { handleDelete };
+
+export { handleDeleteLike };

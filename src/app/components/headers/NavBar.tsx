@@ -2,11 +2,12 @@ import Menu from "./Menu";
 import { FiLogIn, FiLogOut } from "react-icons/fi";
 import { IoBagAdd } from "react-icons/io5";
 import Link from "next/link";
-import { IoMdPersonAdd } from "react-icons/io";
+import { IoIosPerson, IoMdPersonAdd } from "react-icons/io";
 import { MdDashboardCustomize } from "react-icons/md";
 
 import { Block } from "@/app/middleware/blockedPage";
 import { logOut } from "@/app/functions/auth/logOut";
+import { GiPresent } from "react-icons/gi";
 
 export default async function NavBar() {
   const { user } = await Block();
@@ -14,7 +15,7 @@ export default async function NavBar() {
     <section className="w-full bg-[var(--corPrincipal)] fixed shadow-lg z-50">
       <div className="alinha4 p-2 m-4 max-w-[1200px]  md:m-auto">
         <Menu />
-        {user.data?.email === "edsonbrasilcard@gmail.com" && (
+        {user.data?.tipo === "adimin" && (
           <div className="space-x-8 flex font-Ysabea font-bold">
             <Link
               href={"/home"}
@@ -22,6 +23,20 @@ export default async function NavBar() {
             >
               <MdDashboardCustomize size={30} color="var(--corFundo2)" />
               <span className="text-sm font-light text-gray-200">dashboard</span>
+            </Link>
+            <Link
+              href={"/user"}
+              className=" alinha2 hover:scale-125 transition-all ease-in-out duration-300"
+            >
+              <IoIosPerson size={30} color="var(--corFundo2)" />
+              <span className="text-sm font-light text-gray-200">Usuários</span>
+            </Link>
+            <Link
+              href={"/product"}
+              className=" alinha2 hover:scale-125 transition-all ease-in-out duration-300"
+            >
+              <GiPresent size={30} color="var(--corFundo2)" />
+              <span className="text-sm font-light text-gray-200">Produtos</span>
             </Link>
             <Link
               href={"/productRegister"}

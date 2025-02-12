@@ -1,9 +1,9 @@
 "use server";
 
-
 import { cookies } from "next/headers";
+import { revalidatePath } from "next/cache";
 
-async function handleDelete(url: string) {
+async function handleDeleteProducts(url: string, pathToRevalidate: string) {
   const token = (await cookies()).get("MA_MARMORE")?.value;
 
   try {
@@ -14,12 +14,16 @@ async function handleDelete(url: string) {
         Authorization: `Bearer ${token}`,
       },
     });
-    if (!res.ok) {
-      console.log(`${res.status} Houve um erro ao deletar `);
-    }
 
+    if (!res.ok) {
+      console.log(`${res.status} Houve um erro ao deletar`);
+    } else {
+      // Revalidando o caminho após a deleção do produto
+      revalidatePath(pathToRevalidate);
+    }
   } catch (error) {
     console.log(error);
   }
 }
-export { handleDelete };
+
+export { handleDeleteProducts };

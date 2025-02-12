@@ -10,6 +10,7 @@ import { CommentsUpdateSubmit } from "./CommentsUpdateSubmit";
 import Image from "next/image";
 import { useComments } from "@/app/hooks/useComments";
 import BtnDelete from "../buttons/BtnDelete";
+import { IoIosPerson } from "react-icons/io";
 
 
 interface ComentsUpdateprops {
@@ -31,6 +32,8 @@ export default function CardShowComments({ data, productId, user }: ComentsUpdat
   const { mutate } = useComments(productId);
 
   const [selectedComment, setSelectedComment] = useState<string>("");
+  const [Id, setId] = useState<string>("");
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/product/comments/${Id}`;
 
   function handleEdit(commentId: string) {
     setSelectedComment(commentId);
@@ -55,19 +58,33 @@ export default function CardShowComments({ data, productId, user }: ComentsUpdat
   return (
     <ul className="w-full">
       {data.map((comment) => (
-        <li key={comment._id} className="mb-4 flex gap-4 w-full justify-between items-center">
+        <li 
+         key={comment._id} 
+         onMouseOver={() => setId(comment._id)}
+         onTouchStart={() => setId(comment._id)} 
+         className="mb-4 flex gap-4 w-full justify-between items-center"
+        >
+          
           {selectedComment !== comment._id ? (
             <>
-              <div>
+              <div >
                 <div className="flex gap-5 p-2">
-                  <Image
-                    src={user.image || ""}
-                    alt={`foto do usuário ${user.name}`}
-                    width={40}
-                    height={40}
-                    className="rounded-full shadow-lg"
-                  />
-                  <strong>{user.name || "Usuário anônimo"}</strong>
+                  {
+                    comment.user !== null ?
+                    <Image
+                      src={comment.user.image}
+                      alt={`foto do usuário ${comment.user.name}`}
+                      width={40}
+                      height={40}
+                      className="rounded-full shadow-lg"
+                    /> :
+                    <IoIosPerson />
+                  }
+                  {
+                    comment.user !== null ?
+                    <strong>{comment.user.name}</strong> :
+                    <strong>{"usuário anônimo"}</strong>
+                  }
                 </div>
                 <p>{comment.comments}</p>
               </div>
@@ -75,7 +92,7 @@ export default function CardShowComments({ data, productId, user }: ComentsUpdat
              <button onClick={() => handleEdit(comment._id)}>
                 <CiEdit size={20} />
              </button>
-             <BtnDelete commentId={comment._id}/>
+             <BtnDelete url={url}/>
              </div>
             </>
           ) : (

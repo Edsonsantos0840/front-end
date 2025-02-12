@@ -6,10 +6,11 @@ import { SlLike } from "react-icons/sl";
 
 export default async function LikeRegister({id}: {id: string}) {
     const _id = id
-    
+    const url = `${process.env.BASE_URL}/product/likes`;
+
    async function likesSubmit(formData: FormData) {
     'use server'
-      const url = `${process.env.BASE_URL}/product/likes`;
+
       const token = (await cookies()).get("MA_MARMORE")?.value;
       const { user } = await Block();
 
@@ -46,14 +47,15 @@ export default async function LikeRegister({id}: {id: string}) {
   return (
     <section>
     <form action={likesSubmit} className='flex'>
-      <label className=' cursor-pointer'>
-      <SlLike size={20} />
-      <input 
+      <label className=' cursor-pointer hover:scale-105'>
+      
+      <button
         type="submit" 
         name='likes'
         defaultValue={''}
-      />
+      ><SlLike size={26} /></button>
       </label>
+      
     </form>
    </section>
   )

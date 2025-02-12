@@ -6,7 +6,7 @@ import Container from "@/app/components/containers/Container";
 import { ProdutoProps } from '@/app/types/produtoTypes';
 import Image from 'next/image';
 
-export default async function HomeDashboard() {
+export default async function Product() {
   const url = `${process.env.BASE_URL}/products`;
   const urlDel = `${process.env.BASE_URL}/product`;
 
