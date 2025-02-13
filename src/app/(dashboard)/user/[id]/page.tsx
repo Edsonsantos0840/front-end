@@ -1,6 +1,7 @@
 import BtnDeleteProducts from "@/app/components/buttons/BtnDeleteProducts";
 import { BtnUpdate } from "@/app/components/buttons/BtnUpdate";
 import Container from "@/app/components/containers/Container";
+import { Block } from "@/app/middleware/blockedPage";
 import { UserProps } from "@/app/types/user";
 import Image from "next/image";
 
@@ -10,6 +11,7 @@ export default async function UserwithId({ params }: { params: { id: string } })
  const {id} = await params
   const url = `${process.env.BASE_URL}/users/${id}`;
   const urlDel = `${process.env.BASE_URL}/user`;
+  const {user} = await Block()
 
   async function getUserWithId() {
     try {
@@ -23,19 +25,19 @@ export default async function UserwithId({ params }: { params: { id: string } })
       console.log(`${error} Houve este erro ao buscar os dados`);
     }
   }
-  const user: UserProps = await getUserWithId();
+  const userCard: UserProps = await getUserWithId();
 
-  if (user)
+  if (userCard)
     return (
       <Container>
         <h1 className="text-red-700 text-2xl text-center font-bold">Usuários</h1>
         <main className="px-6 space-y-4 flex flex-col mt-5">
           <div className="relative w-64 h-64 bg-cover object-cover ">
             {
-            user.image ?
+            userCard.image ?
             <Image
-              src={user.image}
-              alt={user.name}
+              src={userCard.image}
+              alt={userCard.name}
               fill
               quality={100}
               className="bg-cover object-cover shadow-lg"
@@ -44,22 +46,25 @@ export default async function UserwithId({ params }: { params: { id: string } })
             }
           </div>
           <div className=" w-[80%]">
-            <p className="text-left w-[30%]">{user.name}</p>
+            <p className="text-left w-[30%]">{userCard.name}</p>
             <p className="text-left w-[50%]">
               <strong>email: </strong>
-              {user.email}
+              {userCard.email}
             </p>
             <p className="text-left w-[15%]">
               <strong>tipo: </strong>
-              {user.tipo}
+              {userCard.tipo}
             </p>
           </div>
           <div className="flex justify-between items-end gap-5 w-[10%]">
             <BtnUpdate url={`/user/${id}/userUpdate`} />
+           {
+            user.data?._id !== userCard._id &&
             <BtnDeleteProducts
-              url={`${urlDel}/${id}`}
-              pathToRevalidate="/dashboard" // caminho da página que você quer revalidar
-            />
+            url={`${urlDel}/${id}`}
+            pathToRevalidate="/dashboard" // caminho da página que você quer revalidar
+          />
+           }
           </div>
         </main>
       </Container>

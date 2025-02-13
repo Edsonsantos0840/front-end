@@ -2,7 +2,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { UploadImage } from "./uploadImage";
+import { UploadCreateImage} from "./uploadImage";
 import { cookies } from "next/headers";
 
 type ActionStateType = {
@@ -29,8 +29,8 @@ export async function RegisterProductSubmit(
   for (const image of images) {
     if (image) {
       try {
-        const uploadResponse: string = await UploadImage({
-          image,
+        const uploadResponse: string = await UploadCreateImage({
+          image, 
         });
         imageUrls.push(uploadResponse);
       } catch (error) {

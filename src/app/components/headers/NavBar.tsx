@@ -15,7 +15,7 @@ export default async function NavBar() {
     <section className="w-full bg-[var(--corPrincipal)] fixed shadow-lg z-50">
       <div className="alinha4 p-2 m-4 max-w-[1200px]  md:m-auto">
         <Menu />
-        {user.data?.tipo === "adimin" && (
+        {user.data?.tipo === "admin" && (
           <div className="space-x-8 flex font-Ysabea font-bold">
             <Link
               href={"/home"}

@@ -14,17 +14,9 @@ export async function handleUpdateUser(formData: FormData,) {
 
    // Faz upload da imagem e armazena a URL retornada
     if (image) {
-      const uploadResponse: string = await UploadImage({image});
+      const uploadResponse: string = await UploadImage({image, _id});
       imageUrl = uploadResponse; // Captura a URL retornada
     }
-
- 
-  const userData = {
-    name: formData.get('name'),
-    email: formData.get('email'),
-    image: imageUrl,
-    tipo: 'usuário',
-  };
 
   try {
     const res = await fetch(url, {
@@ -33,7 +25,12 @@ export async function handleUpdateUser(formData: FormData,) {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(userData),
+      body: JSON.stringify({
+        name: formData.get('name'),
+        email: formData.get('email'),
+        image: imageUrl,
+
+      }),
     });
 
     if (!res.ok) {

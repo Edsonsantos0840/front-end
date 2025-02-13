@@ -1,6 +1,6 @@
 
 import { cookies } from "next/headers";
-import { UploadImage } from "./uploadImage";
+import { UploadCreateImage } from "./uploadImage";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 
@@ -25,8 +25,8 @@ export async function UploadProductSubmit(
     for (const image of images) {
       if (image) {
         try {
-          const uploadResponse: string = await UploadImage({
-            image,
+          const uploadResponse: string = await UploadCreateImage({
+            image
           });
           imageUrls.push(uploadResponse);
         } catch (error) {

@@ -3,7 +3,7 @@
 import { RegisterSchema } from "@/schemas";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { UploadImage } from "./uploadImage";
+import { UploadCreateImage } from "./uploadImage";
 
 type ActionStateType = {
   errors: string[];
@@ -20,7 +20,7 @@ export async function RegisterSubmit(
 
   // Faz upload da imagem e armazena a URL retornada
   if (image) {
-    const uploadResponse: string = await UploadImage({image});
+    const uploadResponse: string = await UploadCreateImage({image});
     imageUrl = uploadResponse; // Captura a URL retornada
   }
 

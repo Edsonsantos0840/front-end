@@ -1,6 +1,4 @@
 
-import Link from "next/link";
-
 import { MdImageSearch } from "react-icons/md";
 import Container from "@/app/components/containers/Container";
 import { handleUpdateUser } from "@/app/functions/handleSubmit/handleUpdateUser";
@@ -11,7 +9,6 @@ import Image from "next/image";
 async function UserUpdate({ params }: { params: { id: string } }) {
     const {id} = await params
     const url = `${process.env.BASE_URL}/users/${id}`;
-
    async function getUserWithId() {
       try {
         const res = await fetch(url);
@@ -25,12 +22,12 @@ async function UserUpdate({ params }: { params: { id: string } }) {
       }
     }
     const user: UserProps = await getUserWithId();
-
+    
   return (
     <Container>
         <h1 className="text-2xl text-center font-bold mb-6">Editar</h1>
       <form action={handleUpdateUser} className="flex flex-col p-8 bg-white rounded-md shadow-md space-y-2">
-      <input type="hidden" name="_id"  />
+      <input type="hidden" name="_id" value={user._id} />
        <label className="font-medium">
          Name:
         <input 
@@ -75,15 +72,6 @@ async function UserUpdate({ params }: { params: { id: string } }) {
       </button>
 
       </form>
-      <div className="flex justify-center gap-5 items-center mt-6">
-        <p className=" ">Já Possui Cadastro?</p>
-        <Link
-          href={"/login"}
-          className="text-2xl md:text-3xl lg:text-xl text-[var(--corTextos)] hover:scale-105 hover:underline hover:underline-offset-4 "
-        >
-          Faça Login.
-        </Link>
-      </div>
     </Container>
   );
 }
