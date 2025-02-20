@@ -1,78 +1,77 @@
+"use client";
 
-import { MdImageSearch } from "react-icons/md";
+import React, { Suspense, useEffect } from "react";
 import Container from "@/app/components/containers/Container";
 import { handleUpdateUser } from "@/app/functions/handleSubmit/handleUpdateUser";
-import { UserProps } from "@/app/types/user";
-import Image from "next/image";
+import FetchUploadUser from "@/app/functions/fetch/FetchUploadUser";
+import { useActionState } from "react";
+import { toast } from "react-toastify";
+import GenericForm, { FieldConfig } from "@/app/components/form/GenericForm";
 
+function UserUpdate({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = React.use(params);
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/users/${id}`;
 
-async function UserUpdate({ params }: { params: { id: string } }) {
-    const {id} = await params
-    const url = `${process.env.BASE_URL}/users/${id}`;
-   async function getUserWithId() {
-      try {
-        const res = await fetch(url);
-        if (!res.ok) {
-          console.log(` Houve um erro ${res.status} ao buscar os dados`);
-        }
-        const json = await res.json();
-        return json;
-      } catch (error) {
-        console.log(`${error} Houve este erro ao buscar os dados`);
-      }
+  const { user } = FetchUploadUser(url);
+
+  const [state, dispach] = useActionState(handleUpdateUser, {
+    message: [],
+    success: "",
+  });
+
+  useEffect(() => {
+    if (state.message) {
+      state.message.forEach((error) => {
+        toast.error(error);
+      });
     }
-    const user: UserProps = await getUserWithId();
-    
+    if (state.success) {
+      toast.success(state.success);
+    }
+  }, [state]);
+
+  const img = ["image"];
+
+  if (!user) return <p>Carregando usuário...</p>; // Evita erro se `user` ainda não foi carregado
+
+  const fields: FieldConfig[] = [
+    {
+      type: "hidden",
+      name: "_id",
+      value: id,
+      required: true,
+    },
+    {
+      label: "Nome",
+      type: "text",
+      name: "name",
+      placeholder: "Digite seu Nome",
+      required: true,
+    },
+    {
+      type: "email",
+      name: "email",
+      placeholder: "Digite seu e-mail",
+      required: true,
+    },
+  ];
+
   return (
     <Container>
-        <h1 className="text-2xl text-center font-bold mb-6">Editar</h1>
-      <form action={handleUpdateUser} className="flex flex-col p-8 bg-white rounded-md shadow-md space-y-2">
-      <input type="hidden" name="_id" value={user._id} />
-       <label className="font-medium">
-         Name:
-        <input 
-          type="name" 
-          name="name" 
-          placeholder="Digite seu Nome"
-          defaultValue={user.name}
-          className="border border-gray-300 rounded-md p-1 w-full"
-        />
-       </label>
-       <label className="font-medium">
-         E-mail:
-        <input 
-          type="email" 
-          name="email" 
-          placeholder="Digite seu e-mail"
-          defaultValue={user.email}
-          className="border border-gray-300 rounded-md p-1 w-full"
-        />
-       </label>
-       <label
-         className="cursor-pointer border-dashed border-[1px] border-[#b91c1c]/15 alinha6 text-sm my-5 hover:scale-105 "
-       >
-        <input
-          type="file"
-          name={`image`}
-          className="hidden my-8"
-        />
-         {
-           user.image ? 
-            <Image src={user.image} alt={user.name} width={170} height={230}/> :
-
-            <MdImageSearch size={100} color="#b91c1c54" />
-         }
-         
-       </label>
-       <button
-        type="submit"
-        className="w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-700"
-      >
-        Enviar
-      </button>
-
-      </form>
+      <Suspense fallback="Carregando....">
+        <div className="p-8 bg-white rounded-md shadow-md">
+          <GenericForm
+            fields={fields}
+            formTile="Editar Usuário"
+            action={dispach}
+            img={img}
+            image1={user.image}
+            update
+          />
+        </div>
+      </Suspense>
     </Container>
   );
 }
+
 export default UserUpdate;

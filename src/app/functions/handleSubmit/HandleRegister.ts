@@ -1,68 +1,76 @@
 "use server";
 
-import { RegisterSchema } from "@/schemas";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import { UploadCreateImage } from "./uploadImage";
+import { validateUser } from "../validate/validateUser";
 
 type ActionStateType = {
-  errors: string[];
+  message: string[];
   success: string;
 };
 
 export async function RegisterSubmit(
   prevState: ActionStateType,
   formData: FormData
-) {
+): Promise<ActionStateType> { // ⬅️ Agora retornamos um novo estado
+  
   const url = `${process.env.BASE_URL}/auth/register`;
-  const image = formData.get("image")
-  let imageUrl = "";
+  const image = formData.get("image");
+  let imageUrl: string | undefined = undefined;
 
-  // Faz upload da imagem e armazena a URL retornada
-  if (image) {
-    const uploadResponse: string = await UploadCreateImage({image});
-    imageUrl = uploadResponse; // Captura a URL retornada
-  }
+// Faz upload da imagem e armazena a URL retornada
+if (image instanceof File) {
+  imageUrl = await UploadCreateImage({ image });
+}
 
-  const registerData = {
-    name: formData.get("name"),
-    email: formData.get("email"),
-    password: formData.get("password"),
-    tipo: "usuário",
-    image: imageUrl , // Define a URL da imagem no registro
+// Continua o cadastro sem travar, mesmo que `imageUrl` seja undefined
+const userValidate = {
+  name: String(formData.get("name") || ""),
+  email: String(formData.get("email") || ""),
+  password: String(formData.get("password") || ""),
+  confirmPass: String(formData.get("confirmPass") || ""),
+  image: imageUrl,
+};
+
+const {message} = validateUser(userValidate);
+
+if (message.length > 0) {
+  return {
+    message: message,
+    success: "",
   };
+} 
+  
+      const req = await fetch(url, {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify({
+          name: userValidate.name,
+          email: userValidate.email,
+          password: userValidate.password,
+          image: imageUrl,
+        }),
+      });
+    
+      if (!req.ok) {
+        return {
+          message: ["Erro ao cadastrar usuário. Tente novamente!"],
+          success: "",
+        };
+      }
+    
+      const json = await req.json();
+    
+      (await cookies()).set({
+        name: "MA_MARMORES",
+        value: json,
+        httpOnly: true,
+        path: "/",
+      });
+ 
 
-  const register = RegisterSchema.safeParse(registerData);
-
-  if (!register.success) {
-    const errors = register.error?.errors.map((err) => err.message);
-    return {
-      errors,
-      success: "",
-    };
-  }
-
-  const req = await fetch(url, {
-    method: "POST",
-    headers: { "Content-type": "application/json" },
-    body: JSON.stringify({
-      name: register.data.name,
-      email: register.data.email,
-      password: register.data.password,
-      tipo: register.data.tipo,
-      image: register.data.image, // Inclui a URL da imagem no corpo da requisição
-    }),
-  });
-
-  const json = await req.json();
-
-  (await cookies()).set({
-    name: "MA_MARMORES",
-    value: json,
-    httpOnly: true,
-    path: "/",
-  });
-  // const success = SuccessSchema.parse(json);
-
-  redirect("/login");
+  return {
+    message: [],
+    success: "Usuário cadastrado com sucesso!",
+  };
 }

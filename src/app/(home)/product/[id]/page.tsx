@@ -5,7 +5,11 @@ import CommentRegister from "@/app/components/form/CommentRegister";
 import LikeRegister from "@/app/components/form/LikeRegister";
 import { ProdutoProps } from "@/app/types/produtoTypes";
 import { Block } from "@/app/middleware/blockedPage";
-import BtnDesLike from "@/app/components/buttons/BtnDesLike";
+// import BtnDesLike from "@/app/components/buttons/BtnDesLike";
+import { SlDislike } from "react-icons/sl";
+import Btn from "@/app/components/buttons/Btn";
+import { handleDeleteLike } from "@/app/functions/handleSubmit/HandleDeleteLike";
+import { Suspense } from "react";
 
 export interface likesProps {
   _id: string;
@@ -41,10 +45,6 @@ export default async function ProductOne({
     tipo: "",
   };
 
-  // const arrayLike = likes.map((item) => {
-  //   return item.user;
-  // });
-
   let urlDelLike = "";
 
   if (likes.length > 0 && likes[0]?._id) {
@@ -55,6 +55,7 @@ export default async function ProductOne({
     <Container>
       <main className="px-6 relative z-0">
         <div className="flex-col sm:basis-1/2 md:basis-1/3 lg:basis-1/4 max-w-full">
+        <Suspense fallback={'Carregando.....'}>
           <>
             <h2>{product.title}</h2>
             <p>
@@ -71,13 +72,22 @@ export default async function ProductOne({
               </section>
             )}
           </>
+        </Suspense>
           <div className="flex gap-4">
+          <Suspense fallback={'Carregando.....'}>
             <LikeRegister id={product._id} />
-            <BtnDesLike url={urlDelLike} />
+            <Btn
+              url={urlDelLike}
+              handle={handleDeleteLike}
+              icon={<SlDislike size={30} />}
+            />
             <h2>{likes.length}</h2>
+           </Suspense>
           </div>
+          <Suspense fallback={'Carregando.....'}>
           <CommentRegister id={product._id} />
           <CardComments id={id} user={user?.data || userComments} />
+          </Suspense>
         </div>
       </main>
     </Container>

@@ -5,39 +5,39 @@ export default function CardImages({ product }: { product: ProdutoProps }) {
   return (
     <section className="flex gap-8">
     <div className="space-y-2 max-h-[400px]">
-        <div>
+        <div className="relative w-[100px] h-[95px]">
           <Image
             src={product.image1}
             alt={product.title}
-            width={100}
-            height={95}
+            fill
+            quality={100}
             className=" "
           />
         </div>
-        <div>
+        <div className="relative w-[100px] h-[95px]">
           <Image
             src={product.image2 || ""}
             alt={product.title}
-            width={100}
-            height={95}
+            fill
+            quality={100}
             className=" "
           />
         </div>
-        <div>
+        <div className="relative w-[100px] h-[95px]">
           <Image
             src={product.image3 || ""}
             alt={product.title}
-            width={100}
-            height={95}
+            fill
+            quality={100}
             className=" "
           />
         </div>
-        <div >
+        <div className="relative w-[100px] h-[95px]">
           <Image
             src={product.image4 || ""}
             alt={product.title}
-            width={100}
-            height={95}
+            fill
+            quality={100}
             className=" "
           />
         </div>
@@ -47,6 +47,7 @@ export default function CardImages({ product }: { product: ProdutoProps }) {
           src={product.image1}
           alt={product.title}
           fill
+          quality={100}
           className="  "
         />
       </div>

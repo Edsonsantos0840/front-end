@@ -1,62 +1,32 @@
 
-import { Block } from "@/app/middleware/blockedPage";
-import { revalidateTag } from "next/cache";
-import { cookies } from "next/headers";
+"use client";
+
+import { FetchFunction } from "@/app/functions/fetch/FetchFunction";
+import { useActionState } from "react";
 import { SlLike } from "react-icons/sl";
 
-export default async function LikeRegister({id}: {id: string}) {
-    const _id = id
-    const url = `${process.env.BASE_URL}/product/likes`;
+export default function LikeRegister({ id }: { id: string }) {
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/product/likes`;
 
-   async function likesSubmit(formData: FormData) {
-    'use server'
+  const [state, dispatch] = useActionState(FetchFunction, {
+    message: [],
+    success: "",
+  });
 
-      const token = (await cookies()).get("MA_MARMORE")?.value;
-      const { user } = await Block();
-
-      try {
-        const res = await fetch(url, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            likes: formData.get("likes"),
-            user: user.data?._id, // Obtido do token ou do contexto
-            product: _id, // ID do produto
-          }),
-        });
-    
-        if (!res.ok) {
-          const error = await res.json();
-          return `Erro ao criar comentário. ${error}` 
-        }
-    
-        const data = await res.json();
-        revalidateTag('likes')
-        
-        return  data 
-      } catch (error) {
-        console.error("Erro ao enviar comentário:", error);
-        return { success: false, error: "Erro de conexão com o servidor." };
-      }
-    
-    }
+  console.log(state)
 
   return (
     <section>
-    <form action={likesSubmit} className='flex'>
-      <label className=' cursor-pointer hover:scale-105'>
-      
-      <button
-        type="submit" 
-        name='likes'
-        defaultValue={''}
-      ><SlLike size={26} /></button>
-      </label>
-      
-    </form>
-   </section>
-  )
+      <form action={dispatch} className="flex">
+        <input type="hidden" name="id" value={id} />
+        <input type="hidden" name="url" value={url} />
+        <input type="hidden" name="method" value="POST" />
+        <input type="hidden" name="actionType" value="like" />
+
+        <button type="submit" className="hover:scale-110">
+          <SlLike size={30} />
+        </button>
+      </form>
+    </section>
+  );
 }

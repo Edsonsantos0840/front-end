@@ -19,7 +19,11 @@ async function handleDeleteProducts(url: string, pathToRevalidate: string) {
       console.log(`${res.status} Houve um erro ao deletar`);
     } else {
       // Revalidando o caminho após a deleção do produto
+      if (pathToRevalidate) {
+        // Revalida a página somente se um caminho for fornecido
       revalidatePath(pathToRevalidate);
+      
+      }
     }
   } catch (error) {
     console.log(error);

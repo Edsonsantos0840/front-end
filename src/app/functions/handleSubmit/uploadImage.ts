@@ -51,12 +51,12 @@ export async function UploadCreateImage({
   image: FormDataEntryValue | string | File;
 }) {
   if (!image || !(image instanceof File)) {
-    alert("Por favor, selecione uma imagem válida.");
-    return;
+    console.error("Imagem inválida ou não fornecida.");
+    return undefined; // Retorna undefined em vez de nada
   }
 
   const token = (await cookies()).get("MA_MARMORE")?.value;
-  const url = `${process.env.BASE_URL}/user/image`; // Agora a URL inclui o ID do usuário
+  const url = `${process.env.BASE_URL}/user/image`;
 
   const formData = new FormData();
   formData.append("file", image);
@@ -64,21 +64,28 @@ export async function UploadCreateImage({
   const upload = UploadImageSchema.safeParse(formData);
 
   if (!upload.success) {
-    const errors = upload.error?.errors.map((err) => err.message);
-    return {
-      errors,
-      success: "",
-    };
+    console.error("Erro ao validar imagem:", upload.error);
+    return undefined; // Retorna undefined em vez de um objeto com `errors`
   }
 
-  const req = await fetch(url, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-    body: formData,
-  });
+  try {
+    const req = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    });
 
-  const response = await req.json();
-  return response.image;
+    if (!req.ok) {
+      console.error("Erro no upload da imagem:", req.statusText);
+      return undefined;
+    }
+
+    const response = await req.json();
+    return response.image || undefined; // Retorna undefined caso não tenha `image`
+  } catch (error) {
+    console.error("Erro na requisição de upload:", error);
+    return undefined;
+  }
 }

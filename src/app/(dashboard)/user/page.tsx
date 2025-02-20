@@ -1,37 +1,34 @@
+import Btn from "@/app/components/buttons/Btn";
 import BtnDeleteProducts from "@/app/components/buttons/BtnDeleteProducts";
-import { BtnUpdate } from "@/app/components/buttons/BtnUpdate";
-import { BtnView } from "@/app/components/buttons/BtnView";
 import Container from "@/app/components/containers/Container";
+import { FetchGetAuth } from "@/app/functions/fetch/FetchGet";
 import { Block } from "@/app/middleware/blockedPage";
 import { UserProps } from "@/app/types/user";
 import Image from "next/image";
 
-import React from "react";
+import React, { Suspense } from "react";
+import { AiFillEdit } from "react-icons/ai";
+import { GrView } from "react-icons/gr";
 
 export default async function User() {
   const url = `${process.env.BASE_URL}/users`;
   const urlDel = `${process.env.BASE_URL}/user`;
   const { user } = await Block();
+  const { data: userCard } = await FetchGetAuth<UserProps[]>(url);
 
-  async function getUser() {
-    try {
-      const res = await fetch(url);
-      if (!res.ok) {
-        console.log(` Houve um erro ${res.status} ao buscar os dados`);
-      }
-      const json = await res.json();
-      return json;
-    } catch (error) {
-      console.log(`${error} Houve este erro ao buscar os dados`);
-    }
-  }
-  const userCard: UserProps[] = await getUser();
-
-  if (userCard)
+  if (!userCard || userCard.length === 0) {
     return (
       <Container>
-        <h1>usuários</h1>
-        <main className="px-6 space-y-4">
+        <h1>Dashboard</h1>
+        <h1>Nenhum Produto Cadastrado</h1>
+      </Container>
+    );
+  }
+  return (
+    <Container>
+      <h1>usuários</h1>
+      <main className="px-6 space-y-4">
+        <Suspense fallback={"Carregando...."}>
           {userCard ? (
             userCard.map((item) => (
               <div
@@ -59,8 +56,11 @@ export default async function User() {
                   </p>
                 </div>
                 <div className="flex justify-between items-end gap-5">
-                  <BtnView url={`/user/${item._id}`} />
-                  <BtnUpdate url={`/user/${item._id}/userUpdate`} />
+                  <Btn url={`/user/${item._id}`} icon={<GrView size={20} />} />
+                  <Btn
+                    url={`/user/${item._id}/userUpdate`}
+                    icon={<AiFillEdit size={20} />}
+                  />
                   {user.data?._id !== item._id && (
                     <BtnDeleteProducts
                       url={`${urlDel}/${item._id}`}
@@ -73,7 +73,8 @@ export default async function User() {
           ) : (
             <h1>Nenhum itemuto Cadastrado</h1>
           )}
-        </main>
-      </Container>
-    );
+        </Suspense>
+      </main>
+    </Container>
+  );
 }

@@ -6,6 +6,8 @@ export default function BtnEdit() {
   const router = useRouter();
   const pathname = usePathname();
 
+// Função para controlar a renderização condicional do botão edite.
+// EX. se tiver edite não aparece a linha do comentário e vice versa.
   function handleCancelEdit() {
     const newParams = new URLSearchParams(searchParams.toString());
     newParams.delete("edit");

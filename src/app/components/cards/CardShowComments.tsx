@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -6,12 +5,13 @@ import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { CiEdit } from "react-icons/ci";
 import BtnEdit from "../buttons/BtnEdit";
 import { CommentProps } from "@/app/types/commentType";
-import { CommentsUpdateSubmit } from "./CommentsUpdateSubmit";
+import { CommentsUpdateSubmit } from "../../functions/handleSubmit/CommentsUpdateSubmit";
 import Image from "next/image";
 import { useComments } from "@/app/hooks/useComments";
-import BtnDelete from "../buttons/BtnDelete";
 import { IoIosPerson } from "react-icons/io";
-
+import Btn from "../buttons/Btn";
+import { handleDelete } from "@/app/functions/handleSubmit/HandleDelete";
+import { TbHttpDelete } from "react-icons/tb";
 
 interface ComentsUpdateprops {
   data: CommentProps[];
@@ -25,7 +25,11 @@ interface ComentsUpdateprops {
   };
 }
 
-export default function CardShowComments({ data, productId, user }: ComentsUpdateprops) {
+export default function CardShowComments({
+  data,
+  productId,
+  user,
+}: ComentsUpdateprops) {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -58,47 +62,60 @@ export default function CardShowComments({ data, productId, user }: ComentsUpdat
   return (
     <ul className="w-full">
       {data.map((comment) => (
-        <li 
-         key={comment._id} 
-         onMouseOver={() => setId(comment._id)}
-         onTouchStart={() => setId(comment._id)} 
-         className="mb-4 flex gap-4 w-full justify-between items-center"
+        <li
+          key={comment._id}
+          onMouseOver={() => setId(comment._id)}
+          onTouchStart={() => setId(comment._id)}
+          className="mb-4 flex gap-4 w-full justify-between items-center"
         >
-          
           {selectedComment !== comment._id ? (
             <>
-              <div >
+              <div>
                 <div className="flex gap-5 p-2">
-                  {
-                    comment.user !== null ?
+                  {comment.user !== null ? (
                     <Image
                       src={comment.user.image}
                       alt={`foto do usuário ${comment.user.name}`}
                       width={40}
                       height={40}
                       className="rounded-full shadow-lg"
-                    /> :
+                    />
+                  ) : (
                     <IoIosPerson />
-                  }
-                  {
-                    comment.user !== null ?
-                    <strong>{comment.user.name}</strong> :
+                  )}
+                  {comment.user !== null ? (
+                    <strong>{comment.user.name}</strong>
+                  ) : (
                     <strong>{"usuário anônimo"}</strong>
-                  }
+                  )}
                 </div>
                 <p>{comment.comments}</p>
               </div>
-             <div className="space-x-5" >
-             <button onClick={() => handleEdit(comment._id)}>
-                <CiEdit size={20} />
-             </button>
-             <BtnDelete url={url}/>
-             </div>
+              {user._id === comment.user._id && (
+                <div className="space-x-5">
+                  <button onClick={() => handleEdit(comment._id)}>
+                    <CiEdit size={20} />
+                  </button>
+                  <Btn
+                    url={url}
+                    handle={handleDelete}
+                    icon={<TbHttpDelete size={30} color="red" />}
+                  />
+                </div>
+              )}
             </>
           ) : (
             <div className="w-full">
-              <form action={handleUpdate} className="flex justify-between items-center gap-5 w-full">
-                <input type="text" name="comments" className="w-full px-4 h-10" defaultValue={comment.comments} />
+              <form
+                action={handleUpdate}
+                className="flex justify-between items-center gap-5 w-full"
+              >
+                <input
+                  type="text"
+                  name="comments"
+                  className="w-full px-4 h-10"
+                  defaultValue={comment.comments}
+                />
                 <BtnEdit />
               </form>
             </div>

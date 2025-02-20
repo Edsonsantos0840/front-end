@@ -8,13 +8,12 @@ export default async function Header() {
       <section className="w-full alinha6 p-4 pt-16 ">
         <Link
           href={"/"}
-          className=" w-[200px] h-[80px] object-cover bg-cover "
+          className=" w-[270px] h-[100px] object-cover bg-cover  relative"
         >
           <Image
             src={"/logo.png"}
             alt="logo marca"
-            width={200}
-            height={80}
+            fill
             quality={100}
             priority={true}
           />

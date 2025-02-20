@@ -1,57 +1,36 @@
 
-import { Block } from "@/app/middleware/blockedPage";
-import { revalidateTag } from "next/cache";
-import { cookies } from "next/headers";
+"use client";
 
-export default async function CommentRegister({id}: {id: string}) {
-    const _id = id
+import { FetchFunction } from "@/app/functions/fetch/FetchFunction";
+import { useActionState } from "react";
 
-   async function CommentsSubmit(formData: FormData) {
-    'use server'
-      const url = `${process.env.BASE_URL}/product/comments`;
-      const token = (await cookies()).get("MA_MARMORE")?.value;
-      const { user } = await Block();
-    
-      try {
-        const res = await fetch(url, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            comments: formData.get("comments"),
-            user: user.data?._id, // Obtido do token ou do contexto
-            product: _id, // ID do produto
-          }),
-        });
-    
-        if (!res.ok) {
-          const error = await res.json();
-          return `Erro ao criar comentário. ${error}` 
-        }
-    
-        const data = await res.json();
-        revalidateTag('comments')
-        return  data 
-      } catch (error) {
-        console.error("Erro ao enviar comentário:", error);
-        return { success: false, error: "Erro de conexão com o servidor." };
-      }
-    }
+export default function CommentRegister({ id }: { id: string }) {
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/product/comments`;
+
+  const [state, dispatch] = useActionState(FetchFunction, {
+    message: [],
+    success: "",
+  });
+
+  console.log(state)
+
 
   return (
     <section>
-    <form action={CommentsSubmit} className='flex'>
-      <input 
-        type="text" 
-        placeholder='Digite seu comentário'
-        name='comments'
-        defaultValue=''
-        className='w-full h-10'
-      />
-      <button type="submit">Comentar</button>
-    </form>
-   </section>
-  )
+      <form action={dispatch} className="flex gap-2 my-2">
+        <input type="hidden" name="id" value={id} />
+        <input type="hidden" name="url" value={url} />
+        <input type="hidden" name="method" value="POST" />
+        <input type="hidden" name="actionType" value="comment" />
+
+        <input
+          type="text"
+          placeholder="Digite seu comentário"
+          name="inp"
+          className="w-full h-10 border border-gray-300 rounded-md"
+        />
+        <button className="w-24 bg-red-600 text-white py-2 rounded-md hover:bg-red-700" type="submit">Comentar</button>
+      </form>
+    </section>
+  );
 }
