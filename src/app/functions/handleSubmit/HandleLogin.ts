@@ -1,10 +1,9 @@
-"use server";
-import { ErrorResSchema, LoginSchema } from "@/schemas";
+"use server"
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
+import { validateLogin } from "../validate/validateLogin";
 
 type ActionStateType = {
-  errors: string[];
+  message: string[];
   success: string;
 };
 
@@ -19,16 +18,14 @@ export async function LoginSubmit(
     password: formData.get("password"),
   };
 
-  const login = LoginSchema.safeParse(loginData);
-
-  if (!login.success) {
-    const errors = login.error.errors.map((err) => err.message);
-
+  const {message} = validateLogin(loginData);
+  
+  if (message.length > 0) {
     return {
-      errors,
+      message: message,
       success: "",
     };
-  }
+  } 
 
   const req = await fetch(url, {
     method: "POST",
@@ -36,22 +33,19 @@ export async function LoginSubmit(
       "content-type": "application/json",
     },
     body: JSON.stringify({
-      email: login.data.email,
-      password: login.data.password,
+      email: loginData.email,
+      password: loginData.password,
     }),
   });
 
   const json = await req.json();
 
   if (!req.ok) {
-    const { error } = ErrorResSchema.parse(json);
-
     return {
-      errors: [error],
+      message: ["Erro ao logar o usuário. Tente novamente!"],
       success: "",
     };
   }
-
   // Valida o token recebido, caso necessário
 
   (await cookies()).set({
@@ -61,5 +55,9 @@ export async function LoginSubmit(
     path: "/",
   });
 
-  redirect("/");
+  return {
+    message: [],
+    success: "Usuário logado com sucesso!",
+  };
 }
+

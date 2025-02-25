@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 
 interface UpdateCommentsProps {
   comments: FormDataEntryValue | null;
-  user: string;
+  user: string | undefined;
   product: string;
 }
 

@@ -15,7 +15,7 @@ export default function BtnEdit() {
   }
 
   return (
-    <button  onClick={handleCancelEdit}>
+    <button className="w-28 text-principal bg-white border-2 border-principal font-semibold py-2 rounded-md hover:bg-principal hover:text-textos2" onClick={handleCancelEdit}>
       editar
     </button>
   );

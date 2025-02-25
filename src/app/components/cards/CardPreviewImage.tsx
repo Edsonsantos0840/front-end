@@ -1,22 +1,17 @@
 "use client";
-
 import UsePreviewImage from "@/app/hooks/UsePreviewImage";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import Image from "next/image";
 
-export default function CardPreviewImage({
-  img,
-  current1,
-  current2,
-  current3,
-  current4,
-}: {
+interface PreviewImageProps {
   img: string[];
   current2?: string | StaticImport;
   current3?: string | StaticImport;
   current1: string | StaticImport;
   current4?: string | StaticImport;
-}) {
+}
+
+export default function CardPreviewImage({img, current1, current2, current3, current4,}: PreviewImageProps) {
   const { previews, handleImageChange } = UsePreviewImage();
 
   const currentImage = [current1, current2, current3, current4];

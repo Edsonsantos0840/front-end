@@ -23,7 +23,7 @@ export default function LikeRegister({ id }: { id: string }) {
         <input type="hidden" name="method" value="POST" />
         <input type="hidden" name="actionType" value="like" />
 
-        <button type="submit" className="hover:scale-110">
+        <button type="submit" className="hover:scale-110 text-textos/80 italic">
           <SlLike size={30} />
         </button>
       </form>

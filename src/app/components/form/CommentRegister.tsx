@@ -29,7 +29,7 @@ export default function CommentRegister({ id }: { id: string }) {
           name="inp"
           className="w-full h-10 border border-gray-300 rounded-md"
         />
-        <button className="w-24 bg-red-600 text-white py-2 rounded-md hover:bg-red-700" type="submit">Comentar</button>
+        <button className="w-24 bg-principal text-textos2 py-2 rounded-md hover:bg-principal2" type="submit">Comentar</button>
       </form>
     </section>
   );

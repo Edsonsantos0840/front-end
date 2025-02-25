@@ -1,5 +1,6 @@
-import { UserSchema } from "@/schemas";
+
 import { cookies } from "next/headers";
+import { UserProps } from "../types/user";
 
 export async function Block() {
   const url = `${process.env.BASE_URL}/user`;
@@ -10,10 +11,10 @@ export async function Block() {
       Authorization: ` Bearer ${token} `,
     },
   });
-  const session = await req.json();
-  const result = UserSchema.safeParse(session);
+  const session: UserProps = await req.json();
+
 
   return {
-    user: result,
+    user: session,
   };
 }

@@ -1,0 +1,116 @@
+import { FieldConfig } from "../form/GenericForm";
+const category = ["banheiro", "cozinha", "escadas", "exteriores"];
+
+const fieldsUser: FieldConfig[] = [
+  {
+    label: "Nome",
+    type: "text",
+    name: "name",
+    placeholder: "Digite seu Nome",
+  },
+  {
+    label: "E-mail",
+    type: "email",
+    name: "email",
+    placeholder: "Digite seu e-mail",
+  },
+  {
+    label: "Senha",
+    type: "password",
+    name: "password",
+    placeholder: "Digite sua senha",
+  },
+  {
+    label: "Confirmar:",
+    type: "password",
+    name: "confirmPass",
+    placeholder: "Confirme a Senha",
+  },
+];
+
+const fieldsLogin: FieldConfig[] = [
+  {
+    label: "E-mail",
+    type: "email",
+    name: "email",
+    placeholder: "Digite seu e-mail",
+  },
+  {
+    label: "Senha",
+    type: "password",
+    name: "password",
+    placeholder: "Digite sua senha",
+  },
+];
+
+export const getFieldsUpdateProduct = (updateId: string): FieldConfig[] => [
+    {
+      type: "hidden",
+      name: "_id",
+      value: updateId,
+    },
+    {
+      label: "Título",
+      type: "text",
+      name: "title",
+      placeholder: "Digite o título do produto",
+    },
+    {
+      label: "Categoria",
+      type: "select",
+      name: "category",
+      options: category,
+    },
+    {
+      label: "Descrição",
+      type: "text",
+      name: "description",
+      placeholder: "Descreva o produto",
+    },
+  ];
+export const getFieldsUpdateUser = (id: string): FieldConfig[] => [
+  {
+    type: "hidden",
+    name: "_id",
+    value: id,
+    required: true,
+  },
+  {
+    label: "Nome",
+    type: "text",
+    name: "name",
+    placeholder: "Digite seu Nome",
+    required: true,
+  },
+  {
+    type: "email",
+    name: "email",
+    placeholder: "Digite seu e-mail",
+    required: true,
+  },
+  ];
+
+  const fieldsProducts: FieldConfig[] = [
+    {
+      label: "Título",
+      type: "text",
+      name: "title",
+      placeholder: "Digite o título do produto",
+      required: true,
+    },
+    {
+      label: "Categoria",
+      type: "select",
+      name: "category",
+      options: category,
+      required: true,
+    },
+    {
+      label: "Descrição",
+      type: "text",
+      name: "description",
+      placeholder: "Descreva o produto",
+      required: true,
+    },
+  ];
+export { fieldsUser, fieldsLogin, fieldsProducts};

@@ -26,16 +26,16 @@ export default async function User() {
   }
   return (
     <Container>
-      <h1>usuários</h1>
+      <h1>Usuários</h1>
       <main className="px-6 space-y-4">
         <Suspense fallback={"Carregando...."}>
           {userCard ? (
             userCard.map((item) => (
-              <div
+              <article
                 key={item._id}
                 className="flex justify-between flex-wrap items-end gap-5 relative overflow-hidden border-b-[.7px] border-black/10 p-1"
               >
-                <div className="relative w-12 h-12 bg-cover object-cover ">
+                <figure className="relative w-12 h-12 bg-cover object-cover">
                   <Image
                     src={item.image || ""}
                     alt={item.name}
@@ -43,9 +43,9 @@ export default async function User() {
                     quality={100}
                     className="bg-cover object-cover rounded-full shadow-lg"
                   />
-                </div>
-                <div className="flex items-end gap-5 w-[80%]">
-                  <p className="text-left w-[30%]">{item.name}</p>
+                </figure>
+                <section className="flex items-end gap-5 w-[80%]">
+                  <h4 className="text-left w-[30%]">{item.name}</h4>
                   <p className="text-left w-[50%]">
                     <strong>email: </strong>
                     {item.email}
@@ -54,24 +54,24 @@ export default async function User() {
                     <strong>tipo: </strong>
                     {item.tipo}
                   </p>
-                </div>
+                </section>
                 <div className="flex justify-between items-end gap-5">
                   <Btn url={`/user/${item._id}`} icon={<GrView size={20} />} />
                   <Btn
                     url={`/user/${item._id}/userUpdate`}
                     icon={<AiFillEdit size={20} />}
                   />
-                  {user.data?._id !== item._id && (
+                  {user._id !== item._id && (
                     <BtnDeleteProducts
                       url={`${urlDel}/${item._id}`}
-                      pathToRevalidate="/dashboard" // caminho da página que você quer revalidar
+                      pathToRevalidate="/dashboard"
                     />
                   )}
                 </div>
-              </div>
+              </article>
             ))
           ) : (
-            <h1>Nenhum itemuto Cadastrado</h1>
+            <p>Nenhum item cadastrado.</p>
           )}
         </Suspense>
       </main>

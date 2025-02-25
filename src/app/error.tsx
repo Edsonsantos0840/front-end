@@ -4,6 +4,7 @@ import Logo from "./../../public/logo.png";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
+
 interface ErrorProps {
   error: Error;
   reset: () => void;

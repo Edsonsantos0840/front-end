@@ -1,12 +1,13 @@
 "use client";
 
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense} from "react";
 import Container from "@/app/components/containers/Container";
 import { handleUpdateUser } from "@/app/functions/handleSubmit/handleUpdateUser";
 import FetchUploadUser from "@/app/functions/fetch/FetchUploadUser";
 import { useActionState } from "react";
-import { toast } from "react-toastify";
-import GenericForm, { FieldConfig } from "@/app/components/form/GenericForm";
+import GenericForm from "@/app/components/form/GenericForm";
+import useMessages from "@/app/hooks/useMessages";
+import { getFieldsUpdateUser } from "@/app/components/content/contentForm";
 
 function UserUpdate({ params }: { params: Promise<{ id: string }> }) {
   const { id } = React.use(params);
@@ -19,56 +20,26 @@ function UserUpdate({ params }: { params: Promise<{ id: string }> }) {
     success: "",
   });
 
-  useEffect(() => {
-    if (state.message) {
-      state.message.forEach((error) => {
-        toast.error(error);
-      });
-    }
-    if (state.success) {
-      toast.success(state.success);
-    }
-  }, [state]);
+useMessages(state); // Faz a validação dos campos do formulário
+
 
   const img = ["image"];
 
   if (!user) return <p>Carregando usuário...</p>; // Evita erro se `user` ainda não foi carregado
 
-  const fields: FieldConfig[] = [
-    {
-      type: "hidden",
-      name: "_id",
-      value: id,
-      required: true,
-    },
-    {
-      label: "Nome",
-      type: "text",
-      name: "name",
-      placeholder: "Digite seu Nome",
-      required: true,
-    },
-    {
-      type: "email",
-      name: "email",
-      placeholder: "Digite seu e-mail",
-      required: true,
-    },
-  ];
-
   return (
     <Container>
       <Suspense fallback="Carregando....">
-        <div className="p-8 bg-white rounded-md shadow-md">
+        <main className="p-8 bg-white rounded-md shadow-md">
           <GenericForm
-            fields={fields}
+            fields={getFieldsUpdateUser(id)}
             formTile="Editar Usuário"
             action={dispach}
             img={img}
             image1={user.image}
             update
           />
-        </div>
+        </main>
       </Suspense>
     </Container>
   );

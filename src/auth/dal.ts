@@ -1,4 +1,5 @@
-import { UserSchema } from "@/schemas";
+
+import { UserProps } from "@/app/types/user";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { cache } from "react";
@@ -15,15 +16,10 @@ export const verifySession = cache(async () => {
       Authorization: ` Bearer ${token} `,
     },
   });
-  const session = await req.json();
-  const result = UserSchema.safeParse(session);
-
-  if (!result.success) {
-    redirect("/");
-  }
+  const session: UserProps = await req.json();
 
   return {
-    user: result.data,
+    user: session,
     isAuth: true,
   };
 });

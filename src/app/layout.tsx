@@ -1,7 +1,8 @@
-import { Ysabeau } from "next/font/google";
+import { Ysabeau} from "next/font/google";
 import "./globals.css";
 import { Metadata } from "next";
 import ToastifyMsg from "./components/messages/ToastifyMsg";
+
 
 const Ysabea = Ysabeau({
   subsets: ["latin"],

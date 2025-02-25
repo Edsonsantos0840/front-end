@@ -1,4 +1,3 @@
-
 "use server";
 
 import { revalidateTag } from "next/cache";
@@ -18,9 +17,9 @@ async function FetchFunction(prevState: ActionStateType, formData: FormData) {
   const method = formData.get("method") as string;
   const actionType = formData.get("actionType") as string; // Define a ação (comentário, like, etc.)
 
-  const data: Record<string, unknown> = { 
-    user: user.data?._id, 
-    product: formData.get("id") 
+  const data: Record<string, unknown> = {
+    user: user._id,
+    product: formData.get("id"),
   };
 
   // Adaptando os dados dependendo da ação
@@ -39,13 +38,21 @@ async function FetchFunction(prevState: ActionStateType, formData: FormData) {
     });
 
     if (!res.ok) {
-      return { message: ["Houve um erro. Tente novamente mais tarde."], success: "" };
+      return {
+        message: ["Houve um erro. Tente novamente mais tarde."],
+        success: "",
+      };
     }
 
     // Revalidação de cache com base na ação
     revalidateTag(actionType === "comment" ? "comments" : "likes");
 
-    return { message: [], success: `${actionType === "comment" ? "Comentário" : "Like"} registrado com sucesso!` };
+    return {
+      message: [],
+      success: `${
+        actionType === "comment" ? "Comentário" : "Like"
+      } registrado com sucesso!`,
+    };
   } catch (error) {
     console.error("Erro ao processar a requisição:", error);
     return { message: ["Erro ao processar a requisição."], success: "" };

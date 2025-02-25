@@ -1,6 +1,7 @@
 import ToastifyMsg from "../components/messages/ToastifyMsg";
 import Header from "../components/headers/Header";
 import NavBar from "../components/headers/NavBar";
+import Footer from "../components/headers/Footer";
 
 export default function PublicViewLayout({
   children,
@@ -9,9 +10,10 @@ export default function PublicViewLayout({
 }>) {
   return (
     <>
-      <NavBar/>
+      <NavBar />
       <Header />
       {children}
+      <Footer />
       <ToastifyMsg />
     </>
   );

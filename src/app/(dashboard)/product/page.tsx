@@ -33,11 +33,11 @@ export default async function Product() {
         <Suspense fallback={"carregando..."}>
           {product ? (
             product.map((prod) => (
-              <div
+              <article
                 key={prod._id}
                 className="flex justify-between flex-wrap items-end gap-5 relative overflow-hidden border-b-[.7px] border-black/10 p-1"
               >
-                <div className="relative w-16 h-16 bg-cover object-cover">
+                <figure className="relative w-16 h-16 bg-cover object-cover">
                   <Image
                     src={prod.image1}
                     alt={prod.title}
@@ -45,15 +45,15 @@ export default async function Product() {
                     quality={100}
                     className="bg-cover object-cover"
                   />
-                </div>
-                <div className="flex items-end gap-5 w-[60%]">
-                  <p className="text-left w-[55%]">{prod.title}</p>
+                </figure>
+                <section className="flex items-end gap-5 w-[60%]">
+                  <h3 className="text-left w-[55%]">{prod.title}</h3>
                   <p className="text-left w-[15%]">{dataFormatada}</p>
                   <p className="text-left w-[30%]">
                     <strong>Categoria: </strong>
                     {prod.category}
                   </p>
-                </div>
+                </section>
                 <div className="flex justify-between items-end gap-5">
                   <Btn
                     url={`/product/${prod._id}`}
@@ -68,7 +68,7 @@ export default async function Product() {
                     pathToRevalidate="/dashboard"
                   />
                 </div>
-              </div>
+              </article>
             ))
           ) : (
             <h1>Nenhum Produto Cadastrado</h1>

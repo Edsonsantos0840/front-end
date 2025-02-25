@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 import { UploadCreateImage } from "./uploadImage";
 import { validateUser } from "../validate/validateUser";
 
-type ActionStateType = {
+export type ActionStateType = {
   message: string[];
   success: string;
 };

@@ -1,10 +1,12 @@
 "use client";
 import Container from "../containers/Container";
-import { useActionState, useEffect } from "react";
+import { useActionState } from "react";
 import { RegisterSubmit } from "@/app/functions/handleSubmit/HandleRegister";
-import { toast } from "react-toastify";
-import GenericForm, { FieldConfig } from "./GenericForm";
+// import { toast } from "react-toastify";
+import GenericForm from "./GenericForm";
 import CardRegisterLogin from "../cards/CardRegisterLogin";
+import useMessages from "../../hooks/useMessages";
+import { fieldsUser } from "../content/contentForm";
 
 function UserRegister() {
   const [state, dispach] = useActionState(RegisterSubmit, {
@@ -12,56 +14,21 @@ function UserRegister() {
     success: "",
   });
 
-  useEffect(() => {
-    if (state.message) {
-      state.message.forEach((error) => {
-        toast.error(error);
-      });
-    }
-    if (state.success) {
-      toast.success(state.success);
-    }
-  }, [state]);
+  useMessages(state); // Faz a validação dos campos do formulário
 
-    const fields: FieldConfig[] = [
-      {
-        label: "Nome",
-        type: "text",
-        name: "name",
-        placeholder: "Digite seu Nome",
-        required: true,
-      },
-      {
-        label: "E-mail",
-        type: "email",
-        name: "email",
-        placeholder: "Digite seu e-mail",
-        required: true,
-      },
-      {
-        label: "Senha",
-        type: "password",
-        name: "password",
-        placeholder: "Digite sua senha",
-        required: true,
-      },
-      {
-        label: "Confirmar:",
-        type: "password",
-        name: "confirmPass",
-        placeholder: "Confirme a Senha",
-        required: true,
-      },
-    ];
-    const img = ["image"];
+  const img = ["image"];
 
   return (
     <Container>
-       <div className="p-8 bg-white rounded-md shadow-md">
-         <GenericForm fields={fields} formTile="Cadastrar Usuário" action={dispach} img={img}  />
-       </div>
-       <CardRegisterLogin/>
-
+      <main className="p-8 bg-white rounded-md shadow-md">
+        <GenericForm
+          fields={fieldsUser}
+          formTile="Cadastrar Usuário"
+          action={dispach}
+          img={img}
+        />
+      </main>
+      <CardRegisterLogin />
     </Container>
   );
 }

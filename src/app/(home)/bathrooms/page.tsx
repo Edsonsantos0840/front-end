@@ -1,9 +1,16 @@
 import Container from "@/app/components/containers/Container";
+import MotionBatroom from "@/app/components/products/MotionBatroom";
 import { FetchGet } from "@/app/functions/fetch/FetchGet";
 import { ProdutoProps } from "@/app/types/produtoTypes";
-import Image from "next/image";
-import Link from "next/link";
-import { Suspense } from "react";
+import { Metadata } from "next";
+
+
+export const metadata: Metadata = {
+  title: "Banheiros incríveis em M&A Marmores e Granitos.",
+  description: "Faça seu logim para interagir com os produtos.",
+  keywords:
+    "Marmores e Granitos, Desing ambiente, Acabamento construção, marmore, granito, pedra onix, pedras ornamentais, pia de marmore, mesa de marmore, escada de marmore, balcao de marmore, soleira de marmore, porcelanato, construtora, construção civil, alvenaria, piso, pisos e revestimentos",
+};
 
 export default async function Bathrooms() {
   const url = `${process.env.BASE_URL}/products/category/banheiro`;
@@ -20,35 +27,10 @@ export default async function Bathrooms() {
 
   return (
     <main className="px-6">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-        <Suspense fallback={"carregando......"}>
-        {product ? (
-          product.map((prod) => (
-            <div
-              key={prod._id}
-              className="relative group overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
-            >
-              <Link
-                href={`/product/${prod._id}`}
-                className=""
-              >
-                <div className="relative w-[230px] h-[190px] bg-cover object-cover transition-transform duration-500 group-hover:scale-110">
-                <Image
-                  src={prod.image1}
-                  alt={prod.title}
-                  fill
-                  quality={100}
-                  className=" rounded-xl"
-                />
-                </div>
-              </Link>
-            </div>
-          ))
-        ) : (
-          <h1>Nenhum Produto</h1>
-        )}
-        </Suspense>
-      </div>
+      <section aria-label="Lista de Produtos" className="mb-20" >
+        <h2 className="text-xl font-bold mb-4">Banheiros</h2>
+        <MotionBatroom product={product}/>
+      </section>
     </main>
   );
 }

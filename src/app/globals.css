@@ -3,19 +3,27 @@
 @tailwind utilities;
 
 :root {
-  --corPrincipal: #b91c1c;
-  --corPrincipal2: #b91c1cbd;
-  --corTextos: #4e4d4d;
-  --corComplementar: #721111;
-  --corCompleme: #a7756f;
   --corFundo: #f2f2f2;
   --corFundo2: rgb(250, 250, 250);
-  --corFundo2Produto: #e4a4ac;
-  --corFundo2Prod: #ffc6c7;
+}
+
+@font-face {
+  font-family: "PlusJakartaSans";
+  src: url("../../public/assets/fonts/PlusJakartaSans-VariableFont_wght.ttf") format("ttf"),
+       url("../../public/assets/fonts/PlusJakartaSans-VariableFont_wght.ttf") format("ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Lilita_One";
+  src: url("../../public/assets/fonts/Lilita_One/LilitaOne-Regular.ttf") format("ttf"),
+       url("../../public/assets/fonts/Lilita_One/LilitaOne-Regular.ttf") format("ttf");
+  font-weight: 400;
+  font-style: normal;
 }
 
 body {
-  background-color: var(--corFundo2);
+  background-color: var(--corFundo);
 }
 
 @layer {
@@ -42,5 +50,8 @@ body {
   }
   .link2 {
     @apply  hover:scale-125 transition-all ease-in-out duration-300;
+  }
+  .btn {
+    @apply bg-red-600 text-white py-2 rounded-2xl hover:bg-red-700 hover:scale-125 transition-all ease-in-out duration-300;
   }
 }
