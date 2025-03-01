@@ -115,7 +115,7 @@ export default async function NavBar() {
                 </Link>
               </li>
 
-              {user && (
+              {user.name !== undefined ? (
                 <button
                   className="alinha6 gap-3 text-gray-200  pl-2 font-Ysabea hover:scale-125 transition-all ease-in-out duration-300"
                   onClick={logOut}
@@ -123,9 +123,9 @@ export default async function NavBar() {
                   <strong className="py-1">Sair</strong>
                   <FiLogOut size={26} />
                 </button>
-              )}
-
-              {!user && (
+              )
+               :
+              (
                 <li>
                   <Link
                     href={"/login"}

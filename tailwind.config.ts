@@ -18,7 +18,8 @@ export default {
         fundo: "#efe8e885",
         fundo2:" #c9e1e52b",
         fundo3: "#d5c3c385",
-        fundoProdduto2: "#ffc6c7",
+        fundo4: "#4c4c4cfa",
+        fundoProdduto2: "#fb898b91",
       },
       backdropBlur: {
         xs: '2px',

@@ -12,7 +12,7 @@ export default function Btn({ url, icon, handle }: BtnProps) {
   return (
     <button
       onClick={() => handle ? handle(url) : window.location.href = url}
-      className="hover:scale-110 text-end"
+      className="hover:scale-125 text-end"
     >
       <div>{icon}</div>
     </button>

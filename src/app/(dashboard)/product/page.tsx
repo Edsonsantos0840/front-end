@@ -3,10 +3,14 @@ import BtnDeleteProducts from "@/app/components/buttons/BtnDeleteProducts";
 import Container from "@/app/components/containers/Container";
 import { FetchGet } from "@/app/functions/fetch/FetchGet";
 import { ProdutoProps } from "@/app/types/produtoTypes";
+import { format } from "date-fns/format";
+import { ptBR } from "date-fns/locale";
 import Image from "next/image";
-import { Suspense } from "react";
-import { AiFillEdit } from "react-icons/ai";
-import { GrView } from "react-icons/gr";
+import { JSX, Suspense } from "react";
+import { FaCheck} from "react-icons/fa6";
+import { FaRestroom, FaUtensils} from "react-icons/fa";
+import { MdEdit, MdOutdoorGrill } from "react-icons/md";
+import { PiLadderBold } from "react-icons/pi";
 
 export default async function Product() {
   const url = `${process.env.BASE_URL}/products`;
@@ -22,56 +26,87 @@ export default async function Product() {
       </Container>
     );
   }
-  const dataFormatada = new Date(product[0].createdAt).toLocaleDateString(
-    "pt-BR"
-  );
+
+  const iconMap: Record<string, JSX.Element> = {
+    banheiro: <FaRestroom size={24} />,
+    cozinha: <FaUtensils size={24} />,
+    escadas: <PiLadderBold size={24} />,
+    exteriores: <MdOutdoorGrill size={24} />,
+  };
 
   return (
     <Container>
-      <h1>Dashboard</h1>
-      <main className="px-6 space-y-4">
-        <Suspense fallback={"carregando..."}>
-          {product ? (
-            product.map((prod) => (
-              <article
-                key={prod._id}
-                className="flex justify-between flex-wrap items-end gap-5 relative overflow-hidden border-b-[.7px] border-black/10 p-1"
-              >
-                <figure className="relative w-16 h-16 bg-cover object-cover">
-                  <Image
-                    src={prod.image1}
-                    alt={prod.title}
-                    fill
-                    quality={100}
-                    className="bg-cover object-cover"
-                  />
-                </figure>
-                <section className="flex items-end gap-5 w-[60%]">
-                  <h3 className="text-left w-[55%]">{prod.title}</h3>
-                  <p className="text-left w-[15%]">{dataFormatada}</p>
-                  <p className="text-left w-[30%]">
-                    <strong>Categoria: </strong>
-                    {prod.category}
-                  </p>
-                </section>
-                <div className="flex justify-between items-end gap-5">
-                  <Btn
-                    url={`/product/${prod._id}`}
-                    icon={<GrView size={20} />}
-                  />
-                  <Btn
-                    url={`/productUpdate/${prod._id}`}
-                    icon={<AiFillEdit size={20} />}
-                  />
-                  <BtnDeleteProducts
-                    url={`${urlDel}/${prod._id}`}
-                    pathToRevalidate="/dashboard"
-                  />
-                </div>
-              </article>
-            ))
+      <main className="space-y-4 bg-white rounded-2xl my-4">
+        <Suspense fallback={<p>Carregando...</p>}>
+          {product && product.length > 0 ? (
+            <div className="overflow-x-auto">
+              <table className="w-full ">
+                <thead className="">
+                  <tr className="grid grid-cols-[auto_3fr_auto_auto_1fr] gap-4 text-white mb-8 bg-principal/90 rounded-t-2xl">
+                    <th className="p-3 text-left">Imagem</th>
+                    <th className="p-3 text-left">Título</th>
+                    <th className="p-3 text-left">Categoria</th>
+                    <th className="p-3 text-left">Data</th>
+                    <th className="p-3 text-left">Ações</th>
+                  </tr>
+                </thead>
+                <tbody >
+                  {product.map((prod) => (
+                    <tr
+                      key={prod._id}
+                      className="grid grid-cols-[auto_3fr_auto_auto_1fr] gap-4 rounded-md mb-4 px-4"
+                    >
+                      <td className="px-3 w-16 h-16 relative rounded-md overflow-hidden hover:bg-fundo3">
+                        <Image
+                          src={prod.image1}
+                          alt={prod.title}
+                          fill
+                          quality={100}
+                          className="object-cover"
+                        />
+                      </td>
+                      <td className="px-3 flex items-center font-Lilita_One uppercase text-textos font-black hover:bg-fundo3 rounded-md border-b-2">
+                        {prod.title}
+                      </td>
+                      <td className="p-3 flex items-center gap-2 text-principal/80 capitalize font-semibold hover:bg-fundo3 hover:scale-110 rounded-lg border-b-2">
+                       <span>{iconMap[prod.category]} </span> {prod.category}
+                      </td>
+                      <td className="px-3 flex items-center hover:bg-fundo3 rounded-lg border-b-2">
+                        {
+                          <span className=" italic text-textos/60 ml-3 p-1 ">
+                            {prod.createdAt
+                              ? format(
+                                  new Date(prod.createdAt),
+                                  "dd 'de' MMMM 'de' yyyy",
+                                  { locale: ptBR }
+                                )
+                              : "Data não disponível"}
+                          </span>
+                        }
+                      </td>
+                      <td className="p-3 flex justify-between border-b-2">
+                        <Btn
+                          url={`/product/${prod._id}`}
+                          icon={<FaCheck size={20} className="text-green-800/80" />}
+                        />
+                        <Btn
+                          url={`/productUpdate/${prod._id}`}
+                          icon={<MdEdit size={26} className="text-textos3/60" />}
+                        />
+                        <BtnDeleteProducts
+                          url={`${urlDel}/${prod._id}`}
+                          pathToRevalidate="/dashboard"
+                        />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           ) : (
-            <h1>Nenhum Produto Cadastrado</h1>
+            <p className="text-center text-gray-500">
+              Nenhum Produto Cadastrado
+            </p>
           )}
         </Suspense>
       </main>

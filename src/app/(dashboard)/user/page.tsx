@@ -5,10 +5,13 @@ import { FetchGetAuth } from "@/app/functions/fetch/FetchGet";
 import { Block } from "@/app/middleware/blockedPage";
 import { UserProps } from "@/app/types/user";
 import Image from "next/image";
+import { format } from "date-fns";
+import { ptBR } from "date-fns/locale";
 
 import React, { Suspense } from "react";
-import { AiFillEdit } from "react-icons/ai";
-import { GrView } from "react-icons/gr";
+import { FaCheck } from "react-icons/fa6";
+import { MdEdit } from "react-icons/md";
+import { PiUserCircleFill } from "react-icons/pi";
 
 export default async function User() {
   const url = `${process.env.BASE_URL}/users`;
@@ -26,52 +29,86 @@ export default async function User() {
   }
   return (
     <Container>
-      <h1>Usuários</h1>
-      <main className="px-6 space-y-4">
-        <Suspense fallback={"Carregando...."}>
-          {userCard ? (
-            userCard.map((item) => (
-              <article
-                key={item._id}
-                className="flex justify-between flex-wrap items-end gap-5 relative overflow-hidden border-b-[.7px] border-black/10 p-1"
-              >
-                <figure className="relative w-12 h-12 bg-cover object-cover">
-                  <Image
-                    src={item.image || ""}
-                    alt={item.name}
-                    fill
-                    quality={100}
-                    className="bg-cover object-cover rounded-full shadow-lg"
-                  />
-                </figure>
-                <section className="flex items-end gap-5 w-[80%]">
-                  <h4 className="text-left w-[30%]">{item.name}</h4>
-                  <p className="text-left w-[50%]">
-                    <strong>email: </strong>
-                    {item.email}
-                  </p>
-                  <p className="text-left w-[15%]">
-                    <strong>tipo: </strong>
-                    {item.tipo}
-                  </p>
-                </section>
-                <div className="flex justify-between items-end gap-5">
-                  <Btn url={`/user/${item._id}`} icon={<GrView size={20} />} />
-                  <Btn
-                    url={`/user/${item._id}/userUpdate`}
-                    icon={<AiFillEdit size={20} />}
-                  />
-                  {user._id !== item._id && (
-                    <BtnDeleteProducts
-                      url={`${urlDel}/${item._id}`}
-                      pathToRevalidate="/dashboard"
-                    />
-                  )}
-                </div>
-              </article>
-            ))
+      <main className=" space-y-4 bg-white rounded-2xl my-4">
+        <Suspense fallback={<p>Carregando...</p>}>
+          {userCard && userCard.length > 0 ? (
+            <div className="overflow-x-auto">
+              <table className="w-full ">
+                <thead>
+                  <tr className="grid grid-cols-[auto_3fr_2fr_auto_1fr] gap-4 text-white mb-8 bg-principal/90 rounded-t-2xl ">
+                    <th className="p-3 text-left">Avatar</th>
+                    <th className="p-3 text-left">Nome</th>
+                    <th className="p-3 text-left">Email</th>
+                    <th className="p-3 text-left">Tipo</th>
+                    <th className="p-3 text-left">Ações</th>
+                  </tr>
+                </thead>
+                <tbody >
+                  {userCard.map((item) => (
+                    <tr
+                      key={item._id}
+                      className="grid grid-cols-[auto_3fr_2fr_auto_1fr] gap-4 rounded-md mb-4 px-4"
+                    >
+                      <td className="px-3 mr-5 w-12 h-12 relative rounded-full  overflow-hidden  hover:bg-fundo3 ">
+                        <Image
+                          src={item.image || ""}
+                          alt={item.name}
+                          fill
+                          quality={100}
+                          className="object-cover"
+                        />
+                      </td>
+                      <td className="px-3 flex flex-col font-ysabeau uppercase text-textos  hover:bg-fundo3 rounded-md border-b-2">
+                        <span className="font-black flex items-center gap-4">
+                          {item.name}
+                        </span>
+                        <span className=" text-xs italic text-textos/60 ml-3 p-1 ">
+                          {item.createdAt
+                            ? format(
+                                new Date(item.createdAt),
+                                "dd 'de' MMMM 'de' yyyy",
+                                { locale: ptBR }
+                              )
+                            : "Data não disponível"}
+                        </span>
+                      </td>
+                      <td className="p-3 flex  text-textos font-semibold hover:bg-fundo3 rounded-lg border-b-2">
+                        {item.email}
+                      </td>
+                      <td
+                        className={`px-3 font-ysabeau h-6 mt-3 flex gap-2 items-center font-semibold hover:bg-fundo3 rounded-lg ${
+                          item.tipo === "admin"
+                            ? " text-green-800 bg-green-100 hover:scale-105"
+                            : " text-principal2 bg-red-100 hover:scale-105 "
+                        }`}
+                      >
+                       <span><PiUserCircleFill size={18} /></span> {item.tipo}
+                      </td>
+                      <td className="p-3 flex justify-between  rounded-md border-b-2">
+                        <Btn
+                          url={`/user/${item._id}`}
+                          icon={
+                            <FaCheck size={20} className="text-green-800/80" />
+                          }
+                        />
+                        <Btn
+                          url={`/user/${item._id}/userUpdate`}
+                          icon={<MdEdit size={26} className="text-textos3/60" />}
+                        />
+                        {user._id !== item._id && (
+                          <BtnDeleteProducts
+                            url={`${urlDel}/${item._id}`}
+                            pathToRevalidate="/dashboard"
+                          />
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           ) : (
-            <p>Nenhum item cadastrado.</p>
+            <p className="text-center text-gray-500">Nenhum item cadastrado.</p>
           )}
         </Suspense>
       </main>

@@ -1,16 +1,16 @@
 "use client";
 
 import { handleDeleteProducts } from "@/app/functions/handleSubmit/HandleDeleteProduct";
-import { TbHttpDelete } from "react-icons/tb";
+import { IoCloseOutline } from "react-icons/io5";
 
 export default function BtnDeleteProducts({ url, pathToRevalidate }: { url: string, pathToRevalidate: string }) {
 
   return (
     <button
       onClick={() => handleDeleteProducts(url, pathToRevalidate)}
-      className="hover:scale-110 text-end"
+      className="hover:scale-125 text-end"
     >
-      <TbHttpDelete size={30} color="red" />
+      <IoCloseOutline size={30} className="text-principal2/80" />
     </button>
   );
 }
