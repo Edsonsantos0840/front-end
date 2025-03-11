@@ -1,13 +1,19 @@
 import Btn from "@/app/components/buttons/Btn";
 import BtnDeleteProducts from "@/app/components/buttons/BtnDeleteProducts";
 import Container from "@/app/components/containers/Container";
+import NavDashboard from "@/app/components/headers/NavDashboard";
 import { FetchGetAuth } from "@/app/functions/fetch/FetchGet";
 import { Block } from "@/app/middleware/blockedPage";
 import { UserProps } from "@/app/types/user";
 import Image from "next/image";
-
+import { TfiEmail } from "react-icons/tfi";
+import { GrUserWorker } from "react-icons/gr";
 import React, { Suspense } from "react";
-import { AiFillEdit } from "react-icons/ai";
+import { AiFillEdit, AiFillTikTok } from "react-icons/ai";
+import { IoPerson } from "react-icons/io5";
+import { BsCalendarDate, BsFillCalendarDateFill } from "react-icons/bs";
+import { FaFacebookSquare, FaInstagram, FaWhatsappSquare} from "react-icons/fa";
+import { MdPhoneInTalk } from "react-icons/md";
 
 export default async function UserwithId({
   params,
@@ -29,50 +35,114 @@ export default async function UserwithId({
     );
   }
   return (
-    <Container>
-      <h1 className="text-red-700 text-2xl text-center font-bold">Usuários</h1>
+    <div className="grid grid-cols-[1fr_12fr]">
+      <aside className="bg-principal text-white  ">
+        <NavDashboard />
+      </aside>
       <main className="px-6 space-y-4 flex flex-col mt-5">
+        <h1 className="text-red-700 text-2xl text-center font-bold">
+          Usuário Id: {userCard._id}
+        </h1>
         <Suspense fallback={"Carregando..."}>
-          <article>
-            <figure className="relative w-64 h-64 bg-cover object-cover">
+          <article className="flex gap-20 items-center">
+            <figure className="relative w-72 h-72 rounded-full bg-cover object-cover mb-4">
               {userCard.image ? (
                 <Image
                   src={userCard.image}
                   alt={userCard.name}
                   fill
                   quality={100}
-                  className="bg-cover object-cover shadow-lg"
+                  className="bg-cover object-cover shadow-lg rounded-full"
                 />
               ) : (
                 <figcaption>Não tem foto</figcaption>
               )}
             </figure>
-            <section className="w-[80%]">
-              <h2 className="text-left w-[30%]">{userCard.name}</h2>
-              <p className="text-left w-[50%]">
+            <section className="flex flex-col gap-3 font-ysabeau bg-fundo2 rounded-2xl  p-5 w-[40vw]">
+              <h2 className="flex gap-2 items-center text-2xl text-textos font-black">
+                <IoPerson size={30} className="text-principal" />{" "}
+                {userCard.name}
+              </h2>
+              <p className="flex gap-3 items-center text-textos text-lg">
+                <TfiEmail size={24} className="text-principal" />
                 <strong>Email: </strong>
                 {userCard.email}
               </p>
-              <p className="text-left w-[15%]">
+              <p className="flex gap-2 items-center text-textos text-lg">
+                <GrUserWorker size={30} className="text-principal" />
                 <strong>Tipo: </strong>
                 {userCard.tipo}
               </p>
-            </section>
-            <div className="flex justify-between items-end gap-5 w-[10%]">
-              <Btn
-                url={`/user/${id}/userUpdate`}
-                icon={<AiFillEdit size={20} />}
-              />
-              {user._id !== userCard._id && (
-                <BtnDeleteProducts
-                  url={`${urlDel}/${id}`}
-                  pathToRevalidate="/dashboard"
+              <p className="flex gap-2 items-center text-textos text-lg">
+                <BsCalendarDate size={30} className="text-principal" />
+                <strong>Criado em:</strong>
+                {userCard.createdAt
+                  ? new Date(userCard.createdAt).toLocaleDateString("pt-BR")
+                  : "Data não disponível"}
+              </p>
+              <p className="flex gap-2 items-center text-textos text-lg">
+                <BsFillCalendarDateFill size={30} className="text-principal" />
+                <strong>Atualizado em: </strong>
+                {userCard.updatedAt
+                  ? new Date(userCard.updatedAt).toLocaleDateString("pt-BR")
+                  : "Data não disponível"}
+              </p>
+
+              <div className="flex justify-center items-center gap-5 bg-principal/40 p-2 rounded-xl  ">
+                <Btn
+                  url={`/user/${id}/userUpdate`}
+                  icon={<AiFillEdit size={20} />}
                 />
-              )}
-            </div>
+                {user._id !== userCard._id && (
+                  <BtnDeleteProducts
+                    url={`${urlDel}/${id}`}
+                    pathToRevalidate="/dashboard"
+                  />
+                )}
+              </div>
+            </section>
           </article>
+          <section className=" font-ysabeau bg-fundo2 rounded-2xl  p-5 ">
+            <div className="flex  justify-center items-center gap-3">
+              <h2 className="flex gap-2  items-center text-lg text-textos font-black">
+                <FaFacebookSquare size={30} color="#1877F2" /> <span>@{userCard.name}</span>
+              </h2>
+              <p className="flex gap-3 items-center text-textos2 text-lg">
+                <FaInstagram size={30} className="bg-[#FF9933] rounded-md" />
+                <strong className="text-textos" >@{userCard.name}</strong>
+                
+              </p>
+              <p className="flex gap-2 items-center text-textos text-lg">
+                <AiFillTikTok size={36} color="#FF0050"/>
+                <strong>Não tem.</strong>
+              </p>
+              <p className="flex gap-2 items-center text-textos text-lg">
+                <MdPhoneInTalk size={30} color="#075E54" />
+                <strong>19-994758374</strong>
+              </p>
+              <p className="flex gap-2 items-center text-textos text-lg">
+                <FaWhatsappSquare size={36} color="#075E54" />
+                <strong>19-994758374 </strong>
+              </p>
+            </div>
+            <article className="my-4">
+              <h3>Descrição.</h3>
+              <p>
+                Gosto de aprender, compartilhar conhecimento e interagir com
+                pessoas que têm interesses semelhantes. Aqui você encontra um
+                pouco sobre mim, minhas atividades e tudo o que gosto de fazer!
+                Sobre mim: Sempre em busca de novas experiências e
+                aprendizados Curioso por tecnologia, inovação e criatividade
+                 Apreciador de boas conversas e novas conexões.  Membro
+                desde: {userCard.createdAt
+                  ? new Date(userCard.createdAt).toLocaleDateString("pt-BR")
+                  : "Data não disponível"}. Sinta-se à vontade para
+                interagir e fazer parte da minha jornada! 
+              </p>
+            </article>
+          </section>
         </Suspense>
       </main>
-    </Container>
+    </div>
   );
 }

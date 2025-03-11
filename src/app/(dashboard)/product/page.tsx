@@ -7,10 +7,11 @@ import { format } from "date-fns/format";
 import { ptBR } from "date-fns/locale";
 import Image from "next/image";
 import { JSX, Suspense } from "react";
-import { FaCheck} from "react-icons/fa6";
-import { FaRestroom, FaUtensils} from "react-icons/fa";
+import { FaCheck } from "react-icons/fa6";
+import { FaRestroom, FaUtensils } from "react-icons/fa";
 import { MdEdit, MdOutdoorGrill } from "react-icons/md";
 import { PiLadderBold } from "react-icons/pi";
+import NavDashboard from "@/app/components/headers/NavDashboard";
 
 export default async function Product() {
   const url = `${process.env.BASE_URL}/products`;
@@ -35,26 +36,29 @@ export default async function Product() {
   };
 
   return (
-    <Container>
-      <main className="space-y-4 bg-white rounded-2xl my-4">
+    <div className="grid grid-cols-[1fr_12fr]">
+      <aside className="bg-principal text-white  ">
+        <NavDashboard />
+      </aside>
+      <main className="">
         <Suspense fallback={<p>Carregando...</p>}>
           {product && product.length > 0 ? (
             <div className="overflow-x-auto">
               <table className="w-full ">
                 <thead className="">
-                  <tr className="grid grid-cols-[auto_3fr_auto_auto_1fr] gap-4 text-white mb-8 bg-principal/90 rounded-t-2xl">
-                    <th className="p-3 text-left">Imagem</th>
-                    <th className="p-3 text-left">Título</th>
-                    <th className="p-3 text-left">Categoria</th>
-                    <th className="p-3 text-left">Data</th>
-                    <th className="p-3 text-left">Ações</th>
+                  <tr className="grid grid-cols-[1fr_3fr_1fr_2fr_2fr] gap-4 text-textos p-3 mb-8 bg-fundo3">
+                    <th className=" text-left">Imagem</th>
+                    <th className=" text-left">Título</th>
+                    <th className=" text-left">Categoria</th>
+                    <th className=" text-left">Data</th>
+                    <th className=" text-left">Ações</th>
                   </tr>
                 </thead>
-                <tbody >
+                <tbody>
                   {product.map((prod) => (
                     <tr
                       key={prod._id}
-                      className="grid grid-cols-[auto_3fr_auto_auto_1fr] gap-4 rounded-md mb-4 px-4"
+                      className="grid grid-cols-[1fr_3fr_1fr_2fr_2fr] gap-4 rounded-md mb-4 px-4"
                     >
                       <td className="px-3 w-16 h-16 relative rounded-md overflow-hidden hover:bg-fundo3">
                         <Image
@@ -69,7 +73,7 @@ export default async function Product() {
                         {prod.title}
                       </td>
                       <td className="p-3 flex items-center gap-2 text-principal/80 capitalize font-semibold hover:bg-fundo3 hover:scale-110 rounded-lg border-b-2">
-                       <span>{iconMap[prod.category]} </span> {prod.category}
+                        <span>{iconMap[prod.category]} </span> {prod.category}
                       </td>
                       <td className="px-3 flex items-center hover:bg-fundo3 rounded-lg border-b-2">
                         {
@@ -87,11 +91,15 @@ export default async function Product() {
                       <td className="p-3 flex justify-between border-b-2">
                         <Btn
                           url={`/product/${prod._id}`}
-                          icon={<FaCheck size={20} className="text-green-800/80" />}
+                          icon={
+                            <FaCheck size={20} className="text-green-800/80" />
+                          }
                         />
                         <Btn
                           url={`/productUpdate/${prod._id}`}
-                          icon={<MdEdit size={26} className="text-textos3/60" />}
+                          icon={
+                            <MdEdit size={26} className="text-textos3/60" />
+                          }
                         />
                         <BtnDeleteProducts
                           url={`${urlDel}/${prod._id}`}
@@ -110,6 +118,6 @@ export default async function Product() {
           )}
         </Suspense>
       </main>
-    </Container>
+    </div>
   );
 }

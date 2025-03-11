@@ -5,14 +5,15 @@ interface PropsCardPhotos {
   title: string;
   image?: string | StaticImport;
   extend?: boolean
+  mquality?: boolean
 }
 
-export default function CardPhotos({ title, image, extend }: PropsCardPhotos) {
+export default function CardPhotos({ title, image, extend, mquality }: PropsCardPhotos) {
   return (
-    <article className={`my-5  transition-all duration-500 min-w-80 ${extend ? 'w-[600px]' : 'w-[380px]'}`}>
+    <article className={`my-5 mx-2 transition-all duration-500 ${extend ? 'w-[400px] md:w-[700px] lg:w-[600px]' : 'w-[400px] md:w-[650px] lg:w-[380px]'}`}>
       <h3 className="text-xl text-textos3 p-4 py-4 text-center">{title}</h3>
       {image && (
-        <figure className={`relative h-[320px] hover:scale-110 transition-all duration-500 `}>
+        <figure className={`relative h-[320px] md:h-[400px] lg:h-[320px] hover:scale-110 transition-all duration-500 ${mquality && 'w-[650px] '}`}>
           <Image 
             src={image || ""} 
             alt={title} fill 

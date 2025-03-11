@@ -83,6 +83,7 @@ export const getFieldsUpdateUser = (id: string): FieldConfig[] => [
     required: true,
   },
   {
+    label: "Email",
     type: "email",
     name: "email",
     placeholder: "Digite seu e-mail",

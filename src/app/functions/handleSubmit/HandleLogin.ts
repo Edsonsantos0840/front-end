@@ -1,6 +1,7 @@
 "use server"
 import { cookies } from "next/headers";
 import { validateLogin } from "../validate/validateLogin";
+import { redirect } from "next/navigation";
 
 type ActionStateType = {
   message: string[];
@@ -54,10 +55,6 @@ export async function LoginSubmit(
     httpOnly: false,
     path: "/",
   });
-
-  return {
-    message: [],
-    success: "Usuário logado com sucesso!",
-  };
+ redirect('/')
 }
 

@@ -18,7 +18,6 @@ import img from '../../../../../public/assets/requinte.jpg'
 import Image from "next/image";
 import CardRedesSociais from "@/app/components/cards/CardRedesSociais";
 import CardNavProducts from "@/app/components/cards/CardNavProducts";
-
 export const metadata: Metadata = {
   title: "Peças de Mármore incríveis em M&A Marmores e Granitos.",
   description: "Faça seu logim para interagir com os produtos.",
@@ -116,7 +115,9 @@ export default async function ProductOne({
                     {/* Seção de Interação (Likes e Dislikes) */}
                     <section className="flex gap-4 mt-8">
                       <Suspense fallback={"Carregando....."}>
-                        <LikeRegister id={product._id} />
+                        <LikeRegister id={product._id} user={user} />
+                        {
+                          user.name !== undefined &&
                         <Btn
                           url={urlDelLike}
                           handle={handleDeleteLike}
@@ -127,6 +128,7 @@ export default async function ProductOne({
                             />
                           }
                         />
+                        }
                         <p className="bg-principal text-textos2 text-2xl text-center font-semibold w-10 h-10 shadow-xl rounded-full  ">
                           {likes.length}
                         </p>
@@ -177,7 +179,7 @@ export default async function ProductOne({
               Deixe seu comentário.
             </h3>
             <Suspense fallback={"Carregando....."}>
-              <CommentRegister id={product._id} />
+              <CommentRegister user={user} id={product._id} />
               <CardComments id={id} user={user || userComments} />
             </Suspense>
           </section>

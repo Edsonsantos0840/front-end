@@ -13,13 +13,13 @@ import { Suspense } from "react";
 export default async function NavBar() {
   const { user } = await Block();
   return (
-    <header className="w-full bg-principal fixed shadow-lg z-50">
+    <header className="w-[100vw] bg-principal fixed shadow-lg z-50 top-0">
       <aside>
-        <nav className="alinha4 p-2 m-4 max-w-[1200px]  md:m-auto">
+        <nav className="flex alinha4 p-2 max-w-[1200px]  md:m-auto">
           <Menu />
           <Suspense fallback={"Carregando..."}>
             {user.tipo === "admin" && (
-              <ul className="space-x-8 flex font-Ysabea font-bold">
+              <ul className=" flex gap-8 font-Ysabea font-bold text-base">
                 <li>
                   <Link
                     href={"/home"}
@@ -27,7 +27,7 @@ export default async function NavBar() {
                   >
                     <MdDashboardCustomize size={30} color="var(--corFundo2)" />
                     <span className="text-sm font-light text-gray-200">
-                      dashboard
+                      Dashboard
                     </span>
                   </Link>
                 </li>
@@ -71,21 +71,21 @@ export default async function NavBar() {
                   >
                     <IoMdPersonAdd size={30} color="var(--corFundo2)" />
                     <span className="text-sm font-light text-gray-200">
-                      cadastro
+                      Cadastro
                     </span>
                   </Link>
                 </li>
               </ul>
             )}
 
-            <ul className="alinha4 w-1/4 ">
+            <ul className="alinha4 gap-5 lg:gap-0 lg:w-1/4 text-xl lg:text-lg font-bold lg:font-medium ">
               {user.tipo !== "admin" ? (
                 <li>
                   <Link
                     href={"/userRegister"}
                     className=" block font-Ysabea text-gray-50 hover:scale-125 transition-all ease-in-out duration-300"
                   >
-                    cadastro
+                    Cadastro
                   </Link>
                 </li>
               ) : (
@@ -94,7 +94,7 @@ export default async function NavBar() {
                     href={"/userRegister"}
                     className=" hidden font-Ysabea text-gray-50 hover:scale-125 transition-all ease-in-out duration-300"
                   >
-                    cadastro
+                    Cadastro
                   </Link>
                 </li>
               )}
@@ -106,15 +106,6 @@ export default async function NavBar() {
                   Inicio
                 </Link>
               </li>
-              <li>
-                <Link
-                  className="font-Ysabea text-gray-50 hover:scale-125 transition-all ease-in-out duration-300"
-                  href={"/"}
-                >
-                  Contato
-                </Link>
-              </li>
-
               {user.name !== undefined ? (
                 <button
                   className="alinha6 gap-3 text-gray-200  pl-2 font-Ysabea hover:scale-125 transition-all ease-in-out duration-300"

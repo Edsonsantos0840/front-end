@@ -22,7 +22,7 @@ export default function CardInfo({
   const [showText, setShowTest] = useState(false)
 
   return (
-    <article className={`my-5  rounded-lg lg:min-w-80 ${extend ? 'w-[700px] text-lg ' : 'w-[380px] bg-fundo'}`} >
+    <article className={`my-5 mx-2  rounded-lg lg:min-w-80 ${extend ? 'lg:w-[400px] text-lg ' : 'lg:w-[380px] bg-fundo'}`} >
       <h3 className="text-3xl text-principal p-4 py-4">{title}</h3>
       {image && (
         <figure className={`relative w-[250px] h-[250px]`}>

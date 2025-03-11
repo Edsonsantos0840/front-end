@@ -3,6 +3,7 @@
 import { cookies } from "next/headers";
 import { UploadCreateImage } from "./uploadImage";
 import { validateUser } from "../validate/validateUser";
+import { redirect } from "next/navigation";
 
 export type ActionStateType = {
   message: string[];
@@ -69,8 +70,5 @@ if (message.length > 0) {
       });
  
 
-  return {
-    message: [],
-    success: "Usuário cadastrado com sucesso!",
-  };
+ redirect('/user')
 }

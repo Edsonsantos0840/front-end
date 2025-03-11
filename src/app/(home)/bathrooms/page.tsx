@@ -28,7 +28,7 @@ export default async function Bathrooms() {
   return (
     <main className="px-6">
       <section aria-label="Lista de Produtos" className="mb-20" >
-        <h2 className="text-xl font-bold mb-4">Banheiros</h2>
+        <h2 className="text-2xl text-principal text-center font-bold mb-4">Banheiros</h2>
         <MotionBatroom product={product}/>
       </section>
     </main>

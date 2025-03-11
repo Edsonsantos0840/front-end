@@ -4,32 +4,45 @@ import { MdOutdoorGrill } from "react-icons/md";
 import { PiLadderBold } from "react-icons/pi";
 
 export default function CardNavDashboard() {
+  const dashLink = [
+    {
+      href: "/bathrooms",
+      name: "Banheiros",
+      ico: <FaRestroom size={17} className="" />,
+    },
+    {
+      href: "/kitchen",
+      name: "Cozinhas",
+      ico: <FaUtensils size={14} className="" />,
+    },
+    {
+      href: "/steps",
+      name: "Escadas",
+      ico: <PiLadderBold size={16} className="" />,
+    },
+    {
+      href: "/outdoor",
+      name: "Exteriores",
+      ico: <MdOutdoorGrill size={17} className="" />,
+    },
+  ];
+
+  const dashLinks = dashLink.map((item) => {
+    return (
+      <Link
+        key={item.name}
+        href={item.href}
+        className=" flex items-center gap-2 p-1 text-sm bg-textos/90 font-medium text-textos2 rounded-xl shadow-base cursor-pointer hover:scale-105"
+      >
+        <span>{item.name}</span>
+        {item.ico}
+      </Link>
+    );
+  });
+
   return (
-    <nav className="flex justify-around items-center m-auto text-center w-[50vw]">
-      <Link
-        href={"/bathrooms"}
-        className=" flex items-center gap-2 px-2 py-1 text-base bg-textos/90 font-medium text-textos2 rounded-xl shadow-base cursor-pointer hover:scale-110"
-      >
-       <span>Banheiros</span><FaRestroom size={28} className=""/>
-      </Link>
-      <Link
-        href={"/kitchen"}
-        className=" flex items-center gap-2 px-2 py-1 text-base bg-textos/90 font-medium text-textos2 rounded-xl shadow-base cursor-pointer hover:scale-110"
-      >
-      <span>Cozinha</span><FaUtensils size={22} className=""/>
-      </Link>
-      <Link
-        href={"/steps"}
-        className="flex items-center gap-2 px-2 py-1 text-base bg-textos/90 font-medium text-textos2 rounded-xl shadow-base cursor-pointer hover:scale-110"
-      >
-      <span>Escadas</span><PiLadderBold size={28} className=""/>
-      </Link>
-      <Link
-        href={"/outdoor"}
-        className="flex items-center gap-2 px-2 py-1 text-base bg-textos/90 font-medium text-textos2 rounded-xl shadow-base cursor-pointer hover:scale-110"
-      >
-   <span>Exteriores</span><MdOutdoorGrill size={30} className=""/>
-      </Link>
+    <nav className="flex justify-between items-center text-center gap-4 ">
+     {dashLinks}
     </nav>
   );
 }

@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
 import { UploadCreateImage } from "./uploadImage";
 import { validateUploadUser } from "../validate/validateUploadUser";
+import { redirect } from "next/navigation";
 
 type ActionStateType = {
   message: string[];
@@ -66,9 +67,6 @@ if (message.length > 0) {
     console.error("Erro ao atualizar o produto", error);
   }
   revalidatePath(`process.env.BASE_URL}/user/${_id}`)
- 
-  return {
-    message: [],
-    success: "Usuário cadastrado com sucesso!",
-  };
+  
+  redirect(`/user/${_id}`)
 }

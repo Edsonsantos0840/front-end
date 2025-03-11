@@ -18,11 +18,11 @@ export default function CardPreviewImage({img, current1, current2, current3, cur
 
   return (
     <>
-      <div className="grid grid-cols-4 gap-4">
+      <div className="flex flex-wrap  justify-center items-center">
         {img.map((imageKey, index) => (
           <label
             key={imageKey}
-            className="cursor-pointer border-dashed border-[1px] border-[#b91c1c]/15 text-sm my-5 hover:scale-105 flex flex-col items-center justify-center p-4"
+            className="cursor-pointer border-dashed border-[1px] border-[#b91c1c]/15 lg:text-sm lg:my-3 hover:scale-105 flex flex-col items-center justify-center p-2 ml-4 "
           >
             <input
               type="file"
@@ -32,7 +32,7 @@ export default function CardPreviewImage({img, current1, current2, current3, cur
             />
 
             {previews[imageKey] ? (
-              <div className="relative w-[170px] h-[170px]">
+              <div className="relative w-[220px] h-[220px] lg:w-[110px] lg:h-[110px] ">
                 <Image
                   src={previews[imageKey] as string}
                   alt={`Prévia da ${imageKey}`}
@@ -42,7 +42,7 @@ export default function CardPreviewImage({img, current1, current2, current3, cur
                 />
               </div>
             ) : (
-              <div className="relative w-[170px] h-[170px]">
+              <div className="relative w-[220px] h-[220px] lg:w-[110px] lg:h-[110px]">
                 <Image
                   src={currentImage[index] || ""}
                   alt={`Prévia da imagem`}
@@ -53,8 +53,8 @@ export default function CardPreviewImage({img, current1, current2, current3, cur
               </div>
             )}
 
-            <span className="text-gray-600 text-sm mt-2">
-              Clique para selecionar {imageKey}
+            <span className="text-gray-600 text-lg md:text-sm mt-2  ">
+             Selecionar 
             </span>
           </label>
         ))}

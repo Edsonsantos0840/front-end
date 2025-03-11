@@ -17,7 +17,7 @@ export default {
         textos3: "#360c0c",
         fundo: "#efe8e885",
         fundo2:" #c9e1e52b",
-        fundo3: "#d5c3c385",
+        fundo3: "#0000000f",
         fundo4: "#4c4c4cfa",
         fundoProdduto2: "#fb898b91",
       },

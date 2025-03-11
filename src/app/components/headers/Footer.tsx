@@ -1,8 +1,8 @@
 export default function Footer() {
   return (
-    <footer className="grid grid-cols-3 bg-principal text-textos2">
-      <nav aria-label="Redes sociais" className="col-span-1 m-auto">
-        <ul>
+    <footer className="grid grid-cols-3 justify-content bg-principal text-textos2 w-full">
+      <nav aria-label="Redes sociais" className="col-span-3 md:col-span-1 ">
+        <ul className="flex md:flex-col justify-center items-center gap-4 " >
           <li>
             <a href="https://twitter.com/seuperfil" target="_blank">
               Twitter
@@ -20,7 +20,7 @@ export default function Footer() {
           </li>
         </ul>
       </nav>
-      <address className="col-span-1 m-auto">
+      <address className="col-span-3 md:col-span-1 justify-self m-auto">
         <p>Entre em contato:</p>
         <p>
           Email: <a href="mailto:contato@exemplo.com">contato@exemplo.com</a>
@@ -31,7 +31,7 @@ export default function Footer() {
         <p>Endereço: Rua Exemplo, 123 - São Paulo, SP</p>
         
       </address>
-      <div className="col-span-3 m-auto ">
+      <div className=" col-span-3 m-auto ">
       <hr  className=" h-2 w-full"/>
         <h4>Footer</h4>
         <p>Desenvolvido por: <span>EPS SOLUÇÕES.</span></p>

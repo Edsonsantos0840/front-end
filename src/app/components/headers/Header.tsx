@@ -6,11 +6,11 @@ import BtnContact from "../buttons/BtnContact";
 export default async function Header() {
   return (
     <Container>
-      <div className="alinha4 w-full pt-6">
-      <figure className="w-full alinha4  pt-16 ">
+      <div className="alinha4 w-full pt-10 md:pt-12 px-2 ">
+      <figure className="w-full alinha4  ">
         <Link
           href={"/"}
-          className=" w-[270px] h-[100px] object-cover bg-cover  relative"
+          className=" w-[240px] h-[87px] lg:w-[270px] lg:h-[100px] object-cover bg-cover  relative"
         >
           <Image
             src={"/logo.png"}

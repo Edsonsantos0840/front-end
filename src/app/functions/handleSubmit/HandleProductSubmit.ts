@@ -3,6 +3,7 @@
 import { UploadCreateImage} from "./uploadImage";
 import { cookies } from "next/headers";
 import { validateProduct } from "../validate/validateProduct";
+import { redirect } from "next/navigation";
 
 type ActionStateType = {
   message: string[];
@@ -74,9 +75,5 @@ for (const field of imageFields) {
     };
   }
 
-  return {
-    message: [],
-    success: "Produto cadastrado com sucesso!",
-  };
-
+redirect('/product')
 }
