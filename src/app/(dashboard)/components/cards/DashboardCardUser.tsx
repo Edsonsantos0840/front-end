@@ -1,6 +1,6 @@
-'use client'
-import Btn from "@/app/components/buttons/Btn";
-import BtnDeleteProducts from "@/app/components/buttons/BtnDeleteProducts";
+"use client";
+import Btn from "@/app/(home)/components/buttons/Btn";
+import BtnDeleteProducts from "@/app/(dashboard)/components/buttons/BtnDeleteProducts";
 import useScroll from "@/app/hooks/useScroll";
 import { UserProps } from "@/app/types/user";
 import { format } from "date-fns";

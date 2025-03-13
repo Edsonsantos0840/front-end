@@ -2,7 +2,7 @@ import { FetchGet } from "@/app/functions/fetch/FetchGet";
 import { ProdutoProps } from "@/app/types/produtoTypes";
 import { Suspense } from "react";
 import { FaShopify } from "react-icons/fa";
-import CardProduct from "./CardProduct";
+import CardProduct from "../../../(home)/components/cards/CardProduct";
 
 export default async function CardDashboardProduct() {
   const url = `${process.env.BASE_URL}/products`;

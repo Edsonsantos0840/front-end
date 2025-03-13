@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
-import BtnEdit from "../buttons/BtnEdit";
+import BtnEdit from "../../../(dashboard)/components/buttons/BtnEdit";
 import { CommentProps } from "@/app/types/commentType";
-import { CommentsUpdateSubmit } from "../../functions/handleSubmit/CommentsUpdateSubmit";
+import { CommentsUpdateSubmit } from "../../../functions/handleSubmit/CommentsUpdateSubmit";
 import Image from "next/image";
 import { useComments } from "@/app/hooks/useComments";
 import { IoIosPerson } from "react-icons/io";
@@ -93,22 +93,29 @@ export default function CardShowComments({
                       <strong>{"usuário anônimo"}</strong>
                     </p>
                   )}
-                  <p className="w-full"><strong className="pr-4 text-base text-textos">Criado em: </strong>
-                    <span>{comment.createdAt
-                      ? new Date(comment.createdAt).toLocaleDateString("pt-BR")
-                      : "Data desconhecida"}</span>
+                  <p className="w-full">
+                    <strong className="pr-4 text-base text-textos">
+                      Criado em:{" "}
+                    </strong>
+                    <span>
+                      {comment.createdAt
+                        ? new Date(comment.createdAt).toLocaleDateString(
+                            "pt-BR"
+                          )
+                        : "Data desconhecida"}
+                    </span>
                   </p>
                 </div>
               </div>
               {user._id === comment.user._id && (
                 <div className="flex gap-6 pr-2">
                   <button onClick={() => handleEdit(comment._id)}>
-                    <MdModeEdit size={24} className="text-textos3"/>
+                    <MdModeEdit size={24} className="text-textos3" />
                   </button>
                   <Btn
                     url={url}
                     handle={handleDelete}
-                    icon={ <IoCloseOutline size={30} className="text-textos3" />}
+                    icon={<IoCloseOutline size={30} className="text-textos3" />}
                   />
                 </div>
               )}

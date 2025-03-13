@@ -1,4 +1,4 @@
-import ProductUpdate from "@/app/components/form/UpdateProduct";
+import ProductUpdate from "@/app/(dashboard)/components/form/UpdateProduct";
 import { Suspense } from "react";
 
 export default async function UpdateProduct({
@@ -9,10 +9,8 @@ export default async function UpdateProduct({
   const { updateId } = await params;
 
   return (
-      <Suspense fallback={"Loadding......."}>
-        
-        <ProductUpdate updateId={updateId} />
-      </Suspense>
-  
+    <Suspense fallback={"Loadding......."}>
+      <ProductUpdate updateId={updateId} />
+    </Suspense>
   );
 }

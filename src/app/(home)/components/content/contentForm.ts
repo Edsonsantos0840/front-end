@@ -44,30 +44,30 @@ const fieldsLogin: FieldConfig[] = [
 ];
 
 export const getFieldsUpdateProduct = (updateId: string): FieldConfig[] => [
-    {
-      type: "hidden",
-      name: "_id",
-      value: updateId,
-    },
-    {
-      label: "Título",
-      type: "text",
-      name: "title",
-      placeholder: "Digite o título do produto",
-    },
-    {
-      label: "Categoria",
-      type: "select",
-      name: "category",
-      options: category,
-    },
-    {
-      label: "Descrição",
-      type: "text",
-      name: "description",
-      placeholder: "Descreva o produto",
-    },
-  ];
+  {
+    type: "hidden",
+    name: "_id",
+    value: updateId,
+  },
+  {
+    label: "Título",
+    type: "text",
+    name: "title",
+    placeholder: "Digite o título do produto",
+  },
+  {
+    label: "Categoria",
+    type: "select",
+    name: "category",
+    options: category,
+  },
+  {
+    label: "Descrição",
+    type: "text",
+    name: "description",
+    placeholder: "Descreva o produto",
+  },
+];
 export const getFieldsUpdateUser = (id: string): FieldConfig[] => [
   {
     type: "hidden",
@@ -89,29 +89,29 @@ export const getFieldsUpdateUser = (id: string): FieldConfig[] => [
     placeholder: "Digite seu e-mail",
     required: true,
   },
-  ];
+];
 
-  const fieldsProducts: FieldConfig[] = [
-    {
-      label: "Título",
-      type: "text",
-      name: "title",
-      placeholder: "Digite o título do produto",
-      required: true,
-    },
-    {
-      label: "Categoria",
-      type: "select",
-      name: "category",
-      options: category,
-      required: true,
-    },
-    {
-      label: "Descrição",
-      type: "text",
-      name: "description",
-      placeholder: "Descreva o produto",
-      required: true,
-    },
-  ];
-export { fieldsUser, fieldsLogin, fieldsProducts};
+const fieldsProducts: FieldConfig[] = [
+  {
+    label: "Título",
+    type: "text",
+    name: "title",
+    placeholder: "Digite o título do produto",
+    required: true,
+  },
+  {
+    label: "Categoria",
+    type: "select",
+    name: "category",
+    options: category,
+    required: true,
+  },
+  {
+    label: "Descrição",
+    type: "text",
+    name: "description",
+    placeholder: "Descreva o produto",
+    required: true,
+  },
+];
+export { fieldsUser, fieldsLogin, fieldsProducts };

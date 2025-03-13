@@ -1,23 +1,23 @@
-import CardComments from "@/app/components/cards/CardComments";
-import CardImages from "@/app/components/cards/CardImages";
-import Container from "@/app/components/containers/Container";
-import CommentRegister from "@/app/components/form/CommentRegister";
-import LikeRegister from "@/app/components/form/LikeRegister";
+import CardComments from "@/app/(home)/components/cards/CardComments";
+import CardImages from "@/app/(home)/components/cards/CardImages";
+import Container from "@/app/(home)/components/containers/Container";
+import CommentRegister from "@/app/(home)/components/form/CommentRegister";
+import LikeRegister from "@/app/(home)/components/form/LikeRegister";
 import { ProdutoProps } from "@/app/types/produtoTypes";
 import { Block } from "@/app/middleware/blockedPage";
 // import BtnDesLike from "@/app/components/buttons/BtnDesLike";
 import { SlDislike } from "react-icons/sl";
-import Btn from "@/app/components/buttons/Btn";
+import Btn from "@/app/(home)/components/buttons/Btn";
 import { handleDeleteLike } from "@/app/functions/handleSubmit/HandleDeleteLike";
 import { Suspense } from "react";
 import { Metadata } from "next";
 import { FaHome } from "react-icons/fa";
 import Link from "next/link";
-import BtnContact from "@/app/components/buttons/BtnContact";
-import img from '../../../../../public/assets/requinte.jpg'
+import BtnContact from "@/app/(home)/components/buttons/BtnContact";
+import img from "../../../../../public/assets/requinte.jpg";
 import Image from "next/image";
-import CardRedesSociais from "@/app/components/cards/CardRedesSociais";
-import CardNavProducts from "@/app/components/cards/CardNavProducts";
+import CardRedesSociais from "@/app/(home)/components/cards/CardRedesSociais";
+import CardNavProducts from "@/app/(dashboard)/components/cards/CardNavProducts";
 export const metadata: Metadata = {
   title: "Peças de Mármore incríveis em M&A Marmores e Granitos.",
   description: "Faça seu logim para interagir com os produtos.",
@@ -74,7 +74,9 @@ export default async function ProductOne({
             <div className="flex  md:justify-between items-center p-2 my-1 w-auto ">
               <div>
                 <p className="flex ">
-                  <span className={` text-3xl lg:text-2xl  text-principal mr-2 font-black`}>
+                  <span
+                    className={` text-3xl lg:text-2xl  text-principal mr-2 font-black`}
+                  >
                     {" "}
                     Categoria:
                   </span>
@@ -85,7 +87,7 @@ export default async function ProductOne({
                     href={"/bathrooms"}
                     className="ml-16 md:ml-40 cursor-pointer hover:scale-105"
                   >
-                    <FaHome  className="text-principal/80 w-[44px] h-[44px] lg:w-[30px] lg:h-[30px]" />
+                    <FaHome className="text-principal/80 w-[44px] h-[44px] lg:w-[30px] lg:h-[30px]" />
                   </Link>
                 </p>
                 <h5 className="text-textos/50 text-sm italic hidden md:block">
@@ -111,23 +113,24 @@ export default async function ProductOne({
                     <p className="text-textos/80 text-xl lg:text-sm italic mb-8">
                       Um atendimento personalizado e humanizado.
                     </p>
-                    <BtnContact classEdit={"px-28 md:px-[300px] lg:px-[50px] md:py-4 lg:py-2 m-auto"} />
+                    <BtnContact
+                      classEdit={
+                        "px-28 md:px-[300px] lg:px-[50px] md:py-4 lg:py-2 m-auto"
+                      }
+                    />
                     {/* Seção de Interação (Likes e Dislikes) */}
                     <section className="flex justify-center items-center gap-4 mt-8">
                       <Suspense fallback={"Carregando....."}>
                         <LikeRegister id={product._id} user={user} />
-                        {
-                          user.name !== undefined &&
-                        <Btn
-                          url={urlDelLike}
-                          handle={handleDeleteLike}
-                          icon={
-                            <SlDislike
-                              className="text-textos/80 text-4xl lg:text-3xl italic"
-                            />
-                          }
-                        />
-                        }
+                        {user.name !== undefined && (
+                          <Btn
+                            url={urlDelLike}
+                            handle={handleDeleteLike}
+                            icon={
+                              <SlDislike className="text-textos/80 text-4xl lg:text-3xl italic" />
+                            }
+                          />
+                        )}
                         <p className="bg-principal text-textos2 leading-snug text-4xl lg:text-3xl text-center font-bold w-16 h-16 lg:w-10 lg:h-10 shadow-xl rounded-full  ">
                           {likes.length}
                         </p>
@@ -145,28 +148,33 @@ export default async function ProductOne({
                     <h3 className="text-textos/80 text-3xl lg:text-xl font-bold  mb-2">
                       Redes Sociais.
                     </h3>
-                    <CardRedesSociais iconColor="text-[#b91c1c] " iconSize="text-6xl lg:text-4xl md:gap-10 lg:gap-5 justify-between md:justify-center"/>
+                    <CardRedesSociais
+                      iconColor="text-[#b91c1c] "
+                      iconSize="text-5xl lg:text-4xl justify-center gap-6 md:gap-10 lg:gap-5 md:justify-between md:justify-center"
+                    />
                   </section>
 
                   <section className=" lg:px-4 w-full">
-                  <h3 className="text-principal/80  text-3xl lg:text-2xl  font-black">
-                    Paneje seus sonhos.
+                    <h3 className="text-principal/80  text-3xl lg:text-2xl  font-black">
+                      Paneje seus sonhos.
                     </h3>
                     <p className="text-textos/80 text-xl lg:text-sm italic mb-2">
                       Nós te ajudamos a realiza-lo.
-                    </p> 
-                     <div className="m-auto relative w-[380px] h-[315px] md:w-[700px] md:h-[515px] lg:w-[260px] lg:h-[205px]">
-                     <Image 
-                      src={img} 
-                      alt="Logo marca da empresa" 
-                      fill
-                      quality={100}
-                    />
-                     </div>
-                     <CardNavProducts/>
-                     <p className="text-textos/80 italic text-xl lg:text-base text-justify">
-                     Atendemos com excelência toda a região de São Paulo. Oferecemos produtos fabricados em mármore, granitos e diversas outras pedras ornamentais. 
-                    </p>      
+                    </p>
+                    <div className="m-auto relative w-[380px] h-[315px] md:w-[700px] md:h-[515px] lg:w-[260px] lg:h-[205px]">
+                      <Image
+                        src={img}
+                        alt="Logo marca da empresa"
+                        fill
+                        quality={100}
+                      />
+                    </div>
+                    <CardNavProducts />
+                    <p className="text-textos/80 italic text-xl lg:text-base text-justify">
+                      Atendemos com excelência toda a região de São Paulo.
+                      Oferecemos produtos fabricados em mármore, granitos e
+                      diversas outras pedras ornamentais.
+                    </p>
                   </section>
                 </section>
               )}

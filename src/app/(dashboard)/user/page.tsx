@@ -1,9 +1,9 @@
-import Container from "@/app/components/containers/Container";
+import Container from "@/app/(home)/components/containers/Container";
 import { FetchGetAuth } from "@/app/functions/fetch/FetchGet";
 import { Block } from "@/app/middleware/blockedPage";
 import { UserProps } from "@/app/types/user";
 import React from "react";
-import NavDashboard from "@/app/components/headers/NavDashboard";
+import NavDashboard from "@/app/(dashboard)/components/headers/NavDashboard";
 import DashboardCardUser from "../components/cards/DashboardCardUser";
 import Image from "next/image";
 import Link from "next/link";

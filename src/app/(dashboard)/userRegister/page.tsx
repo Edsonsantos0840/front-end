@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import UserRegister from "../../components/form/UserRegister";
+import UserRegister from "../components/form/UserRegister";
 
 export const metadata: Metadata = {
   title: "Faça seu Registor em M&A Marmores e Granitos.",
@@ -9,7 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function Register() {
-  return (
-      <UserRegister />
-  );
+  return <UserRegister />;
 }

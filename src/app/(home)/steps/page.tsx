@@ -1,9 +1,8 @@
-import Container from "@/app/components/containers/Container";
-import MotionBatroom from "@/app/components/products/MotionBatroom";
+import Container from "@/app/(home)/components/containers/Container";
+import MotionBatroom from "@/app/(home)/components/products/MotionBatroom";
 import { FetchGet } from "@/app/functions/fetch/FetchGet";
 import { ProdutoProps } from "@/app/types/produtoTypes";
 import { Metadata } from "next";
-
 
 export const metadata: Metadata = {
   title: "Banheiros incríveis em M&A Marmores e Granitos.",
@@ -27,9 +26,11 @@ export default async function Steps() {
 
   return (
     <main className="px-6">
-      <section aria-label="Lista de Produtos" className="mb-20" >
-        <h2 className="text-2xl text-principal text-center font-bold mb-4">Escadas</h2>
-        <MotionBatroom product={product}/>
+      <section aria-label="Lista de Produtos" className="mb-20">
+        <h2 className="text-2xl text-principal text-center font-bold mb-4">
+          Escadas
+        </h2>
+        <MotionBatroom product={product} />
       </section>
     </main>
   );

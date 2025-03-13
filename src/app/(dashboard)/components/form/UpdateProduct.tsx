@@ -2,9 +2,9 @@
 import { UploadProductSubmit } from "@/app/functions/handleSubmit/HandleUpdateProduct";
 import { useActionState } from "react";
 import FetchUploadProducts from "@/app/functions/fetch/FetchUploadProducts";
-import GenericForm from "./GenericForm";
+import GenericForm from "../../../(home)/components/form/GenericForm";
 import useMessages from "@/app/hooks/useMessages";
-import { getFieldsUpdateProduct } from "../content/contentForm";
+import { getFieldsUpdateProduct } from "../../../(home)/components/content/contentForm";
 import Link from "next/link";
 import { FaShopify } from "react-icons/fa";
 
@@ -24,19 +24,24 @@ function ProductUpdate({ updateId }: { updateId: string }) {
   if (updateProduct)
     return (
       <main className="flex justify-center items-center py-6 gap-4 w-full h-screen bg-cover bg-center bg-[url('/assets/form4.jpg')] ">
-      <div className=" flex  bg-white/90  rounded-2xl shadow-2xl ">
-        <div className="bg-principal w-[25vw] flex flex-col justify-center items-center gap-7 rounded-tl-2xl rounded-bl-2xl">
-          <FaShopify size={100} className="text-textos2/90" />
-          <div>
-            <h4 className="text-textos2/90 text-xl ">Editar Produtos</h4>
+        <div className=" flex  bg-white/90  rounded-2xl shadow-2xl ">
+          <div className="bg-principal w-[25vw] flex flex-col justify-center items-center gap-7 rounded-tl-2xl rounded-bl-2xl">
+            <FaShopify size={100} className="text-textos2/90" />
+            <div>
+              <h4 className="text-textos2/90 text-xl ">Editar Produtos</h4>
+            </div>
+            <h3 className="text-textos2/90 text-xl font-black">
+              M&A MÁRMORES E GRANITOS
+            </h3>
+            <Link
+              href={"/product"}
+              className="px-8 py-2 bg-textos2 rounded-lg text-principal font-bold hover:scale-105"
+            >
+              Voltar
+            </Link>
           </div>
-          <h3 className="text-textos2/90 text-xl font-black">
-            M&A MÁRMORES E GRANITOS
-          </h3>
-          <Link href={'/product'} className="px-8 py-2 bg-textos2 rounded-lg text-principal font-bold hover:scale-105" >Voltar</Link>
-        </div>
-        <div className="w-[40vw] px-6 py-2" >
-        <GenericForm
+          <div className="w-[40vw] px-6 py-2">
+            <GenericForm
               fields={getFieldsUpdateProduct(updateId)}
               formTile="Editar Produto"
               action={dispach}
@@ -47,9 +52,9 @@ function ProductUpdate({ updateId }: { updateId: string }) {
               image3={updateProduct.image3}
               image4={updateProduct.image4}
             />
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
     );
 }
 export default ProductUpdate;

@@ -1,10 +1,10 @@
 "use client";
-import Container from "../components/containers/Container";
-import CardInfo from "../components/cards/CardInfo";
+import Container from "./components/containers/Container";
+import CardInfo from "./components/cards/CardInfo";
 import marmore from "../../../public/assets/marmore1.5d36561f34bb749fe7d8.png";
 import granito from "../../../public/assets/granito1.da2922cafeb913d8cbb9.png";
 import onix from "../../../public/assets/onix1.3d32bc3520a208c1d36f.png";
-import CardPhotos from "../components/cards/CardPhotos";
+import CardPhotos from "./components/cards/CardPhotos";
 import requinte from "../../../public/assets/requinte.jpg";
 import sofisticação from "../../../public/jacob-wall-J35x4qL0mS0-unsplash.jpg";
 import qualidade from "../../../public/Design sem nome (6).png";
@@ -52,38 +52,38 @@ export default function Home() {
               Alguns tipos de placas
             </h2>
             {/* ANIMAÇÃO NAS IMAGENS */}
-          <div className="flex flex-col lg:flex-row justify-between items-center gap-4 ">
-          <motion.div
-              initial={{ opacity: 0.3 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: false, amount: 0.5 }}
-              transition={{ duration: 1.2 }}
-            >
-              <div >
-                <CardPhotos title="MÁRMORE" image={marmore} />
-              </div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0.3 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: false, amount: 0.5 }}
-              transition={{ duration: 1.2 }}
-            >
-              <div >
-                <CardPhotos title="GRANITO" image={granito} />
-              </div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0.3 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: false, amount: 0.5 }}
-              transition={{ duration: 1.2 }}
-            >
-              <div >
-                <CardPhotos title="ÔNIX" image={onix} />
-              </div>
-            </motion.div>
-          </div>
+            <div className="flex flex-col lg:flex-row justify-between items-center gap-4 ">
+              <motion.div
+                initial={{ opacity: 0.3 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: false, amount: 0.5 }}
+                transition={{ duration: 1.2 }}
+              >
+                <div>
+                  <CardPhotos title="MÁRMORE" image={marmore} />
+                </div>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0.3 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: false, amount: 0.5 }}
+                transition={{ duration: 1.2 }}
+              >
+                <div>
+                  <CardPhotos title="GRANITO" image={granito} />
+                </div>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0.3 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: false, amount: 0.5 }}
+                transition={{ duration: 1.2 }}
+              >
+                <div>
+                  <CardPhotos title="ÔNIX" image={onix} />
+                </div>
+              </motion.div>
+            </div>
           </section>
 
           <section className="lg:w-full ">
@@ -137,7 +137,7 @@ export default function Home() {
                 viewport={{ once: false, amount: 0.5 }}
                 transition={{ duration: 1.2 }}
               >
-                <CardPhotos image={qualidade} title="MAIOR QUALIDADE" extend  />
+                <CardPhotos image={qualidade} title="MAIOR QUALIDADE" extend />
               </motion.div>
             </div>
           </section>
@@ -146,4 +146,3 @@ export default function Home() {
     </div>
   );
 }
-

@@ -1,4 +1,4 @@
-import Container from "./components/containers/Container";
+import Container from "./(home)/components/containers/Container";
 
 export default function Loading() {
   return (

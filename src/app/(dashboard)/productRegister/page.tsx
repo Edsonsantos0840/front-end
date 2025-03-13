@@ -1,7 +1,5 @@
-import ProductRegister from "@/app/components/form/RegisterProduct";
+import ProductRegister from "@/app/(dashboard)/components/form/RegisterProduct";
 
 export default function RegisterProduct() {
-  return (
-      <ProductRegister />
-  );
+  return <ProductRegister />;
 }

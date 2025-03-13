@@ -1,16 +1,16 @@
-import Container from "@/app/components/containers/Container";
+import Container from "@/app/(home)/components/containers/Container";
 import { FetchGet } from "@/app/functions/fetch/FetchGet";
 import { ProdutoProps } from "@/app/types/produtoTypes";
 import Image from "next/image";
 import avatar from "../../../../public/1.jpg";
-import NavDashboard from "@/app/components/headers/NavDashboard";
+import NavDashboard from "@/app/(dashboard)/components/headers/NavDashboard";
 import { FaCheck } from "react-icons/fa6";
-import CardNavDashboard from "@/app/components/cards/CardNavDashboard";
-import CardDashboardUser from "@/app/components/cards/CardDashboardUser";
-import CardDashboardProduct from "@/app/components/cards/CardDashboardProduct";
-import CardHeaderDashboard from "@/app/components/cards/CardHeaderDashboard";
-import CardDashboardComments from "@/app/components/cards/CardDashboardComments";
-import CardDashboardLikes from "@/app/components/cards/CardDashboardLikes";
+import CardNavDashboard from "@/app/(dashboard)/components/cards/CardNavDashboard";
+import CardDashboardUser from "@/app/(dashboard)/components/cards/CardDashboardUser";
+import CardDashboardProduct from "@/app/(dashboard)/components/cards/CardDashboardProduct";
+import CardHeaderDashboard from "@/app/(dashboard)/components/cards/CardHeaderDashboard";
+import CardDashboardComments from "@/app/(dashboard)/components/cards/CardDashboardComments";
+import CardDashboardLikes from "@/app/(dashboard)/components/cards/CardDashboardLikes";
 import Logo from "../../../../public/logo.png";
 import Link from "next/link";
 
@@ -55,7 +55,7 @@ export default async function Product() {
         <aside className="bg-principal text-white row-span-12 w-[8vw] ">
           <NavDashboard />
         </aside>
-        <header className=" col-span-2 row-span-1 border-b-2">
+        <header className=" col-span-2 row-span-1 border-b-2 py-2">
           <div className="flex justify-between items-center w-full h-full px-4 gap-4">
             <div className="flex justify-center items-center gap-4">
               <CardHeaderDashboard />

@@ -1,5 +1,5 @@
 import { verifySession } from "@/auth/dal";
-import ToastifyMsg from "../components/messages/ToastifyMsg";
+import ToastifyMsg from "../(home)/components/messages/ToastifyMsg";
 
 export default async function DashboardLayout({
   children,

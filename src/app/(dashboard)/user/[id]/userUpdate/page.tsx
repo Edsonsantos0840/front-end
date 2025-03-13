@@ -4,9 +4,9 @@ import React, { Suspense } from "react";
 import { handleUpdateUser } from "@/app/functions/handleSubmit/handleUpdateUser";
 import FetchUploadUser from "@/app/functions/fetch/FetchUploadUser";
 import { useActionState } from "react";
-import GenericForm from "@/app/components/form/GenericForm";
+import GenericForm from "@/app/(home)/components/form/GenericForm";
 import useMessages from "@/app/hooks/useMessages";
-import { getFieldsUpdateUser } from "@/app/components/content/contentForm";
+import { getFieldsUpdateUser } from "@/app/(home)/components/content/contentForm";
 import { BsFillPersonLinesFill } from "react-icons/bs";
 import Link from "next/link";
 
@@ -39,17 +39,22 @@ function UserUpdate({ params }: { params: Promise<{ id: string }> }) {
             <h3 className="text-textos2/90 text-xl font-black">
               M&A MÁRMORES E GRANITOS
             </h3>
-            <Link href={'/user'} className="px-8 py-2 bg-textos2 rounded-lg text-principal font-bold hover:scale-105" >Voltar</Link>
+            <Link
+              href={"/user"}
+              className="px-8 py-2 bg-textos2 rounded-lg text-principal font-bold hover:scale-105"
+            >
+              Voltar
+            </Link>
           </div>
-          <div className="w-[30vw] px-6 py-2" >
-          <GenericForm
-            fields={getFieldsUpdateUser(id)}
-            formTile="Editar Usuário"
-            action={dispach}
-            img={img}
-            image1={user.image}
-            update
-          />
+          <div className="w-[30vw] px-6 py-2">
+            <GenericForm
+              fields={getFieldsUpdateUser(id)}
+              formTile="Editar Usuário"
+              action={dispach}
+              img={img}
+              image1={user.image}
+              update
+            />
           </div>
         </div>
       </main>

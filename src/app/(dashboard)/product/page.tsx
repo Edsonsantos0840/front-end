@@ -1,7 +1,7 @@
-import Container from "@/app/components/containers/Container";
+import Container from "@/app/(home)/components/containers/Container";
 import { FetchGet } from "@/app/functions/fetch/FetchGet";
 import { ProdutoProps } from "@/app/types/produtoTypes";
-import NavDashboard from "@/app/components/headers/NavDashboard";
+import NavDashboard from "@/app/(dashboard)/components/headers/NavDashboard";
 import DashboardCardProduct from "../components/cards/DashboardCardProduct";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,7 +22,7 @@ export default async function Product() {
   }
 
   return (
-    <div className="grid grid-cols-[1fr_12fr]">
+    <div className="">
       <article className="flex flex-col justify-center items-center gap-4 text-textos p-2 font-semibold lg:hidden w-full h-screen ">
         <h2 className="text-2xl text-center">
           Não é possível acessar de dispositivos móveis.{" "}
