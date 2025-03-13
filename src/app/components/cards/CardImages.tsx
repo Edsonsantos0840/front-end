@@ -22,11 +22,11 @@ export default function CardImages({ product }: { product: ProdutoProps }) {
   };
 
   return (
-    <section className="flex gap-4">
+    <section className="flex flex-col md:flex-row md:gap-4">
       {/* Galeria de miniaturas */}
-      <ul className="space-y-2 max-h-[380px]" aria-label="Galeria de miniaturas do produto">
+      <ul className="flex flex-row md:flex-col justify-between gap-3  md:max-h-[600px] lg:max-h-[380px]" aria-label="Galeria de miniaturas do produto">
         {images.map((image, index) => (
-          <li key={index} className="relative w-[92px] h-[92px] cursor-pointer rounded-lg">
+          <li key={index} className="relative w-[90px] h-[90px] md:w-[150px] md:h-[150px] lg:w-[92px] lg:h-[92px] cursor-pointer rounded-lg">
             <Image
               src={image || ''}
               alt={`Miniatura ${index + 1} do produto ${product.title}`}
@@ -40,7 +40,7 @@ export default function CardImages({ product }: { product: ProdutoProps }) {
       </ul>
 
       {/* Imagem principal com efeito de transição */}
-      <figure id="show" className="w-[380px] max-h-[380px] relative rounded-lg">
+      <figure id="show" className="w-[380px] h-[400px] md:w-[600px] md:h-[600px] lg:w-[380px] lg:max-h-[380px] mt-2 relative rounded-lg md:mt-0">
         <Image
           src={selectedImage ||''}
           alt={`Imagem principal do produto ${product.title}`}

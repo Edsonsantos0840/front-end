@@ -69,26 +69,26 @@ export default async function ProductOne({
     <Container>
       <main className="relative z-0 my-4 ">
         {/* Seção principal do produto */}
-        <section className="flex-col sm:basis-1/2 md:basis-1/3 lg:basis-1/4 max-w-full">
+        <section className="flex flex-col sm:basis-1/2 md:basis-1/3 lg:basis-1/4 lg:max-w-full">
           <div className="bg-white p-4 rounded-2xl pb-8">
-            <div className="flex justify-between items-center p-2 my-1 ">
+            <div className="flex  md:justify-between items-center p-2 my-1 w-auto ">
               <div>
-                <p className="flex">
-                  <span className={` text-2xl text-principal mr-2 font-black`}>
+                <p className="flex ">
+                  <span className={` text-3xl lg:text-2xl  text-principal mr-2 font-black`}>
                     {" "}
                     Categoria:
                   </span>
-                  <span className=" text-2xl text-textos/60 capitalize font-black">
+                  <span className=" text-3xl lg:text-2xl text-textos/60 capitalize font-black">
                     {product.category}
                   </span>
                   <Link
                     href={"/bathrooms"}
-                    className="ml-40 cursor-pointer hover:scale-105"
+                    className="ml-16 md:ml-40 cursor-pointer hover:scale-105"
                   >
-                    <FaHome size={30} className="text-principal/80" />
+                    <FaHome  className="text-principal/80 w-[44px] h-[44px] lg:w-[30px] lg:h-[30px]" />
                   </Link>
                 </p>
-                <h5 className="text-textos/50 text-sm italic">
+                <h5 className="text-textos/50 text-sm italic hidden md:block">
                   Tenha a melhor qualidade e um visual mais moderno em seu
                   projeto.
                 </h5>
@@ -97,23 +97,23 @@ export default async function ProductOne({
 
             <Suspense fallback={"Carregando....."}>
               {product && (
-                <section className="flex justify-between gap-8">
+                <section className="flex flex-col lg:flex-row mlg:flex-row justify-between gap-8">
                   <CardImages product={product} />
                   <section className="w-full">
                     <h2
-                      className={`text-2xl text-principal/80 font-black pb-3`}
+                      className={`text-3xl  lg:text-2xl text-principal/80 font-black pb-3`}
                     >
                       {product.title}
                     </h2>
-                    <h3 className="text-textos/80 text-xl font-semibold  font-Lilita_One ">
+                    <h3 className="text-textos/80 text-lg lg:text-xl font-semibold  font-Lilita_One ">
                       Nossa Prioridade:
                     </h3>
-                    <p className="text-textos/80 italic mb-8">
+                    <p className="text-textos/80 text-xl lg:text-sm italic mb-8">
                       Um atendimento personalizado e humanizado.
                     </p>
-                    <BtnContact classEdit={"px-20 "} />
+                    <BtnContact classEdit={"px-28 md:px-[300px] lg:px-[50px] md:py-4 lg:py-2 m-auto"} />
                     {/* Seção de Interação (Likes e Dislikes) */}
-                    <section className="flex gap-4 mt-8">
+                    <section className="flex justify-center items-center gap-4 mt-8">
                       <Suspense fallback={"Carregando....."}>
                         <LikeRegister id={product._id} user={user} />
                         {
@@ -123,40 +123,39 @@ export default async function ProductOne({
                           handle={handleDeleteLike}
                           icon={
                             <SlDislike
-                              size={30}
-                              className="text-textos/80 italic"
+                              className="text-textos/80 text-4xl lg:text-3xl italic"
                             />
                           }
                         />
                         }
-                        <p className="bg-principal text-textos2 text-2xl text-center font-semibold w-10 h-10 shadow-xl rounded-full  ">
+                        <p className="bg-principal text-textos2 leading-snug text-4xl lg:text-3xl text-center font-bold w-16 h-16 lg:w-10 lg:h-10 shadow-xl rounded-full  ">
                           {likes.length}
                         </p>
-                        <h4 className="text-textos/80 text-3xl font-semibold  font-Lilita_One ">
+                        <h4 className="text-textos/80 text-4xl lg:text-3xl font-bold  ">
                           Likes
                         </h4>
                       </Suspense>
                     </section>
-                    <h3 className="text-textos/80 text-base font-semibold  font-Lilita_One mt-4">
+                    <h3 className="text-textos/80 text-3xl lg:text-xl font-bold mt-4">
                       Descrição.
                     </h3>
-                    <p className="text-textos/80 italic mb-1">
+                    <p className="text-textos/80 text-sm italic mb-1">
                       {product.description}
                     </p>
-                    <h3 className="text-textos/80 text-base font-semibold  font-Lilita_One mb-2">
+                    <h3 className="text-textos/80 text-3xl lg:text-xl font-bold  mb-2">
                       Redes Sociais.
                     </h3>
-                    <CardRedesSociais/>
+                    <CardRedesSociais iconColor="text-[#b91c1c] " iconSize="text-6xl lg:text-4xl md:gap-10 lg:gap-5 justify-between md:justify-center"/>
                   </section>
 
-                  <section className=" px-4 w-full">
-                  <h3 className="text-principal/80 text-xl font-Lilita_One font-black">
+                  <section className=" lg:px-4 w-full">
+                  <h3 className="text-principal/80  text-3xl lg:text-2xl  font-black">
                     Paneje seus sonhos.
                     </h3>
-                    <p className="text-textos/80 text-sm italic mb-2">
+                    <p className="text-textos/80 text-xl lg:text-sm italic mb-2">
                       Nós te ajudamos a realiza-lo.
                     </p> 
-                     <div className="relative w-[260px] h-[205px]">
+                     <div className="m-auto relative w-[380px] h-[315px] md:w-[700px] md:h-[515px] lg:w-[260px] lg:h-[205px]">
                      <Image 
                       src={img} 
                       alt="Logo marca da empresa" 
@@ -165,7 +164,7 @@ export default async function ProductOne({
                     />
                      </div>
                      <CardNavProducts/>
-                     <p className="text-textos/80 italic text-justify">
+                     <p className="text-textos/80 italic text-xl lg:text-base text-justify">
                      Atendemos com excelência toda a região de São Paulo. Oferecemos produtos fabricados em mármore, granitos e diversas outras pedras ornamentais. 
                     </p>      
                   </section>
@@ -175,7 +174,7 @@ export default async function ProductOne({
           </div>
           {/* Seção de Comentários */}
           <section className=" bg-white my-8 p-4  rounded-2xl ">
-            <h3 className="text-lg text-textos3 font-sansModifi mb-2">
+            <h3 className="text-3xl lg:text-lg text-textos3  mb-2">
               Deixe seu comentário.
             </h3>
             <Suspense fallback={"Carregando....."}>

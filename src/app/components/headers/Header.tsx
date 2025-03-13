@@ -6,7 +6,7 @@ import BtnContact from "../buttons/BtnContact";
 export default async function Header() {
   return (
     <Container>
-      <div className="alinha4 w-full pt-10 md:pt-12 px-2 ">
+      <div className="alinha4 w-full pt-10 md:pt-12 lg:pt-16 px-2 ">
       <figure className="w-full alinha4  ">
         <Link
           href={"/"}
@@ -21,7 +21,7 @@ export default async function Header() {
           />
         </Link>
       </figure>
-       <BtnContact/>
+       <BtnContact classEdit='px-4 w-[20%]'/>
       </div>
 
     </Container>

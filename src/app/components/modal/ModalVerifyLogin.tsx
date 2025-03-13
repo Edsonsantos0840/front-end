@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 
-export default function ModalVirifyLogin({ setIsOpen }: { setIsOpen: (isOpen: boolean) => void }) {
+export default function ModalVerifyLogin({ setIsOpen, classEdit }: { setIsOpen: (isOpen: boolean) => void, classEdit: string }) {
   return (
-    <div className="flex items-center justify-center  z-50">
+    <div className={`absolute ${classEdit}  flex items-center justify-center  z-50`}>
       <div className="bg-white p-6 rounded-lg shadow-lg w-96 text-center relative">
         <h2 className="text-lg font-semibold mb-4 text-principal">Para concluir a ação, é necessário estar logado.</h2>
         

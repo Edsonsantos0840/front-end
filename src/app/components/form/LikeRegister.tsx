@@ -3,7 +3,7 @@
 import { FetchFunction } from "@/app/functions/fetch/FetchFunction";
 import { useActionState, useState } from "react";
 import { SlLike } from "react-icons/sl";
-import ModalVirifyLogin from "../modal/ModalVirifyLogin";
+import ModalVerifyLogin from "../modal/ModalVerifyLogin";
 import { UserProps } from "@/app/types/user";
 
 export default function LikeRegister({ id, user }: { id: string; user: UserProps | null }) {
@@ -25,7 +25,7 @@ console.log(state)
 
   return (
     <section>
-      {isOpen && <ModalVirifyLogin  setIsOpen={setIsOpen} />}
+      {isOpen && <ModalVerifyLogin  setIsOpen={setIsOpen} classEdit='lg:left-[510] lg:top-64' />}
       
       <form action={dispatch} className="flex">
         <input type="hidden" name="id" value={id} />
@@ -34,7 +34,7 @@ console.log(state)
         <input type="hidden" name="actionType" value="like" />
 
         <button onClick={handleLikeClick} type="submit" className="hover:scale-110 text-textos/80 italic">
-          <SlLike size={30} />
+          <SlLike className="text-4xl lg:text-3xl" />
         </button>
       </form>
     </section>

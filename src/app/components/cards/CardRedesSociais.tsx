@@ -2,9 +2,10 @@ import { FaLocationDot } from "react-icons/fa6";
 import { BsFacebook, BsInstagram, BsWhatsapp } from "react-icons/bs";
 import Link from "next/link";
 
-export default function CardRedesSociais() {
+export default function CardRedesSociais({iconColor, iconSize}: {iconColor: string, iconSize: string}) {
   return (
-    <div className="flex text-principal/80 gap-5 text-3xl ">
+    <div className={`flex md:items-start ${iconColor}  ${iconSize} 
+    p-2`}>
       <Link
         rel="prefetch"
         href="https://www.facebook.com/people/Marcelo-Barbosa/pfbid0hbC53d1Utmcwgi8poESkjhgvputBAVo68wZZrrp1qAc4pVLiin9qN85y3W9gd9jCl/"

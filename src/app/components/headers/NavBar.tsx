@@ -19,7 +19,7 @@ export default async function NavBar() {
           <Menu />
           <Suspense fallback={"Carregando..."}>
             {user.tipo === "admin" && (
-              <ul className=" flex gap-8 font-Ysabea font-bold text-base">
+              <ul className="hidden md:flex gap-8 font-Ysabea font-bold text-base">
                 <li>
                   <Link
                     href={"/home"}

@@ -1,22 +1,16 @@
-import Btn from "@/app/components/buttons/Btn";
-import BtnDeleteProducts from "@/app/components/buttons/BtnDeleteProducts";
 import Container from "@/app/components/containers/Container";
 import { FetchGetAuth } from "@/app/functions/fetch/FetchGet";
 import { Block } from "@/app/middleware/blockedPage";
 import { UserProps } from "@/app/types/user";
-import Image from "next/image";
-import { format } from "date-fns";
-import { ptBR } from "date-fns/locale";
-
-import React, { Suspense } from "react";
-import { FaCheck } from "react-icons/fa6";
-import { MdEdit } from "react-icons/md";
-import { PiUserCircleFill } from "react-icons/pi";
+import React from "react";
 import NavDashboard from "@/app/components/headers/NavDashboard";
+import DashboardCardUser from "../components/cards/DashboardCardUser";
+import Image from "next/image";
+import Link from "next/link";
+import Logo from "../../../../public/logo.png";
 
 export default async function User() {
   const url = `${process.env.BASE_URL}/users`;
-  const urlDel = `${process.env.BASE_URL}/user`;
   const { user } = await Block();
   const { data: userCard } = await FetchGetAuth<UserProps[]>(url);
 
@@ -29,104 +23,34 @@ export default async function User() {
     );
   }
   return (
-
-      <div className="grid grid-cols-[1fr_12fr]">
+    <div className="">
+      <article className="flex flex-col justify-center items-center gap-4 text-textos p-2 font-semibold lg:hidden w-full h-screen ">
+        <h2 className="text-2xl text-center">
+          Não é possível acessar de dispositivos móveis.{" "}
+        </h2>
+        <div className=" w-[300px] h-[100px] md:w-[400px] md:h-[133px] lg:w-[600px] lg:h-[200px] ">
+          <Image
+            src={Logo}
+            alt="Logo"
+            width={600}
+            height={200}
+            className="w-auto h-auto"
+          />
+        </div>
+        <p className="text-3xl ">Tente em um desktop!</p>
+        <Link
+          href={"/"}
+          className="px-8 py-2 bg-principal rounded-lg text-textos2 font-bold hover:scale-105"
+        >
+          Voltar
+        </Link>
+      </article>
+      <section className="hidden lg:grid grid-cols-[1fr_12fr]">
         <aside className="bg-principal text-white  ">
           <NavDashboard />
         </aside>
-        <main className="w-full ">
-          <Suspense fallback={<p>Carregando...</p>}>
-            {userCard && userCard.length > 0 ? (
-              <div className="overflow-x-auto ">
-                <table className="w-full ">
-                  <thead>
-                    <tr className="grid grid-cols-[auto_3fr_2fr_auto_1fr] gap-4 text-textos mb-8 bg-fundo3 ">
-                      <th className="p-3 text-left">Avatar</th>
-                      <th className="p-3 text-left">Nome</th>
-                      <th className="p-3 text-left">Email</th>
-                      <th className="p-3 text-left">Tipo</th>
-                      <th className="p-3 text-left">Ações</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {userCard.map((item) => (
-                      <tr
-                        key={item._id}
-                        className="grid grid-cols-[auto_3fr_2fr_auto_1fr] gap-4 rounded-md mb-4 px-4"
-                      >
-                        <td className="px-3 mr-5 w-12 h-12 relative rounded-full  overflow-hidden  hover:bg-fundo3 ">
-                          <Image
-                            src={item.image || ""}
-                            alt={item.name}
-                            fill
-                            quality={100}
-                            className="object-cover"
-                          />
-                        </td>
-                        <td className="px-3 flex flex-col font-ysabeau uppercase text-textos  hover:bg-fundo3 rounded-md border-b-2">
-                          <span className="font-black flex items-center gap-4">
-                            {item.name}
-                          </span>
-                          <span className=" text-xs italic text-textos/60 ml-3 p-1 ">
-                            {item.createdAt
-                              ? format(
-                                  new Date(item.createdAt),
-                                  "dd 'de' MMMM 'de' yyyy",
-                                  { locale: ptBR }
-                                )
-                              : "Data não disponível"}
-                          </span>
-                        </td>
-                        <td className="p-3 flex  text-textos font-semibold hover:bg-fundo3 rounded-lg border-b-2">
-                          {item.email}
-                        </td>
-                        <td
-                          className={`px-3 font-ysabeau h-6 mt-3 flex gap-2 items-center font-semibold hover:bg-fundo3 rounded-lg ${
-                            item.tipo === "admin"
-                              ? " text-green-800 bg-green-100 hover:scale-105"
-                              : " text-principal2 bg-red-100 hover:scale-105 "
-                          }`}
-                        >
-                          <span>
-                            <PiUserCircleFill size={18} />
-                          </span>{" "}
-                          {item.tipo}
-                        </td>
-                        <td className="p-3 flex justify-between  rounded-md border-b-2">
-                          <Btn
-                            url={`/user/${item._id}`}
-                            icon={
-                              <FaCheck
-                                size={20}
-                                className="text-green-800/80"
-                              />
-                            }
-                          />
-                          <Btn
-                            url={`/user/${item._id}/userUpdate`}
-                            icon={
-                              <MdEdit size={26} className="text-textos3/60" />
-                            }
-                          />
-                          {user._id !== item._id && (
-                            <BtnDeleteProducts
-                              url={`${urlDel}/${item._id}`}
-                              pathToRevalidate="/dashboard"
-                            />
-                          )}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            ) : (
-              <p className="text-center text-gray-500">
-                Nenhum item cadastrado.
-              </p>
-            )}
-          </Suspense>
-        </main>
-      </div>
+        <DashboardCardUser userCard={userCard} user={user} />
+      </section>
+    </div>
   );
 }

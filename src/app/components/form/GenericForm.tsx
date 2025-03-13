@@ -132,7 +132,7 @@ export default function GenericForm({
       )}
       <button
         type="submit"
-        className="w-full m-auto bg-principal text-2xl lg:text-xl font-bold text-textos2 py-4 lg:py-1 rounded-md hover:bg-principal2"
+        className="w-full m-auto bg-principal text-2xl lg:text-lg font-bold text-textos2 py-4 lg:py-1 rounded-md hover:bg-principal2"
       >
         {formTile}
       </button>

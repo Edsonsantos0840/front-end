@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function CardRegisterLogin() {
   return (
-    <div className="flex justify-center gap-5 items-center mt-6">
+    <div className="flex  justify-center gap-5 items-center mt-6">
     <p className="text-xl lg:text-base ">Já Possui Cadastro?</p>
     <Link
       href={"/login"}

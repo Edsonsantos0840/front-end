@@ -27,7 +27,7 @@ export default function MotionBatroom({
                 transition={{ duration: 1.2 }}
               >
                 <Link href={`/product/${prod._id}`} className="block">
-                  <figure className="relative w-[230px] h-[190px] bg-cover object-cover transition-transform duration-500 group-hover:scale-110">
+                  <figure className="relative w-[400px] h-[350px] md:w-[230px] md:h-[190px] bg-cover object-cover transition-transform duration-500 group-hover:scale-110">
                     <Image
                       src={prod.image1}
                       alt={prod.title}

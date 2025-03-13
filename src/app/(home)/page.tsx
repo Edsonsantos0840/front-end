@@ -52,13 +52,14 @@ export default function Home() {
               Alguns tipos de placas
             </h2>
             {/* ANIMAÇÃO NAS IMAGENS */}
-            <motion.div
+          <div className="flex flex-col lg:flex-row justify-between items-center gap-4 ">
+          <motion.div
               initial={{ opacity: 0.3 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: false, amount: 0.5 }}
               transition={{ duration: 1.2 }}
             >
-              <div className="flex flex-col lg:flex-row justify-between items-center gap-4 ">
+              <div >
                 <CardPhotos title="MÁRMORE" image={marmore} />
               </div>
             </motion.div>
@@ -68,7 +69,7 @@ export default function Home() {
               viewport={{ once: false, amount: 0.5 }}
               transition={{ duration: 1.2 }}
             >
-              <div className="flex flex-col lg:flex-row justify-between items-center gap-4 ">
+              <div >
                 <CardPhotos title="GRANITO" image={granito} />
               </div>
             </motion.div>
@@ -78,10 +79,11 @@ export default function Home() {
               viewport={{ once: false, amount: 0.5 }}
               transition={{ duration: 1.2 }}
             >
-              <div className="flex flex-col lg:flex-row justify-between items-center gap-4 ">
+              <div >
                 <CardPhotos title="ÔNIX" image={onix} />
               </div>
             </motion.div>
+          </div>
           </section>
 
           <section className="lg:w-full ">

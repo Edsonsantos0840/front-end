@@ -10,7 +10,7 @@ export default function BtnDeleteProducts({ url, pathToRevalidate }: { url: stri
       onClick={() => handleDeleteProducts(url, pathToRevalidate)}
       className="hover:scale-125 text-end"
     >
-      <IoCloseOutline size={30} className="text-principal2/80" />
+      <IoCloseOutline size={34} className="text-principal2/80" />
     </button>
   );
 }
