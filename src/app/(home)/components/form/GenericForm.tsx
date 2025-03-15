@@ -1,8 +1,10 @@
 "use client";
-
+//componente
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
+//meus componentes
 import CardFormImage from "../cards/CardFormImage";
 import CardPreviewImage from "../cards/CardPreviewImage";
+//icons
 import { FiMail } from "react-icons/fi";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { MdOutlinePerson } from "react-icons/md";

@@ -4,6 +4,8 @@ import { MdOutdoorGrill } from "react-icons/md";
 import { PiLadderBold } from "react-icons/pi";
 
 export default function CardNavDashboard() {
+
+  //lista de categorias da barra superior
   const dashLink = [
     {
       href: "/bathrooms",
@@ -40,9 +42,5 @@ export default function CardNavDashboard() {
     );
   });
 
-  return (
-    <nav className="flex justify-between items-center text-center gap-4 ">
-     {dashLinks}
-    </nav>
-  );
+  return <nav className="alinha4 text-center gap-4 ">{dashLinks}</nav>;
 }

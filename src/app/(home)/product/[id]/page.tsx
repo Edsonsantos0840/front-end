@@ -1,23 +1,26 @@
+//meus componentes
+import CardRedesSociais from "@/app/(home)/components/cards/CardRedesSociais";
+import CardNavProducts from "@/app/(dashboard)/components/cards/CardNavProducts";
 import CardComments from "@/app/(home)/components/cards/CardComments";
+import BtnContact from "@/app/(home)/components/buttons/BtnContact";
+import img from "../../../../../public/assets/requinte.jpg";
 import CardImages from "@/app/(home)/components/cards/CardImages";
 import Container from "@/app/(home)/components/containers/Container";
 import CommentRegister from "@/app/(home)/components/form/CommentRegister";
 import LikeRegister from "@/app/(home)/components/form/LikeRegister";
 import { ProdutoProps } from "@/app/types/produtoTypes";
 import { Block } from "@/app/middleware/blockedPage";
-// import BtnDesLike from "@/app/components/buttons/BtnDesLike";
 import { SlDislike } from "react-icons/sl";
 import Btn from "@/app/(home)/components/buttons/Btn";
 import { handleDeleteLike } from "@/app/functions/handleSubmit/HandleDeleteLike";
+//componentes
 import { Suspense } from "react";
 import { Metadata } from "next";
-import { FaHome } from "react-icons/fa";
 import Link from "next/link";
-import BtnContact from "@/app/(home)/components/buttons/BtnContact";
-import img from "../../../../../public/assets/requinte.jpg";
 import Image from "next/image";
-import CardRedesSociais from "@/app/(home)/components/cards/CardRedesSociais";
-import CardNavProducts from "@/app/(dashboard)/components/cards/CardNavProducts";
+//icons
+import { FaHome } from "react-icons/fa";
+
 export const metadata: Metadata = {
   title: "Peças de Mármore incríveis em M&A Marmores e Granitos.",
   description: "Faça seu logim para interagir com os produtos.",
@@ -38,16 +41,17 @@ export default async function ProductOne({
   params: { id: string };
 }) {
   const { id } = await params;
-  const { user } = await Block(); // Chama no Server Component
+  //busca o usuário logado
+  const { user } = await Block(); 
   const url = `${process.env.BASE_URL}/products/${id}`;
   const urlLikes = `${process.env.BASE_URL}/likes`;
-
+ //busca dados do produtos e likes
   const [productRes, likesRes] = await Promise.all([
     fetch(url, { cache: "no-store" }),
 
     fetch(urlLikes, { next: { tags: ["likes"] } }),
   ]);
-
+  //busca dados do produtos e likes
   const product: ProdutoProps = await productRes.json();
   const likes: likesProps[] = likesRes.ok ? await likesRes.json() : [];
 
@@ -60,7 +64,7 @@ export default async function ProductOne({
   };
 
   let urlDelLike = "";
-
+// sertifica que é o id do usuário logado
   if (likes.length > 0 && likes[0]?._id) {
     urlDelLike = `${process.env.BASE_URL}/product/likes/${likes[0]._id}`;
   }
@@ -99,7 +103,7 @@ export default async function ProductOne({
 
             <Suspense fallback={"Carregando....."}>
               {product && (
-                <section className="flex flex-col lg:flex-row mlg:flex-row justify-between gap-8">
+                <section className="flex flex-col justify-between lg:flex-row mlg:flex-row  gap-8">
                   <CardImages product={product} />
                   <section className="w-full">
                     <h2
@@ -119,7 +123,7 @@ export default async function ProductOne({
                       }
                     />
                     {/* Seção de Interação (Likes e Dislikes) */}
-                    <section className="flex justify-center items-center gap-4 mt-8">
+                    <section className="alinha6 gap-4 mt-8">
                       <Suspense fallback={"Carregando....."}>
                         <LikeRegister id={product._id} user={user} />
                         {user.name !== undefined && (

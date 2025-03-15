@@ -1,12 +1,16 @@
 "use client";
+//meus componentes
 import Btn from "@/app/(home)/components/buttons/Btn";
 import BtnDeleteProducts from "@/app/(dashboard)/components/buttons/BtnDeleteProducts";
 import useScroll from "@/app/hooks/useScroll";
 import { ProdutoProps } from "@/app/types/produtoTypes";
+//componetes bibliotéca
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
+//componentes
 import Image from "next/image";
 import { JSX, Suspense } from "react";
+//icons
 import { FaRestroom, FaUtensils, FaCheck } from "react-icons/fa";
 import { MdOutdoorGrill, MdEdit } from "react-icons/md";
 import { PiLadderBold } from "react-icons/pi";
@@ -17,8 +21,9 @@ export default function DashboardCardProduct({
   product: ProdutoProps[];
 }) {
   const urlDel = `${process.env.BASE_URL}/product`;
+  //função de scroll
   const { containerRef } = useScroll();
-
+//lista de icons
   const iconMap: Record<string, JSX.Element> = {
     banheiro: <FaRestroom size={24} />,
     cozinha: <FaUtensils size={24} />,
@@ -60,7 +65,7 @@ export default function DashboardCardProduct({
                           className="object-cover"
                         />
                       </td>
-                      <td className="px-3 flex items-center font-Lilita_One uppercase text-textos font-black hover:bg-fundo3 rounded-md border-b-2">
+                      <td className="px-3 flex items-center  uppercase text-textos font-black hover:bg-fundo3 rounded-md border-b-2">
                         {prod.title}
                       </td>
                       <td className="p-3 flex items-center gap-2 text-principal/80 capitalize font-semibold hover:bg-fundo3 hover:scale-110 rounded-lg border-b-2">

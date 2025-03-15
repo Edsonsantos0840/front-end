@@ -1,14 +1,14 @@
 "use client";
-
+//meus componentes
 import useScroll from "@/app/hooks/useScroll";
 import { UserProps } from "@/app/types/user";
 
 export default function UserList({user}: {user: UserProps[]}) {
+  //função de scrooll
 const {containerRef} = useScroll()
 
   return (
     <section className=" py-2 rounded-md mt-4 w-[55%]">
- 
       <div
         ref={containerRef}
         className=" overflow-hidden w-full h-40 relative  scrollbar-hidden"

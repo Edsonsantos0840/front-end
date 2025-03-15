@@ -1,7 +1,9 @@
+//meus componentes
 import Container from "../containers/Container";
+import BtnContact from "../buttons/BtnContact";
+//componentes
 import Link from "next/link";
 import Image from "next/image";
-import BtnContact from "../buttons/BtnContact";
 
 export default async function Header() {
   return (
@@ -21,7 +23,7 @@ export default async function Header() {
             />
           </Link>
         </figure>
-        <BtnContact classEdit="md:px-4 w-full md:w-[20%]" />
+        <BtnContact classEdit="md:px-4 w-full md:w-[30%] lg:w-[20%]" />
       </div>
     </Container>
   );

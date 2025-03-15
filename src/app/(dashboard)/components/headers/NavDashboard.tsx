@@ -1,13 +1,15 @@
+//icons
 import { IoBagAdd } from "react-icons/io5";
-import Link from "next/link";
+import { FiLogOut } from "react-icons/fi";
+import { FaHome } from "react-icons/fa";
+import { RiContactsBook3Fill } from "react-icons/ri";
 import { IoIosPerson, IoMdPersonAdd } from "react-icons/io";
 import { MdDashboardCustomize } from "react-icons/md";
 import { logOut } from "@/app/functions/auth/logOut";
 import { GiPresent } from "react-icons/gi";
+//componentes
+import Link from "next/link";
 import { Suspense } from "react";
-import { FiLogOut } from "react-icons/fi";
-import { FaHome } from "react-icons/fa";
-import { RiContactsBook3Fill } from "react-icons/ri";
 
 export default async function NavDashboard() {
   return (

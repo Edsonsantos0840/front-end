@@ -1,19 +1,19 @@
+//meus componentes
 import Container from "@/app/(home)/components/containers/Container";
 import { FetchGetAuth } from "@/app/functions/fetch/FetchGet";
 import { Block } from "@/app/middleware/blockedPage";
 import { UserProps } from "@/app/types/user";
-import React from "react";
 import NavDashboard from "@/app/(dashboard)/components/headers/NavDashboard";
 import DashboardCardUser from "../components/cards/DashboardCardUser";
-import Image from "next/image";
-import Link from "next/link";
-import Logo from "../../../../public/logo.png";
+import CardNotMobile from "../components/cards/CardNotMobile";
 
 export default async function User() {
   const url = `${process.env.BASE_URL}/users`;
+  //busca o usuário logado
   const { user } = await Block();
+  //busca os dados do usuário
   const { data: userCard } = await FetchGetAuth<UserProps[]>(url);
-
+//exibe se não hover usuário
   if (!userCard || userCard.length === 0) {
     return (
       <Container>
@@ -24,27 +24,8 @@ export default async function User() {
   }
   return (
     <div className="">
-      <article className="flex flex-col justify-center items-center gap-4 text-textos p-2 font-semibold lg:hidden w-full h-screen ">
-        <h2 className="text-2xl text-center">
-          Não é possível acessar de dispositivos móveis.{" "}
-        </h2>
-        <div className=" w-[300px] h-[100px] md:w-[400px] md:h-[133px] lg:w-[600px] lg:h-[200px] ">
-          <Image
-            src={Logo}
-            alt="Logo"
-            width={600}
-            height={200}
-            className="w-auto h-auto"
-          />
-        </div>
-        <p className="text-3xl ">Tente em um desktop!</p>
-        <Link
-          href={"/"}
-          className="px-8 py-2 bg-principal rounded-lg text-textos2 font-bold hover:scale-105"
-        >
-          Voltar
-        </Link>
-      </article>
+      {/* exibe este componente se for dispositivo móvel */}
+      <CardNotMobile />
       <section className="hidden lg:grid grid-cols-[1fr_12fr]">
         <aside className="bg-principal text-white  ">
           <NavDashboard />

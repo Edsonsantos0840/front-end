@@ -1,9 +1,14 @@
+//meus componentes
 import UsePreviewImage from "@/app/hooks/UsePreviewImage";
+//componentes
 import Image from "next/image";
+//icons
 import { MdImageSearch } from "react-icons/md";
 
 export default function CardFormImage({ img }: { img: string[] }) {
+
   const { previews, handleImageChange } = UsePreviewImage();
+  
   return (
     <div className="flex items-center justify-center gap-2 mt-2">
       {img.map((imageKey) => (

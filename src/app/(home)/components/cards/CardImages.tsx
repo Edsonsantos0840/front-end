@@ -1,34 +1,47 @@
-'use client'
+"use client";
+//componentes
 import Image from "next/image";
-import { ProdutoProps } from "@/app/types/produtoTypes";
 import { useState } from "react";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
+//meus componentes
+import { ProdutoProps } from "@/app/types/produtoTypes";
 
 export default function CardImages({ product }: { product: ProdutoProps }) {
-  const images = [product.image1, product.image2, product.image3, product.image4].filter(Boolean);
+  //lista de imagens
+  const images = [
+    product.image1,
+    product.image2,
+    product.image3,
+    product.image4,
+  ].filter(Boolean);
+
   const [selectedImage, setSelectedImage] = useState(images[0]); // Define a primeira imagem como padrão
   const [isFading, setIsFading] = useState(false);
-
-
+ //função para apresentar a imagem clicada.
   const handleImageChange = (image: string | StaticImport | undefined) => {
     if (image !== selectedImage) {
       setIsFading(true);
-     setTimeout(() => {
+      setTimeout(() => {
         setSelectedImage(image);
         setIsFading(false);
       }, 300); // Tempo de transição
-      
     }
   };
 
   return (
     <section className="flex flex-col md:flex-row md:gap-4">
       {/* Galeria de miniaturas */}
-      <ul className="flex flex-row md:flex-col justify-between gap-3  md:max-h-[600px] lg:max-h-[380px]" aria-label="Galeria de miniaturas do produto">
+      <ul
+        className="flex flex-row md:flex-col justify-between gap-3  md:max-h-[600px] lg:max-h-[380px]"
+        aria-label="Galeria de miniaturas do produto"
+      >
         {images.map((image, index) => (
-          <li key={index} className="relative w-[90px] h-[90px] md:w-[150px] md:h-[150px] lg:w-[92px] lg:h-[92px] cursor-pointer rounded-lg">
+          <li
+            key={index}
+            className="relative w-[90px] h-[90px] md:w-[150px] md:h-[150px] lg:w-[92px] lg:h-[92px] cursor-pointer rounded-lg"
+          >
             <Image
-              src={image || ''}
+              src={image || ""}
               alt={`Miniatura ${index + 1} do produto ${product.title}`}
               fill
               quality={100}
@@ -40,13 +53,18 @@ export default function CardImages({ product }: { product: ProdutoProps }) {
       </ul>
 
       {/* Imagem principal com efeito de transição */}
-      <figure id="show" className="w-[380px] h-[400px] md:w-[600px] md:h-[600px] lg:w-[380px] lg:max-h-[380px] mt-2 relative rounded-lg md:mt-0">
+      <figure
+        id="show"
+        className="w-[380px] h-[400px] md:w-[600px] md:h-[600px] lg:w-[380px] lg:max-h-[380px] mt-2 relative rounded-lg md:mt-0"
+      >
         <Image
-          src={selectedImage ||''}
+          src={selectedImage || ""}
           alt={`Imagem principal do produto ${product.title}`}
           fill
           quality={100}
-          className={`transition-opacity duration-200 ${isFading ? "opacity-0" : "opacity-100"} rounded-lg`}
+          className={`transition-opacity duration-200 ${
+            isFading ? "opacity-0" : "opacity-100"
+          } rounded-lg`}
         />
       </figure>
     </section>

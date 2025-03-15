@@ -1,4 +1,5 @@
 "use client";
+//meus componentes
 import { useComments } from "@/app/hooks/useComments";
 import CardShowComments from "./CardShowComments";
 import { UserProps } from "@/app/types/user";

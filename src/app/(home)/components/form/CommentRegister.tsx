@@ -1,8 +1,9 @@
 "use client";
-
+//componentes
+import { useActionState, useState } from "react";
+//meus componentes
 import { FetchFunction } from "@/app/functions/fetch/FetchFunction";
 import { UserProps } from "@/app/types/user";
-import { useActionState, useState } from "react";
 import ModalVerifyLogin from "../modal/ModalVerifyLogin";
 
 export default function CommentRegister({
@@ -20,10 +21,10 @@ export default function CommentRegister({
   });
 
   console.log(state);
-
+ //função para exibir o modal quando clicado
   const handleCommentClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (user?.name === undefined) {
-      e.preventDefault(); // Impede o envio do formulário se o usuário não estiver logado
+      e.preventDefault();
       setIsOpen(true);
     }
   };
@@ -31,6 +32,7 @@ export default function CommentRegister({
   return (
     <section className="relative">
       {isOpen && (
+        // componente de modal
         <ModalVerifyLogin setIsOpen={setIsOpen} classEdit="lg:left-[510] " />
       )}
       <form action={dispatch} className="flex gap-2 my-2">

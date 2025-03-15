@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-
 export default function BtnContact({classEdit}: {classEdit?: string}) {
   return (
     <Link 

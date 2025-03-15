@@ -1,5 +1,7 @@
 "use client";
+//meus componentes
 import UsePreviewImage from "@/app/hooks/UsePreviewImage";
+//componentes
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import Image from "next/image";
 
@@ -22,7 +24,7 @@ export default function CardPreviewImage({img, current1, current2, current3, cur
         {img.map((imageKey, index) => (
           <label
             key={imageKey}
-            className="cursor-pointer border-dashed border-[1px] border-[#b91c1c]/15 lg:text-sm lg:my-3 hover:scale-105 flex flex-col items-center justify-center p-2 ml-4 "
+            className="cursor-pointer border-dashed border-[1px] border-[#b91c1c]/15 lg:text-sm lg:my-3 hover:scale-105 flex flex-col justify-center items-center  p-2 ml-4 "
           >
             <input
               type="file"

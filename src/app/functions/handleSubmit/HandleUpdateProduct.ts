@@ -19,7 +19,6 @@ export async function UploadProductSubmit(
   const _id = formData.get('_id')?.toString();
   const url = `${process.env.BASE_URL}/product/${_id}`;
   const token = (await cookies()).get("MA_MARMORE")?.value;
-  console.log(_id)
   const imageFields = ["image1", "image2", "image3", "image4"];
   const imageUrls: string[] = [];
 

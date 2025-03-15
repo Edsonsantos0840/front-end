@@ -1,8 +1,11 @@
-import { FaPhoneAlt, FaWhatsapp } from "react-icons/fa";
-import CardRedesSociais from "../cards/CardRedesSociais";
-import Link from "next/link";
+//icon
 import { MdEmail } from "react-icons/md";
 import { FaMapLocation } from "react-icons/fa6";
+import { FaPhoneAlt, FaWhatsapp } from "react-icons/fa";
+//meus componentes
+import CardRedesSociais from "../cards/CardRedesSociais";
+//componentes
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -19,7 +22,7 @@ export default function Footer() {
       <div className="w-4 h-32 rounded-sm bg-textos2 mb-2 justify-self-center hidden md:grid">
 
       </div>
-      <address className="col-span-3 md:col-span-1  m-auto md:justify-self-start space-y-2 py-2">
+      <address className="col-span-3 md:col-span-1  m-auto md:justify-self-start space-y-2 py-2 font-ysabeau">
         <Link href="mailto:contatomamarmoraria@gmail.com" className="flex items-center gap-3 font-ysabeau">
         <MdEmail size={24} />
         <strong>Email:</strong>contatomamarmoraria@gmail.com

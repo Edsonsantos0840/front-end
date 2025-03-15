@@ -1,27 +1,20 @@
+//meus comppnentes
 import Btn from "@/app/(home)/components/buttons/Btn";
 import BtnDeleteProducts from "@/app/(dashboard)/components/buttons/BtnDeleteProducts";
 import Container from "@/app/(home)/components/containers/Container";
 import NavDashboard from "@/app/(dashboard)/components/headers/NavDashboard";
 import { FetchGetAuth } from "@/app/functions/fetch/FetchGet";
 import { Block } from "@/app/middleware/blockedPage";
+import CardNotMobile from "../../components/cards/CardNotMobile";
+import CardDashboardUserId from "../../components/cards/CardDashboardUserId";
+import CardDashboardRedes from "../../components/cards/CardDashboardRedes";
 import { UserProps } from "@/app/types/user";
+//componentes
 import Image from "next/image";
-import { TfiEmail } from "react-icons/tfi";
-import { GrUserWorker } from "react-icons/gr";
 import React, { Suspense } from "react";
-import { AiFillTikTok } from "react-icons/ai";
+//icons
 import { IoPerson } from "react-icons/io5";
-import { BsCalendarDate, BsFillCalendarDateFill } from "react-icons/bs";
-import {
-  FaFacebookSquare,
-  FaInstagram,
-  FaWhatsappSquare,
-} from "react-icons/fa";
-import Logo from "../../../../../public/logo.png";
-import { MdEdit, MdPhoneInTalk } from "react-icons/md";
-import { format } from "date-fns";
-import { ptBR } from "date-fns/locale";
-import Link from "next/link";
+import { MdEdit } from "react-icons/md";
 
 export default async function UserwithId({
   params,
@@ -31,9 +24,11 @@ export default async function UserwithId({
   const { id } = await params;
   const url = `${process.env.BASE_URL}/users/${id}`;
   const urlDel = `${process.env.BASE_URL}/user`;
+  //busca o usuário logado
   const { user } = await Block();
+  // busca os dados do usuário
   const { data: userCard } = await FetchGetAuth<UserProps>(url);
-
+ //exibe se não houver usuários
   if (!userCard) {
     return (
       <Container>
@@ -44,29 +39,11 @@ export default async function UserwithId({
   }
   return (
     <div className=" ">
-      <article className="flex flex-col justify-center items-center gap-4 text-textos p-2 font-semibold lg:hidden w-full h-screen ">
-        <h2 className="text-2xl text-center">
-          Não é possível acessar de dispositivos móveis.{" "}
-        </h2>
-        <div className=" w-[300px] h-[100px] md:w-[400px] md:h-[133px] lg:w-[600px] lg:h-[200px] ">
-          <Image
-            src={Logo}
-            alt="Logo"
-            width={600}
-            height={200}
-            className="w-auto h-auto"
-          />
-        </div>
-        <p className="text-3xl ">Tente em um desktop!</p>
-        <Link
-          href={"/"}
-          className="px-8 py-2 bg-principal rounded-lg text-textos2 font-bold hover:scale-105"
-        >
-          Voltar
-        </Link>
-      </article>
+      {/* exibe este componente se for dispositivo móvel */}
+      <CardNotMobile />
       <section className="hidden lg:grid grid-cols-[1fr_12fr]">
         <aside className="bg-principal text-white  ">
+          {/* navbar */}
           <NavDashboard />
         </aside>
         <main className="px-6 space-y-4 flex flex-col mt-5">
@@ -93,43 +70,10 @@ export default async function UserwithId({
                   <IoPerson size={30} className="text-principal/80" />{" "}
                   {userCard.name}
                 </h2>
-                <p className="flex gap-3 items-center text-textos text-lg">
-                  <TfiEmail size={24} className="text-principal/80" />
-                  <strong>Email: </strong>
-                  {userCard.email}
-                </p>
-                <p className="flex gap-2 items-center text-textos text-lg">
-                  <GrUserWorker size={30} className="text-principal/80" />
-                  <strong>Tipo: </strong>
-                  {userCard.tipo}
-                </p>
-                <p className="flex gap-2 items-center text-textos text-lg">
-                  <BsCalendarDate size={30} className="text-principal/80" />
-                  <strong>Criado em:</strong>
-                  {userCard.createdAt
-                    ? format(
-                        new Date(userCard.createdAt),
-                        "dd 'de' MMMM 'de' yyyy",
-                        { locale: ptBR }
-                      )
-                    : "Data não disponível"}
-                </p>
-                <p className="flex gap-2 items-center text-textos text-lg">
-                  <BsFillCalendarDateFill
-                    size={30}
-                    className="text-principal/80"
-                  />
-                  <strong>Atualizado em: </strong>
-                  {userCard.updatedAt
-                    ? format(
-                        new Date(userCard.updatedAt),
-                        "dd 'de' MMMM 'de' yyyy",
-                        { locale: ptBR }
-                      )
-                    : "Data não disponível"}
-                </p>
+                {/* exibe o usuário com o id selecionado */}
+                <CardDashboardUserId userCard={userCard} />
 
-                <div className="flex justify-center items-center gap-5 bg-principal/5 py-1 rounded-xl w-[20%] self-center">
+                <div className="alinha6 gap-5 bg-principal/5 py-1 rounded-xl w-[20%] self-center">
                   <Btn
                     url={`/user/${id}/userUpdate`}
                     icon={<MdEdit size={26} color="#747474" />}
@@ -144,30 +88,12 @@ export default async function UserwithId({
               </section>
             </article>
             <section className=" font-ysabeau bg-fundo2 rounded-2xl  p-5 ">
-              <div className="flex  justify-center items-center gap-3">
-                <h2 className="flex gap-2  items-center text-lg text-textos font-black">
-                  <FaFacebookSquare size={30} color="#1877F2" />{" "}
-                  <span>@{userCard.name}</span>
-                </h2>
-                <p className="flex gap-3 items-center text-textos2 text-lg">
-                  <FaInstagram size={30} className="bg-[#FF9933] rounded-md" />
-                  <strong className="text-textos">@{userCard.name}</strong>
-                </p>
-                <p className="flex gap-2 items-center text-textos text-lg">
-                  <AiFillTikTok size={36} color="#FF0050" />
-                  <strong>Não tem.</strong>
-                </p>
-                <p className="flex gap-2 items-center text-textos text-lg">
-                  <MdPhoneInTalk size={30} color="#075E54" />
-                  <strong>19-994758374</strong>
-                </p>
-                <p className="flex gap-2 items-center text-textos text-lg">
-                  <FaWhatsappSquare size={36} color="#075E54" />
-                  <strong>19-994758374 </strong>
-                </p>
+              <div className="alinha6 gap-3">
+                {/* exibe as redes sociais do usuário */}
+                <CardDashboardRedes userCard={userCard} />
               </div>
               <article className="my-4">
-                <h3>Descrição.</h3>
+                <h3 className="text-xl font-semibold">Descrição.</h3>
                 <p>
                   Gosto de aprender, compartilhar conhecimento e interagir com
                   pessoas que têm interesses semelhantes. Aqui você encontra um

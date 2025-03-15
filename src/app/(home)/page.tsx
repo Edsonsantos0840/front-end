@@ -52,7 +52,7 @@ export default function Home() {
               Alguns tipos de placas
             </h2>
             {/* ANIMAÇÃO NAS IMAGENS */}
-            <div className="flex flex-col lg:flex-row justify-between items-center gap-4 ">
+            <div className="alinha lg:flex-row  gap-4 ">
               <motion.div
                 initial={{ opacity: 0.3 }}
                 whileInView={{ opacity: 1 }}
@@ -90,7 +90,7 @@ export default function Home() {
             <h2 className=" text-textos text-4xl text-center mt-5 ">
               Saiba mais
             </h2>
-            <div className="flex flex-col lg:flex-row justify-between items-center py-4 md:gap-6 lg:w-full">
+            <div className="alinha lg:flex-row py-4 md:gap-6 lg:w-full">
               <CardInfo
                 title="As Melhores Peças"
                 paragraph="Pedras Exóticas O QUE É ? O mármore, por si só, já é considerado um material extremamente elegante e exclusivo. Mas quando falamos em mármores exóticos, toda a qualidade, luxo e sofisticação dessa pedra é potencializada. Durante o processo de formação da rocha, algo ocorre fora do normal"
@@ -106,7 +106,7 @@ export default function Home() {
               ></motion.div>
               <CardPhotos image={requinte} title="REQUINTE" extend />
             </div>
-            <div className="flex flex-col lg:flex-row justify-between items-center py-4 md:gap-6 lg:w-full">
+            <div className="alinha lg:flex-row  py-4 md:gap-6 lg:w-full">
               <motion.div
                 initial={{ opacity: 0.3 }}
                 whileInView={{ opacity: 1 }}
@@ -123,7 +123,7 @@ export default function Home() {
                 extend
               />
             </div>
-            <div className="flex flex-col lg:flex-row justify-between items-center py-4 md:gap-6 lg:w-full">
+            <div className="alinha lg:flex-row py-4 md:gap-6 lg:w-full">
               <CardInfo
                 title="O Maximo de Cuidado"
                 paragraph="Cortes sob medida que extraem dos porcelanatos e mármores as mais belas formas aplicáveis em ambientes onde a qualidade e o design devam permanecer em evidência. Projetos numerados que facilitam a instalação. Processo homologado para inserção dos cristais em revestimentos."

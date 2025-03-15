@@ -9,15 +9,19 @@
 
 @font-face {
   font-family: "PlusJakartaSans";
-  src: url("../../public/assets/fonts/PlusJakartaSans-VariableFont_wght.ttf") format("ttf"),
-       url("../../public/assets/fonts/PlusJakartaSans-VariableFont_wght.ttf") format("ttf");
+  src: url("../../public/assets/fonts/PlusJakartaSans-VariableFont_wght.ttf")
+      format("ttf"),
+    url("../../public/assets/fonts/PlusJakartaSans-VariableFont_wght.ttf")
+      format("ttf");
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: "Lilita_One";
-  src: url("../../public/assets/fonts/Lilita_One/LilitaOne-Regular.ttf") format("ttf"),
-       url("../../public/assets/fonts/Lilita_One/LilitaOne-Regular.ttf") format("ttf");
+  src: url("../../public/assets/fonts/Lilita_One/LilitaOne-Regular.ttf")
+      format("ttf"),
+    url("../../public/assets/fonts/Lilita_One/LilitaOne-Regular.ttf")
+      format("ttf");
   font-weight: 400;
   font-style: normal;
 }
@@ -49,7 +53,7 @@ body {
     @apply hover:scale-125 transition-all ease-in-out duration-300;
   }
   .link2 {
-    @apply  hover:scale-125 transition-all ease-in-out duration-300;
+    @apply hover:scale-125 transition-all ease-in-out duration-300;
   }
   .btn {
     @apply bg-red-600 text-white py-2 rounded-2xl hover:bg-red-700 hover:scale-125 transition-all ease-in-out duration-300;

@@ -1,15 +1,17 @@
 "use client";
-
-import { useState, useRef, useEffect } from "react";
+//componente biblioteca
 import { motion } from "framer-motion";
+//componente
 import Image from "next/image";
+import { useState, useRef, useEffect } from "react";
+//meu componentte
 import { UserProps } from "@/app/types/user";
 
 export default function CardScrollImage({user}: {user: UserProps[]}) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollX, setScrollX] = useState(0);
 
-
+//Função realiza o efeito de scroll horizontal nas imagens
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -42,6 +44,7 @@ export default function CardScrollImage({user}: {user: UserProps[]}) {
       ref={containerRef}
       className="overflow-hidden flex items-center  h-28 relative w-[80%]"
     >
+      {/* cria um efeito na imagem */}
       <motion.div
         className="flex z-0"
         animate={{ x: -scrollX }}

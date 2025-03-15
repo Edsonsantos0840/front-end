@@ -1,19 +1,20 @@
-import { Fragment } from "react";
-import {
-  Popover,
-  PopoverButton,
-  PopoverPanel,
-  Transition,
-} from "@headlessui/react";
-import { Bars3Icon } from "@heroicons/react/20/solid";
+//componentes
 import Link from "next/link";
+import { Fragment } from "react";
+//componentes bibliotecas
+import {Popover, PopoverButton, PopoverPanel, Transition} from "@headlessui/react";
+//icons
+import { Bars3Icon } from "@heroicons/react/20/solid";
+//meus componentes
 import { Block } from "@/app/middleware/blockedPage";
 
 export default async function Menu() {
+  //busca o usuário logado
   const { user } = await Block();
 
   return (
     <Popover className="relative focus:border-none ">
+        {/* menu bibliotyeca externa */}
       <PopoverButton className="inline-flex items-center  text-sm font-semibold focus:border-none ">
         <Bars3Icon className="w-8 h-8 text-white focus:border-none " />
       </PopoverButton>
@@ -33,11 +34,11 @@ export default async function Menu() {
               Olá: <strong className="text-2xl md:text-base">@{user.name}</strong>
             </p>
             <p className="mb-1 text-xl md:text-base">Nossos serviços por categoria.</p>
-            <ul className="flex ">
+            <ul className="flex text-principal2 gap-2 text-xl lg:text-lg font-bold lg:font-medium">
               <li>
               <Link
                 href="/bathrooms"
-                className=" text-principal2 hover:text-textos text-xl lg:text-lg font-bold lg:font-medium"
+                className="hover:text-textos "
               >
                 Banheiros
               </Link>
@@ -45,7 +46,7 @@ export default async function Menu() {
               <li>
               <Link
                 href="/kitchen"
-                className="text-principal2 hover:text-textos ml-3 text-xl lg:text-lg font-bold lg:font-medium"
+                className="hover:text-textos"
               >
                 Cozinhas
               </Link>
@@ -53,7 +54,7 @@ export default async function Menu() {
               <li>
               <Link
                 href="/steps"
-                className=" text-principal2 hover:text-textos ml-3 text-xl lg:text-lg font-bold lg:font-medium"
+                className=" hover:text-textos"
               >
                 Escadas
               </Link>
@@ -61,7 +62,7 @@ export default async function Menu() {
               <li>
               <Link
                 href="/outdoor"
-                className=" text-principal2 hover:text-textos ml-3 text-xl lg:text-lg font-bold lg:font-medium"
+                className="hover:text-textos "
               >
                 Exteriores
               </Link>

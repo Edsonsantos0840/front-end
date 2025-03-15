@@ -1,17 +1,22 @@
+//meus componentes
 import Menu from "./Menu";
-import { FiLogIn, FiLogOut } from "react-icons/fi";
-import { IoBagAdd } from "react-icons/io5";
-import Link from "next/link";
-import { IoIosPerson, IoMdPersonAdd } from "react-icons/io";
-import { MdDashboardCustomize } from "react-icons/md";
-
 import { Block } from "@/app/middleware/blockedPage";
 import { logOut } from "@/app/functions/auth/logOut";
+//icons
+import { FiLogIn, FiLogOut } from "react-icons/fi";
+import { IoBagAdd } from "react-icons/io5";
+import { IoIosPerson, IoMdPersonAdd } from "react-icons/io";
+import { MdDashboardCustomize } from "react-icons/md";
 import { GiPresent } from "react-icons/gi";
+//componentes
+import Link from "next/link";
 import { Suspense } from "react";
 
+
 export default async function NavBar() {
+  //busca o usuário logado
   const { user } = await Block();
+
   return (
     <header className="w-[100vw] bg-principal fixed shadow-lg z-50 top-0">
       <aside>
@@ -98,9 +103,9 @@ export default async function NavBar() {
                   </Link>
                 </li>
               )}
-              <li>
+              <li className=" hover:scale-125 transition-all ease-in-out duration-300">
                 <Link
-                  className="font-Ysabea text-gray-50 hover:scale-125 transition-all ease-in-out duration-300"
+                  className="font-Ysabea text-gray-50"
                   href={"/"}
                 >
                   Inicio

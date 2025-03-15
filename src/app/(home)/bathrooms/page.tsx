@@ -1,7 +1,10 @@
+//meus componentes
 import Container from "@/app/(home)/components/containers/Container";
-import MotionBatroom from "@/app/(home)/components/products/MotionBatroom";
 import { FetchGet } from "@/app/functions/fetch/FetchGet";
 import { ProdutoProps } from "@/app/types/produtoTypes";
+//componentes biblioteca
+import MotionBatroom from "@/app/(home)/components/products/MotionBatroom";
+//componentes
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -13,8 +16,9 @@ export const metadata: Metadata = {
 
 export default async function Bathrooms() {
   const url = `${process.env.BASE_URL}/products/category/banheiro`;
+  //busca os dados do produto
   const { data: product } = await FetchGet<ProdutoProps[]>(url);
-
+ //exibe se não houver produtos
   if (!product || product.length === 0) {
     return (
       <Container>

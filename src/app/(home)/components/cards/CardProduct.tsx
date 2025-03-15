@@ -1,9 +1,12 @@
 "use client";
+//meus componentes
 import useScroll from "@/app/hooks/useScroll";
 import { ProdutoProps } from "@/app/types/produtoTypes";
+//componentes
 import Image from "next/image";
 
 export default function CardProduct({ product }: { product: ProdutoProps[] }) {
+  //função de scroll
   const { containerRef } = useScroll();
   return (
     <>

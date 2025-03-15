@@ -1,4 +1,5 @@
 "use client";
+//meus componentes
 import useScroll from "@/app/hooks/useScroll";
 import { CommentProps } from "@/app/types/commentType";
 
@@ -7,9 +8,9 @@ export default function CommentCard({
 }: {
   comments: CommentProps[];
 }) {
-
-    console.log(comments)
+  //função de scroll
   const { containerRef } = useScroll();
+
  return (
     <>
       {comments && comments.length > 0 ? (

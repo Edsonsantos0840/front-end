@@ -1,5 +1,7 @@
+//icons
 import { FaLocationDot } from "react-icons/fa6";
 import { BsFacebook, BsInstagram, BsWhatsapp } from "react-icons/bs";
+//componentes
 import Link from "next/link";
 
 export default function CardRedesSociais({iconColor, iconSize}: {iconColor: string, iconSize: string}) {

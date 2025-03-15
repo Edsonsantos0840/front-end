@@ -1,10 +1,11 @@
 "use client";
-
-import { FetchFunction } from "@/app/functions/fetch/FetchFunction";
-import { useActionState, useState } from "react";
+//meus componentes
 import { SlLike } from "react-icons/sl";
 import ModalVerifyLogin from "../modal/ModalVerifyLogin";
 import { UserProps } from "@/app/types/user";
+import { FetchFunction } from "@/app/functions/fetch/FetchFunction";
+//componentes
+import { useActionState, useState } from "react";
 
 export default function LikeRegister({
   id,
@@ -21,7 +22,7 @@ export default function LikeRegister({
     success: "",
   });
   console.log(state);
-
+  // função para exibir o modal quando clicado
   const handleLikeClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (user?.name === undefined) {
       e.preventDefault(); // Impede o envio do formulário se o usuário não estiver logado
@@ -32,6 +33,7 @@ export default function LikeRegister({
   return (
     <section>
       {isOpen && (
+        //modal
         <ModalVerifyLogin
           setIsOpen={setIsOpen}
           classEdit="left-4 lg:left-[510] lg:top-64"

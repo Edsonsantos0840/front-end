@@ -1,12 +1,16 @@
 "use client";
+//meus componentes
 import Btn from "@/app/(home)/components/buttons/Btn";
 import BtnDeleteProducts from "@/app/(dashboard)/components/buttons/BtnDeleteProducts";
 import useScroll from "@/app/hooks/useScroll";
 import { UserProps } from "@/app/types/user";
+// componentes bibliotecas
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
+//componentes
 import Image from "next/image";
 import { Suspense } from "react";
+//icons
 import { FaCheck } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
 import { PiUserCircleFill } from "react-icons/pi";
@@ -19,6 +23,7 @@ export default function DashboardCardUser({
   user: UserProps;
 }) {
   const urlDel = `${process.env.BASE_URL}/user`;
+  //função de scroll
   const { containerRef } = useScroll();
   return (
     <main className="w-full ">

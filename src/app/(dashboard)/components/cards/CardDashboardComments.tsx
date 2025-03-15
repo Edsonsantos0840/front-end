@@ -10,10 +10,10 @@ export default async function CardDashboardComments() {
   if (comments)
     return (
       <Suspense fallback="Carregando.....">
-        <section className="mx-4 p-4 bg-fundo2 rounded-2xl  h-full ">
-          <div className="flex items-center justify-center gap-10">
-            <h2 className="flex items-center gap-2 justify-center">
-              <span className="font-ysabeau font-black text-xl text-principal">
+        <section className="mx-4 p-4 bg-fundo2 rounded-2xl  h-full text-principal">
+          <div className="alinha6  gap-10">
+            <h2 className="alinha6 gap-2 ">
+              <span className="font-ysabeau font-black text-xl ">
                 Comentários
               </span>
               <FaRegComments size={30} className="text-textos" />
@@ -22,7 +22,7 @@ export default async function CardDashboardComments() {
           <div className="flex justify-around">
             {comments && <CommentCard comments={comments} />}
             <h3 className="flex items-center gap-2 ">
-              <span className="font-ysabeau font-black text-6xl text-principal">
+              <span className="font-ysabeau font-black text-6xl ">
                 {comments?.length}
               </span>
               <span className="text-textos/80">comentários</span>

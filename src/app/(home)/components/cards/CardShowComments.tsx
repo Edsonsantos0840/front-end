@@ -1,16 +1,18 @@
 "use client";
-
+//componentes
 import { useState } from "react";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import Image from "next/image";
+//meus componentes
 import BtnEdit from "../../../(dashboard)/components/buttons/BtnEdit";
 import { CommentProps } from "@/app/types/commentType";
 import { CommentsUpdateSubmit } from "../../../functions/handleSubmit/CommentsUpdateSubmit";
-import Image from "next/image";
 import { useComments } from "@/app/hooks/useComments";
-import { IoIosPerson } from "react-icons/io";
 import Btn from "../buttons/Btn";
 import { handleDelete } from "@/app/functions/handleSubmit/HandleDelete";
 import { UserProps } from "@/app/types/user";
+//icons
+import { IoIosPerson } from "react-icons/io";
 import { IoCloseOutline } from "react-icons/io5";
 import { MdModeEdit } from "react-icons/md";
 
@@ -32,11 +34,12 @@ export default function CardShowComments({
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
+  //busca os dados do produto pelo id
   const { mutate } = useComments(productId);
 
+  
   function handleEdit(commentId: string) {
     setSelectedComment(commentId);
-
     // Atualiza a URL sem recarregar a página
     const newParams = new URLSearchParams(searchParams.toString());
     newParams.set("edit", commentId);
@@ -122,10 +125,7 @@ export default function CardShowComments({
             </>
           ) : (
             <div className="w-full">
-              <form
-                action={handleUpdate}
-                className="flex justify-between items-center gap-5 w-full p-2"
-              >
+              <form action={handleUpdate} className="alinha4 gap-5 w-full p-2">
                 <input
                   type="text"
                   name="comments"
