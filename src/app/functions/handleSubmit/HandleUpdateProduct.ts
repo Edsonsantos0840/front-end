@@ -1,8 +1,10 @@
     'use server'
+//componentes
 import { cookies } from "next/headers";
-import { UploadCreateImage } from "./uploadImage";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
+//meus componentes
+import { UploadCreateImage } from "./uploadImage";
 import { validateProduct } from "../validate/validateProduct";
 
 type ActionStateType = {
@@ -10,14 +12,13 @@ type ActionStateType = {
   success: string;
 };
 
-
-
 export async function UploadProductSubmit(
   prevState: ActionStateType,
   formData: FormData
 ): Promise<ActionStateType> {
   const _id = formData.get('_id')?.toString();
   const url = `${process.env.BASE_URL}/product/${_id}`;
+    //busca o tokrn do usuário logado
   const token = (await cookies()).get("MA_MARMORE")?.value;
   const imageFields = ["image1", "image2", "image3", "image4"];
   const imageUrls: string[] = [];
@@ -51,7 +52,7 @@ const productData = {
   image3: imageUrls[2],
   image4: imageUrls[3],
 };
-
+//valida o formulário e retorna a mensagem
 const {message} = validateProduct(productData)
 
 if (message.length > 0) {

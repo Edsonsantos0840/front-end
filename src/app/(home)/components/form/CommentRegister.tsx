@@ -31,30 +31,47 @@ export default function CommentRegister({
 
   return (
     <section className="relative">
-      {isOpen && (
-        // componente de modal
-        <ModalVerifyLogin setIsOpen={setIsOpen} classEdit="lg:left-[510] " />
-      )}
-      <form action={dispatch} className="flex gap-2 my-2">
-        <input type="hidden" name="id" value={id} />
-        <input type="hidden" name="url" value={url} />
-        <input type="hidden" name="method" value="POST" />
-        <input type="hidden" name="actionType" value="comment" />
-
-        <input
-          type="text"
-          placeholder="Digite seu comentário"
-          name="inp"
-          className="w-full h-10 border border-gray-300 rounded-md px-2"
-        />
-        <button
-          onClick={handleCommentClick}
-          className="w-24 bg-principal text-textos2 py-2 rounded-md hover:bg-principal2"
-          type="submit"
-        >
-          Comentar
-        </button>
-      </form>
-    </section>
+    {/* Modal que aparece condicionalmente */}
+    {isOpen && (
+      <ModalVerifyLogin setIsOpen={setIsOpen} classEdit="lg:left-[510]" />
+    )}
+  
+    {/* Formulário para enviar comentário */}
+    <form
+      action={dispatch}
+      className="flex gap-2 my-2"
+      aria-labelledby="comment-form"
+    >
+      {/* Campos ocultos para enviar dados de identificação */}
+      <input type="hidden" name="id" value={id} />
+      <input type="hidden" name="url" value={url} />
+      <input type="hidden" name="method" value="POST" />
+      <input type="hidden" name="actionType" value="comment" />
+  
+      {/* Campo de texto para o comentário */}
+      <label htmlFor="comment-input" className="sr-only">
+        Digite seu comentário
+      </label>
+      <input
+        id="comment-input"
+        type="text"
+        placeholder="Digite seu comentário"
+        name="inp"
+        className="w-full h-10 border border-gray-300 rounded-md px-2"
+        aria-label="Digite seu comentário"
+      />
+  
+      {/* Botão para enviar o comentário */}
+      <button
+        onClick={handleCommentClick}
+        className="w-24 bg-principal text-textos2 py-2 rounded-md hover:bg-principal2"
+        type="submit"
+        aria-label="Comentar"
+      >
+        Comentar
+      </button>
+    </form>
+  </section>
+  
   );
 }

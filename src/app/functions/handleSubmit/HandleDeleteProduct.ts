@@ -1,9 +1,10 @@
 "use server";
-
+//componentes
 import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
 
 async function handleDeleteProducts(url: string, pathToRevalidate: string) {
+    //busca o tokrn do usuário logado
   const token = (await cookies()).get("MA_MARMORE")?.value;
 
   try {

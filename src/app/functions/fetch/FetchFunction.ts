@@ -1,7 +1,8 @@
 "use server";
-
+//componentes
 import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
+//meus componentes
 import { Block } from "@/app/middleware/blockedPage";
 
 type ActionStateType = {
@@ -10,13 +11,15 @@ type ActionStateType = {
 };
 
 async function FetchFunction(prevState: ActionStateType, formData: FormData) {
+  //busca o token do usuário logado
   const token = (await cookies()).get("MA_MARMORE")?.value;
+  //busca o usuário logado
   const { user } = await Block();
 
-  const url = formData.get("url") as string;
-  const method = formData.get("method") as string;
+  const url = formData.get("url") as string; //pega a url do formulário
+  const method = formData.get("method") as string; //pega o método do formulário
   const actionType = formData.get("actionType") as string; // Define a ação (comentário, like, etc.)
-
+  //dados passados para a requisição
   const data: Record<string, unknown> = {
     user: user._id,
     product: formData.get("id"),

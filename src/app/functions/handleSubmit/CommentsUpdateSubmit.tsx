@@ -13,6 +13,7 @@ export async function CommentsUpdateSubmit(
   commentId: string
 ) {
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/product/comments/${commentId}`;
+  //busca os dados do usuário logado
   const token = (await cookies()).get("MA_MARMORE")?.value;
 
   try {

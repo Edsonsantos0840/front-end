@@ -1,3 +1,4 @@
+//componentes
 import { Ysabeau } from "next/font/google";
 import "./globals.css";
 import { Metadata } from "next";

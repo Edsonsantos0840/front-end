@@ -28,6 +28,7 @@ export default function CardInfo({
       {image && (
         <figure className={`relative w-[250px] h-[250px]`}>
           <Image src={image || ""} alt={title} fill quality={100} />
+          <figcaption className="sr-only">Imagem ilustrativa relacionada a {title}</figcaption>
         </figure>
       )}
       <p className="text-justify text-textos px-4 py-3 font-sansModifi ">{paragraph}</p>
@@ -43,12 +44,14 @@ export default function CardInfo({
              hover:bg-principal2 hover:scale-105 
               ml-4 px-6 py-1 font-semibold my-5" 
             onClick={() => setShowTest(false)}
+            aria-live="polite"
           >{`${btn} menos`}</button> :
          <button 
            className="bg-principal text-textos2 rounded-xl shadow-lg
              hover:bg-principal2 hover:scale-105 
               ml-4 px-6 py-1 font-semibold my-5" 
             onClick={() => setShowTest(true)}
+            aria-live="polite"
           >{`${btn} mais`}</button>
       }
     </article>

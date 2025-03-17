@@ -1,7 +1,9 @@
-"use server"
+"use server";
+//componentes
 import { cookies } from "next/headers";
-import { validateLogin } from "../validate/validateLogin";
 import { redirect } from "next/navigation";
+//meus componentes
+import { validateLogin } from "../validate/validateLogin";
 
 type ActionStateType = {
   message: string[];
@@ -18,15 +20,15 @@ export async function LoginSubmit(
     email: formData.get("email"),
     password: formData.get("password"),
   };
+  //validação do formulário
+  const { message } = validateLogin(loginData);
 
-  const {message} = validateLogin(loginData);
-  
   if (message.length > 0) {
     return {
       message: message,
       success: "",
     };
-  } 
+  }
 
   const req = await fetch(url, {
     method: "POST",
@@ -55,6 +57,5 @@ export async function LoginSubmit(
     httpOnly: false,
     path: "/",
   });
- redirect('/')
+  redirect("/");
 }
-

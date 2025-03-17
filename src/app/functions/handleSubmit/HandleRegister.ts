@@ -1,9 +1,10 @@
 "use server";
-
+//componentes
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+//meus componentes
 import { UploadCreateImage } from "./uploadImage";
 import { validateUser } from "../validate/validateUser";
-import { redirect } from "next/navigation";
 
 export type ActionStateType = {
   message: string[];
@@ -13,62 +14,62 @@ export type ActionStateType = {
 export async function RegisterSubmit(
   prevState: ActionStateType,
   formData: FormData
-): Promise<ActionStateType> { // ⬅️ Agora retornamos um novo estado
-  
+): Promise<ActionStateType> {
+  //  Agora retornamos um novo estado
+
   const url = `${process.env.BASE_URL}/auth/register`;
   const image = formData.get("image");
   let imageUrl: string | undefined = undefined;
 
-// Faz upload da imagem e armazena a URL retornada
-if (image instanceof File) {
-  imageUrl = await UploadCreateImage({ image });
-}
+  // Faz upload da imagem e armazena a URL retornada
+  if (image instanceof File) {
+    imageUrl = await UploadCreateImage({ image });
+  }
 
-// Continua o cadastro sem travar, mesmo que `imageUrl` seja undefined
-const userValidate = {
-  name: String(formData.get("name") || ""),
-  email: String(formData.get("email") || ""),
-  password: String(formData.get("password") || ""),
-  confirmPass: String(formData.get("confirmPass") || ""),
-  image: imageUrl,
-};
-
-const {message} = validateUser(userValidate);
-
-if (message.length > 0) {
-  return {
-    message: message,
-    success: "",
+  // Continua o cadastro sem travar, mesmo que `imageUrl` seja undefined
+  const userValidate = {
+    name: String(formData.get("name") || ""),
+    email: String(formData.get("email") || ""),
+    password: String(formData.get("password") || ""),
+    confirmPass: String(formData.get("confirmPass") || ""),
+    image: imageUrl,
   };
-} 
-  
-      const req = await fetch(url, {
-        method: "POST",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify({
-          name: userValidate.name,
-          email: userValidate.email,
-          password: userValidate.password,
-          image: imageUrl,
-        }),
-      });
-    
-      if (!req.ok) {
-        return {
-          message: ["Erro ao cadastrar usuário. Tente novamente!"],
-          success: "",
-        };
-      }
-    
-      const json = await req.json();
-    
-      (await cookies()).set({
-        name: "MA_MARMORES",
-        value: json,
-        httpOnly: true,
-        path: "/",
-      });
- 
+  //valida o formulário e retorna a mensagem
+  const { message } = validateUser(userValidate);
 
- redirect('/user')
+  if (message.length > 0) {
+    return {
+      message: message,
+      success: "",
+    };
+  }
+
+  const req = await fetch(url, {
+    method: "POST",
+    headers: { "Content-type": "application/json" },
+    body: JSON.stringify({
+      name: userValidate.name,
+      email: userValidate.email,
+      password: userValidate.password,
+      image: imageUrl,
+    }),
+  });
+
+  if (!req.ok) {
+    return {
+      message: ["Erro ao cadastrar usuário. Tente novamente!"],
+      success: "",
+    };
+  }
+
+  const json = await req.json();
+
+  (await cookies()).set({
+    name: "MA_MARMORES",
+    value: json,
+    httpOnly: true,
+    path: "/",
+  });
+
+  redirect("/user");
 }

@@ -14,6 +14,5 @@ export default function useMessages(state?: ActionStateType) {
     }
   }, [state]);
 
-  // Não precisa retornar nada, pois o hook apenas executa os toasts
 }
 

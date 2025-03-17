@@ -1,8 +1,10 @@
 "use client";
-import Image from "next/image";
-import Logo from "./../../public/logo.png";
+//componentes
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import Image from "next/image";
+//meus componentes
+import Logo from "./../../public/logo.png";
 
 interface ErrorProps {
   error: Error;
@@ -12,7 +14,6 @@ export default function Error({ error}: ErrorProps) {
   const router = useRouter();
 
   useEffect(() => {
-    // Optionally log the error to an error reporting service
     console.error(error);
   }, [error]);
   

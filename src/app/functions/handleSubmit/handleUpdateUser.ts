@@ -1,9 +1,11 @@
 "use server";
+//componentes
 import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+//meus componentes
 import { UploadCreateImage } from "./uploadImage";
 import { validateUploadUser } from "../validate/validateUploadUser";
-import { redirect } from "next/navigation";
 
 type ActionStateType = {
   message: string[];
@@ -16,6 +18,7 @@ export async function handleUpdateUser(
 ): Promise<ActionStateType>{
   const _id = formData.get("_id") as string; // Pega o ID do formulário
   const url = `${process.env.BASE_URL}/user/${_id}`;
+    //busca o tokrn do usuário logado
   const token = (await cookies()).get("MA_MARMORE")?.value;
  const image = formData.get("image");
    let imageUrl: string | undefined = undefined;
@@ -30,7 +33,7 @@ const userValidate = {
   email: String(formData.get("email") || ""),
   image: imageUrl,
 };
-
+//valida o formulário e retorna a mensagem
 const {message} = validateUploadUser(userValidate);
 
 if (message.length > 0) {

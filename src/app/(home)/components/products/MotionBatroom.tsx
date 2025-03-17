@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
+import LoadingSuspense from "../../LoadingSuspense";
 
 export default function MotionBatroom({
   product,
@@ -14,8 +15,8 @@ export default function MotionBatroom({
   product: ProdutoProps[];
 }) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-      <Suspense fallback={<p>Carregando...</p>}>
+    <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+      <Suspense fallback={<LoadingSuspense/>}>
         {product && product.length > 0 ? (
           product.map((prod) => (
             <article
@@ -46,6 +47,6 @@ export default function MotionBatroom({
           <p className="text-gray-600">Nenhum produto encontrado.</p>
         )}
       </Suspense>
-    </div>
+    </section>
   );
 }

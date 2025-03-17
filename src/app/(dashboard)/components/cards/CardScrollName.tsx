@@ -18,6 +18,8 @@ const {containerRef} = useScroll()
             <li
               key={item._id}
               className=" hover:scale-110 pl-10 hover:bg-black/10 rounded-2xl cursor-pointer relative flex items-center capitalize"
+              role="listitem"  // Especifica o item como parte de uma lista
+              aria-label={`Usuário ${item.name}`}  // Acessibilidade, descrevendo o item
             >
               {item.name}
             </li>

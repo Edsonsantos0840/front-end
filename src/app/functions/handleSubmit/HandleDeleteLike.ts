@@ -1,9 +1,11 @@
 "use server";
-
+//componentes
 import { cookies } from "next/headers";
+//meus componentes
 import { revalidateTag } from "next/cache";
 
 async function handleDeleteLike(url: string) {
+  //busca o tokrn do usuário logado
   const token = (await cookies()).get("MA_MARMORE")?.value;
 
   try {
@@ -22,7 +24,6 @@ async function handleDeleteLike(url: string) {
 
     // Revalida os dados dos likes na página
     revalidateTag("likes");
-
   } catch (error) {
     console.log(error);
   }

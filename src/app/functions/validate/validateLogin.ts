@@ -1,19 +1,17 @@
-interface UserValidateProps {    
-    email: FormDataEntryValue | null;
-    password: FormDataEntryValue | null;
+interface UserValidateProps {
+  email: FormDataEntryValue | null;
+  password: FormDataEntryValue | null;
 }
 
-export function validateLogin({email, password}: UserValidateProps){
+export function validateLogin({ email, password }: UserValidateProps) {
+  const message: string[] = [];
+  if (email === "") {
+    message.push("O campo email ná pode estar vazio!");
+  }
 
-    const message: string[] = []
-    if(email === '' ){
-        message.push('O campo email ná pode estar vazio!')
-     }
+  if (password === "") {
+    message.push("A senha tem que ter mais de 7 caractéres!");
+  }
 
-    if(password === ''){
-     message.push('A senha tem que ter mais de 7 caractéres!')
-    }
- 
-   return { message };
-
+  return { message };
 }

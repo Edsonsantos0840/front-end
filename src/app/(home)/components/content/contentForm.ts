@@ -1,4 +1,6 @@
+import { ProdutoProps } from "@/app/types/produtoTypes";
 import { FieldConfig } from "../form/GenericForm";
+import { UserProps } from "@/app/types/user";
 const category = ["banheiro", "cozinha", "escadas", "exteriores"];
 
 const fieldsUser: FieldConfig[] = [
@@ -43,7 +45,7 @@ const fieldsLogin: FieldConfig[] = [
   },
 ];
 
-export const getFieldsUpdateProduct = (updateId: string): FieldConfig[] => [
+export const getFieldsUpdateProduct = (updateId: string, updateProduct:ProdutoProps): FieldConfig[] => [
   {
     type: "hidden",
     name: "_id",
@@ -54,21 +56,24 @@ export const getFieldsUpdateProduct = (updateId: string): FieldConfig[] => [
     type: "text",
     name: "title",
     placeholder: "Digite o título do produto",
+    defaultValue: updateProduct.title                            
   },
   {
     label: "Categoria",
     type: "select",
     name: "category",
     options: category,
+    defaultValue: updateProduct.category
   },
   {
     label: "Descrição",
     type: "text",
     name: "description",
     placeholder: "Descreva o produto",
+    defaultValue: updateProduct.description
   },
 ];
-export const getFieldsUpdateUser = (id: string): FieldConfig[] => [
+export const getFieldsUpdateUser = (id: string, user: UserProps): FieldConfig[] => [
   {
     type: "hidden",
     name: "_id",
@@ -81,6 +86,7 @@ export const getFieldsUpdateUser = (id: string): FieldConfig[] => [
     name: "name",
     placeholder: "Digite seu Nome",
     required: true,
+    defaultValue: user.name
   },
   {
     label: "Email",
@@ -88,6 +94,7 @@ export const getFieldsUpdateUser = (id: string): FieldConfig[] => [
     name: "email",
     placeholder: "Digite seu e-mail",
     required: true,
+    defaultValue: user.email
   },
 ];
 
@@ -114,4 +121,5 @@ const fieldsProducts: FieldConfig[] = [
     required: true,
   },
 ];
+
 export { fieldsUser, fieldsLogin, fieldsProducts };

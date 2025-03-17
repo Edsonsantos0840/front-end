@@ -6,8 +6,8 @@ import Link from "next/link";
 
 export default function CardRedesSociais({iconColor, iconSize}: {iconColor: string, iconSize: string}) {
   return (
-    <div className={`flex md:items-start ${iconColor}  ${iconSize} 
-    p-2`}>
+    <nav className={`flex md:items-start ${iconColor}  ${iconSize} 
+    p-2`} aria-label="Redes Sociais">
       <Link
         rel="prefetch"
         href="https://www.facebook.com/people/Marcelo-Barbosa/pfbid0hbC53d1Utmcwgi8poESkjhgvputBAVo68wZZrrp1qAc4pVLiin9qN85y3W9gd9jCl/"
@@ -39,6 +39,6 @@ export default function CardRedesSociais({iconColor, iconSize}: {iconColor: stri
       >
         <FaLocationDot />
       </Link>
-    </div>
+    </nav>
   );
 }

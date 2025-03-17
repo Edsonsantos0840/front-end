@@ -1,6 +1,8 @@
+//componentes
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
+//meus componentes
 import { Block } from "@/app/middleware/blockedPage";
 
 export async function UploadCommentsSubmit(
@@ -11,9 +13,10 @@ export async function UploadCommentsSubmit(
   "use server";
   const { user } = await Block();
   const url = `${process.env.BASE_URL}/product/comments/${_id}`;
+    //busca o tokrn do usuário logado
   const token = (await cookies()).get("MA_MARMORE")?.value;
 
-  const userId = user_id;
+  const userId = user._id;
 
   const commentsData = {
     title: formData.get("title")?.toString(),

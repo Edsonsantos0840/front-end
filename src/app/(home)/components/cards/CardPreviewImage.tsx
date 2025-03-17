@@ -20,7 +20,7 @@ export default function CardPreviewImage({img, current1, current2, current3, cur
 
   return (
     <>
-      <div className="flex flex-wrap  justify-center items-center">
+      <section className="flex flex-wrap  justify-center items-center">
         {img.map((imageKey, index) => (
           <label
             key={imageKey}
@@ -34,7 +34,7 @@ export default function CardPreviewImage({img, current1, current2, current3, cur
             />
 
             {previews[imageKey] ? (
-              <div className="relative w-[220px] h-[220px] lg:w-[110px] lg:h-[110px] ">
+              <figure className="relative w-[220px] h-[220px] md:w-[80px] md:h-[80px] ">
                 <Image
                   src={previews[imageKey] as string}
                   alt={`Prévia da ${imageKey}`}
@@ -42,9 +42,9 @@ export default function CardPreviewImage({img, current1, current2, current3, cur
                   quality={100}
                   className="rounded-md"
                 />
-              </div>
+              </figure>
             ) : (
-              <div className="relative w-[220px] h-[220px] lg:w-[110px] lg:h-[110px]">
+              <figure className="relative w-[220px] h-[220px] md:w-[80px] md:h-[80px]">
                 <Image
                   src={currentImage[index] || ""}
                   alt={`Prévia da imagem`}
@@ -52,15 +52,15 @@ export default function CardPreviewImage({img, current1, current2, current3, cur
                   quality={100}
                   className="rounded-md"
                 />
-              </div>
+              </figure>
             )}
 
-            <span className="text-gray-600 text-lg md:text-sm mt-2  ">
+            <span className="text-gray-600 text-lg md:text-sm mt-2 " aria-describedby="Campo de seleção de imagem">
              Selecionar 
             </span>
           </label>
         ))}
-      </div>
+      </section>
     </>
   );
 }

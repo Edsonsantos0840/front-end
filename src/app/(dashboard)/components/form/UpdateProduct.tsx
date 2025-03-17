@@ -27,39 +27,49 @@ function ProductUpdate({ updateId }: { updateId: string }) {
 
   if (updateProduct)
     return (
-      <main className="alinha6 py-6 gap-4 w-full h-screen bg-cover bg-center bg-[url('/assets/form4.jpg')] ">
-        <div className=" flex  bg-white/90  rounded-2xl shadow-2xl ">
-          <div className="bg-principal w-[25vw] alinha2 gap-7 rounded-tl-2xl rounded-bl-2xl">
-            <FaShopify size={100} className="text-textos2/90" />
-            <div>
-              <h4 className="text-textos2/90 text-xl ">Editar Produtos</h4>
-            </div>
-            <h3 className="text-textos2/90 text-xl font-black">
-              M&A MÁRMORES E GRANITOS
-            </h3>
-            <Link
-              href={"/product"}
-              className="px-8 py-2 bg-textos2 rounded-lg text-principal font-bold hover:scale-105"
-            >
-              Voltar
-            </Link>
+      <main className="alinha6 py-6 gap-4 w-full h-screen bg-cover bg-center bg-[url('/assets/wallpaperRed.jpg')]">
+      <div className="flex bg-white/90 rounded-2xl shadow-2xl">
+        <header className="bg-principal w-[25vw] alinha2 gap-3 rounded-tl-2xl rounded-bl-2xl">
+          {/* Ícone da Shopify com alt para acessibilidade */}
+          <FaShopify size={100} className="text-textos2/90" aria-hidden="true" />
+    
+          <div>
+            {/* Título secundário */}
+            <h2 className="text-textos2/90 text-xl">Editar Produtos</h2>
           </div>
-          <div className="w-[40vw] px-6 py-2">
-            {/* formulário genérico */}
-            <GenericForm
-              fields={getFieldsUpdateProduct(updateId)}
-              formTile="Editar Produto"
-              action={dispach}
-              update
-              img={img}
-              image1={updateProduct.image1}
-              image2={updateProduct.image2}
-              image3={updateProduct.image3}
-              image4={updateProduct.image4}
-            />
-          </div>
-        </div>
-      </main>
+    
+          {/* Título principal */}
+          <h1 className="text-textos2/90 text-xl font-black">
+            M&A MÁRMORES E GRANITOS
+          </h1>
+    
+          {/* Link com aria-label para acessibilidade */}
+          <Link
+            href="/product"
+            className="px-8 py-2 bg-textos2 rounded-lg text-principal font-bold hover:scale-105"
+            aria-label="Voltar para a lista de produtos"
+          >
+            Voltar
+          </Link>
+        </header>
+    
+        <section className="w-[40vw] px-6 py-2">
+          {/* Formulário para editar o produto */}
+          <GenericForm
+            fields={getFieldsUpdateProduct(updateId, updateProduct )}
+            formTile="Editar Produto"
+            action={dispach}
+            update
+            img={img}
+            image1={updateProduct.image1}
+            image2={updateProduct.image2}
+            image3={updateProduct.image3}
+            image4={updateProduct.image4}
+          />
+        </section>
+      </div>
+    </main>
+    
     );
 }
 export default ProductUpdate;

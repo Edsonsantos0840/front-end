@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function CardRegisterLogin() {
   return (
-    <div className="flex  justify-center gap-5 items-center mt-6">
+    <div aria-label="Redireciona para login" className="flex  justify-center gap-5 items-center mt-6">
     <p className="text-xl lg:text-base ">Já Possui Cadastro?</p>
     <Link
       href={"/login"}
@@ -17,7 +17,7 @@ export default function CardRegisterLogin() {
 
 export  function CardLoginRegister() {
   return (
-    <div className="flex justify-center gap-5 items-center mt-6">
+    <div aria-label="Redireciona para cadastro" className="flex justify-center gap-5 items-center mt-6">
     <p className="text-xl lg:text-base ">Não Possui Cadastro?</p>
     <Link
       href={"/userRegister"}

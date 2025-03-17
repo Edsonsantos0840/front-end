@@ -16,6 +16,7 @@ export interface FieldConfig {
   placeholder?: string;
   options?: string[]; // Apenas para selects
   value?: string | number;
+  defaultValue?: string;
   required?: boolean;
 }
 
@@ -65,79 +66,87 @@ export default function GenericForm({
   update,
 }: FormProps) {
   return (
-    <form action={action} className="space-y-3 relative z-10 px-2">
-      <h1 className="text-4xl lg:text-xl text-center text-principal font-ysabeau  font-bold mb-3 ">
-        {formTile}
-      </h1>
+<form action={action} className="space-y-3 relative z-10 px-2">
+  <h1 className="text-4xl lg:text-xl text-center text-principal font-ysabeau font-bold mb-3 lg:mb-2">
+    {formTile}
+  </h1>
 
-      {fields.map((field) => (
-        <div key={field.name} className="flex flex-col space-y-1">
-          {field.type === "select" ? (
-            <label className="font-medium text-xl lg:text-base text-textos block w-full">
-              {field.label}
-              <select
-                id={field.name}
-                required={field.required}
-                className="pl-10 pr-4 py-4 lg:py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-center w-full"
-                name={field.name}
-              >
-                <option value="">--- Selecione ---</option>
-                {field.options?.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-            </label>
-          ) : field.type === "textarea" ? (
-            <label className="font-medium text-xl lg:text-base text-textos block w-full">
-              {field.label}
-              <textarea
-                id={field.name}
-                placeholder={field.placeholder}
-                required={field.required}
-                className="border border-gray-300 rounded-md p-1 w-full"
-                name={field.name}
-              />
-            </label>
-          ) : (
-            <label className="font-medium text-xl lg:text-base text-textos block w-full">
-              {field.label}
-              <div className="relative w-full ">
-                <p>{icons[field.type]}</p>
-
-                <input
-                  id={field.name}
-                  type={field.type}
-                  placeholder={field.placeholder}
-                  required={field.required}
-                  className="w-full pl-10 pr-4 py-4 lg:py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  name={field.name}
-                  value={field.value}
-                />
-              </div>
-            </label>
-          )}
+  {fields.map((field) => (
+    <div key={field.name} className="flex flex-col space-y-1">
+      {field.type === "select" ? (
+        <div className="font-medium text-xl lg:text-base text-textos block w-full">
+          <span>{field.label}</span>
+          <select
+            id={field.name}
+            name={field.name}
+            required={field.required}
+            className="pl-10 pr-4 py-4 lg:py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-center w-full"
+            defaultValue={field.defaultValue} 
+          >
+            <option value="">--- Selecione ---</option>
+            {field.options?.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
         </div>
-      ))}
-      {/* Upload de Imagens */}
-      {update ? (
-        <CardPreviewImage
-          img={img || []}
-          current1={image1 || ""}
-          current2={image2}
-          current3={image3}
-          current4={image4}
-        />
+      ) : field.type === "textarea" ? (
+        <div className="font-medium text-xl lg:text-base text-textos block w-full">
+          <span>{field.label}</span>
+          <textarea
+            id={field.name}
+            name={field.name}
+            placeholder={field.placeholder}
+            required={field.required}
+            defaultValue={field.defaultValue} 
+            className="border border-gray-300 rounded-md p-1 w-full"
+          />
+        </div>
       ) : (
-        <CardFormImage img={img || []} />
+        <div className="font-medium text-xl lg:text-base text-textos block w-full">
+          <span>{field.label}</span>
+          <div className="relative w-full">
+            {/* Icone associado ao campo de entrada */}
+            <p>{icons[field.type]}</p>
+            <input
+              id={field.name}
+              name={field.name}
+              type={field.type}
+              placeholder={field.placeholder}
+              required={field.required}
+              defaultValue={field.defaultValue} 
+              className="w-full pl-10 pr-4 py-4 lg:py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+        </div>
       )}
-      <button
-        type="submit"
-        className="w-full m-auto bg-principal text-2xl lg:text-lg font-bold text-textos2 py-4 lg:py-1 rounded-md hover:bg-principal2"
-      >
-        {formTile}
-      </button>
-    </form>
+    </div>
+  ))}
+
+  {/* Upload de Imagens */}
+  <fieldset aria-live="polite">
+  {update ? (
+    <CardPreviewImage
+      img={img || []}
+      current1={image1 || ""}
+      current2={image2}
+      current3={image3}
+      current4={image4}
+    />
+  ) : (
+    <CardFormImage img={img || []} />
+  )}
+</fieldset>
+  <button
+    type="submit"
+    className="w-full m-auto bg-principal text-2xl lg:text-lg font-bold text-textos2 py-4 lg:py-1 rounded-md hover:bg-principal2"
+    aria-label="Enviar Formulário"
+  >
+    {formTile}
+  </button>
+</form>
+
+  
   );
 }

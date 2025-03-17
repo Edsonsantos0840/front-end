@@ -3,7 +3,7 @@
 import { useRef, useEffect } from "react";
 
 const useScroll = () => {
-  const containerRef = useRef<HTMLDivElement >(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -31,8 +31,7 @@ const useScroll = () => {
     return () => container.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  return { containerRef}; // Adicionado scrollX no retorno
+  return { containerRef }; // Adicionado scrollX no retorno
 };
 
 export default useScroll;
-

@@ -1,5 +1,4 @@
 "use server"
-// import { UploadImageSchema } from "@/schemas";
 import { cookies } from "next/headers";
 
 
@@ -22,16 +21,6 @@ export async function UploadImage({
   const formData = new FormData();
   formData.append("file", image);
   formData.append("_id", _id); // Enviar o ID no corpo da requisição também
-
-  // const upload = UploadImageSchema.safeParse(formData);
-
-  // if (!upload.success) {
-  //   const errors = upload.error?.errors.map((err) => err.message);
-  //   return {
-  //     errors,
-  //     success: "",
-  //   };
-  // }
 
   const req = await fetch(url, {
     method: "POST",
@@ -60,13 +49,6 @@ export async function UploadCreateImage({
 
   const formData = new FormData();
   formData.append("file", image);
-
-  // const upload = UploadImageSchema.safeParse(formData);
-
-  // if (!upload.success) {
-  //   console.error("Erro ao validar imagem:", upload.error);
-  //   return undefined; // Retorna undefined em vez de um objeto com `errors`
-  // }
 
   try {
     const req = await fetch(url, {

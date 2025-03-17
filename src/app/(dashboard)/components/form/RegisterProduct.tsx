@@ -21,34 +21,44 @@ function ProductRegister() {
   useMessages(state); 
 
   return (
-    <main className="alinha6 py-6 gap-4 w-full bg-cover h-screen bg-center bg-[url('/assets/form4.jpg')] ">
-      <div className=" flex  bg-white/90  rounded-2xl shadow-2xl ">
-        <div className="bg-principal w-[25vw] alinha2 gap-7 rounded-tl-2xl rounded-bl-2xl">
-          <FaShopify size={100} className="text-textos2/90" />
-          <div>
-            <h4 className="text-textos2/90 text-xl ">Editar Produtos</h4>
-          </div>
-          <h3 className="text-textos2/90 text-xl font-black">
-            M&A MÁRMORES E GRANITOS
-          </h3>
-          <Link
-            href={"/product"}
-            className="px-8 py-2 bg-textos2 rounded-lg text-principal font-bold hover:scale-105"
-          >
-            Voltar
-          </Link>
+    <main className="alinha6 py-6 gap-4 w-full bg-cover h-screen bg-center bg-[url('/assets/wallpaperRed.jpg')]">
+    <section className="flex bg-white/90 rounded-2xl shadow-2xl">
+      <div className="bg-principal w-[25vw] alinha2 gap-7 rounded-tl-2xl rounded-bl-2xl">
+        {/* Ícone da Shopify com alt para acessibilidade */}
+        <FaShopify size={100} className="text-textos2/90"  />
+  
+        <div>
+          {/* Título secundário */}
+          <h4 className="text-textos2/90 text-xl">Editar Produtos</h4>
         </div>
-        <div className="w-[40vw] px-6 py-2">
-          {/* formulário genérico */}
-          <GenericForm
-            fields={fieldsProducts}
-            formTile="Cadastrar Produto"
-            action={dispach}
-            img={img}
-          />
-        </div>
+  
+        {/* Título principal  */}
+        <h1 className="text-textos2/90 text-xl font-black">
+          M&A MÁRMORES E GRANITOS
+        </h1>
+  
+        {/* Link com aria-label para acessibilidade */}
+        <Link
+          href="/product"
+          className="px-8 py-2 bg-textos2 rounded-lg text-principal font-bold hover:scale-105"
+          aria-label="Voltar para a lista de produtos"
+        >
+          Voltar
+        </Link>
       </div>
-    </main>
+  
+      <section className="w-[40vw] px-6 py-2">
+        {/* Formulário para cadastrar um produto */}
+        <GenericForm
+          fields={fieldsProducts}
+          formTile="Cadastrar Produto"
+          action={dispach}
+          img={img}
+        />
+      </section>
+    </section>
+  </main>
+  
   );
 }
 

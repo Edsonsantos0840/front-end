@@ -1,12 +1,9 @@
-export function validateComments(comments: FormDataEntryValue | null){
+export function validateComments(comments: FormDataEntryValue | null) {
+  const message = [];
 
-    const message = []
+  if (comments === "") {
+    message.push("O campo categoria não pode estar vazio!");
+  }
 
-    if(comments === '' ){
-       message.push('O campo categoria não pode estar vazio!')
-    }
-
-
-   return { message };
-
+  return { message };
 }
