@@ -36,8 +36,10 @@ export interface likesProps {
   product: string;
 }
 
-export default async function ProductOne({ params }) {
-  const { id } = params;
+
+
+export default async function ProductOne({ params }: {params: {id: string}}) {
+  const  {id}  = params;
   //busca o usuário logado
   const { user } = await Block(); 
   const url = `${process.env.BASE_URL}/products/${id}`;
