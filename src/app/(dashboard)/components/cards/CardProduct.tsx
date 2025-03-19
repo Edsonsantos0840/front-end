@@ -27,6 +27,7 @@ export default function CardProduct({ product }: { product: ProdutoProps[] }) {
                       src={prod.image1}
                       alt={prod.title}
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       quality={100}
                       className="object-cover"
                     />

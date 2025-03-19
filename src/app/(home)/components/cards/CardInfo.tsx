@@ -27,7 +27,7 @@ export default function CardInfo({
       <h3 className="text-3xl text-principal p-4 py-4">{title}</h3>
       {image && (
         <figure className={`relative w-[250px] h-[250px]`}>
-          <Image src={image || ""} alt={title} fill quality={100} />
+          <Image src={image || ""} alt={title} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" quality={100} />
           <figcaption className="sr-only">Imagem ilustrativa relacionada a {title}</figcaption>
         </figure>
       )}

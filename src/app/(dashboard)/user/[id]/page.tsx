@@ -66,6 +66,7 @@ export default async function UserwithId({
                   src={userCard.image}
                   alt={`Foto de perfil de ${userCard.name}`}
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   quality={100}
                   className="bg-cover object-cover shadow-lg rounded-full"
                 />

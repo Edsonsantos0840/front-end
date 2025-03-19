@@ -78,6 +78,7 @@ export default function CardShowComments({
                       src={comment.user.image}
                       alt={`Foto do usuário ${comment.user.name}`}
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       quality={100}
                       className="rounded-full shadow-lg w-10 h-10"
                     />

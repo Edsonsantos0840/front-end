@@ -39,7 +39,7 @@ export default function Footer() {
       <div className=" col-span-3 border-t-2 w-full  ">
       <h3 className="text-base font-ysabeau text-center"> &copy; {new Date().getFullYear()} M&A Marmores. Todos os direitos reservados.</h3>
         <p className="text-center">
-          Desenvolvido por: <Link href={'https://portifolio-beta-gules.vercel.app/'} className="ml-2 font-bold hover:underline hover:text-yellow-500">EPS SOLUÇÕES.</Link>
+          Desenvolvido por: <Link href={'https://portifolio-beta-gules.vercel.app/'} className="ml-2 font-bold hover:underline hover:text-[#f7e92f]">EPS SOLUÇÕES.</Link>
         </p>
       </div>
     </footer>

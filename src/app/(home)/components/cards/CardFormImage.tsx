@@ -28,6 +28,7 @@ export default function CardFormImage({ img }: { img: string[] }) {
                 src={previews[imageKey] as string}
                 alt={`Prévia da ${imageKey}`}
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 quality={100}
                 className="rounded-md"
               />

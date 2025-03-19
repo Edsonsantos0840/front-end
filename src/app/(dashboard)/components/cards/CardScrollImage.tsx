@@ -29,7 +29,7 @@ export default function CardScrollImage({user}: {user: UserProps[]}) {
             }`}
             role="group"
           >
-            <Image src={item.image || ''} alt={`avatar de ${item.name}`} fill quality={100} className="rounded-full shadow-md" />
+            <Image src={item.image || ''} alt={`avatar de ${item.name}`} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" quality={100} className="rounded-full shadow-md" />
             <figcaption className="sr-only">{item.name}</figcaption> 
           </figure>
         ))}

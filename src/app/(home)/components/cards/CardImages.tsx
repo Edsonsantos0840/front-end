@@ -25,6 +25,7 @@ export default function CardImages({ product }: { product: ProdutoProps }) {
               src={image || ""}
               alt={`Miniatura ${index + 1} do produto ${product.title}`}
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               quality={100}
               onClick={() => handleImageChange(image)}
               className="hover:opacity-80 transition-opacity hover:scale-105 bg-black rounded-lg"
@@ -42,6 +43,7 @@ export default function CardImages({ product }: { product: ProdutoProps }) {
           src={selectedImage || ""}
           alt={`Imagem principal do produto ${product.title}`}
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           quality={100}
           className={`transition-opacity duration-200 ${
             isFading ? "opacity-0" : "opacity-100"

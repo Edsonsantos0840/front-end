@@ -39,6 +39,7 @@ export default function CardPreviewImage({img, current1, current2, current3, cur
                   src={previews[imageKey] as string}
                   alt={`Prévia da ${imageKey}`}
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   quality={100}
                   className="rounded-md"
                 />
@@ -49,6 +50,7 @@ export default function CardPreviewImage({img, current1, current2, current3, cur
                   src={currentImage[index] || ""}
                   alt={`Prévia da imagem`}
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   quality={100}
                   className="rounded-md"
                 />

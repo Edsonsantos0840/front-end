@@ -173,7 +173,7 @@ export default async function ProductOne({
                     Nós te ajudamos a realizá-lo.
                   </p>
                   <div className="m-auto relative w-[380px] h-[315px] md:w-[700px] md:h-[515px] lg:w-[260px] lg:h-[205px]">
-                    <Image src={img} alt="Logo da empresa" fill quality={100} />
+                    <Image src={img} alt="Logo da empresa" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" quality={100} />
                   </div>
                   <CardNavProducts />
                   <p className="text-textos/80 italic text-xl lg:text-base text-justify">
