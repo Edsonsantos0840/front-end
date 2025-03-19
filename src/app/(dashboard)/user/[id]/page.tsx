@@ -22,7 +22,7 @@ export default async function UserwithId({
 }: {
   params: { id: string };
 }) {
-  const { id } = await params;
+  const { id } =  params;
   const url = `${process.env.BASE_URL}/users/${id}`;
   const urlDel = `${process.env.BASE_URL}/user`;
   //busca o usuário logado

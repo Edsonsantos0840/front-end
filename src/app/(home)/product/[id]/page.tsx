@@ -41,7 +41,7 @@ export default async function ProductOne({
 }: {
   params: { id: string };
 }) {
-  const { id } = await params;
+  const { id } = params;
   //busca o usuário logado
   const { user } = await Block(); 
   const url = `${process.env.BASE_URL}/products/${id}`;
