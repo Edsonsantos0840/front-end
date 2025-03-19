@@ -17,11 +17,7 @@ import { IoPerson } from "react-icons/io5";
 import { MdEdit } from "react-icons/md";
 import LoadingSuspense from "@/app/(home)/LoadingSuspense";
 
-export default async function UserwithId({
-  params
-}: {
-  params: { id: string };
-}) {
+export default async function UserwithId({params}) {
   const { id } =  params;
   const url = `${process.env.BASE_URL}/users/${id}`;
   const urlDel = `${process.env.BASE_URL}/user`;
