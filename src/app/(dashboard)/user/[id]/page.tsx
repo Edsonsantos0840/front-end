@@ -18,7 +18,7 @@ import { MdEdit } from "react-icons/md";
 import LoadingSuspense from "@/app/(home)/LoadingSuspense";
 
 export default async function UserwithId({
-  params,
+  params
 }: {
   params: { id: string };
 }) {
