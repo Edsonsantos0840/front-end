@@ -17,14 +17,9 @@ import { IoPerson } from "react-icons/io5";
 import { MdEdit } from "react-icons/md";
 import LoadingSuspense from "@/app/(home)/LoadingSuspense";
 
-interface UserWithIdProps {
-  params: {
-    id: string;
-  };
-}
 
-export default async function UserwithId({params}: {params: UserWithIdProps}) {
-  const id =  params;
+export default async function UserwithId({params}: { params: Promise<{ id: string }> }) {
+    const {id} = await params;
   const url = `${process.env.BASE_URL}/users/${id}`;
   const urlDel = `${process.env.BASE_URL}/user`;
   //busca o usuário logado
@@ -40,6 +35,7 @@ export default async function UserwithId({params}: {params: UserWithIdProps}) {
       </Container>
     );
   }
+  
   return (
     <div>
     {/* Exibe este componente apenas em dispositivos móveis */}
