@@ -36,8 +36,6 @@ export interface likesProps {
   product: string;
 }
 
-
-
 export default async function ProductOne({params}: { params: Promise<{ id: string }> }) {
   const {id} = await params;
   //busca o usuário logado
@@ -88,7 +86,7 @@ export default async function ProductOne({params}: { params: Promise<{ id: strin
                   href="/bathrooms"
                   className="ml-16 md:ml-40 cursor-pointer hover:scale-105"
                 >
-                  <FaHome className="text-principal/80 w-[44px] h-[44px] lg:w-[30px] lg:h-[30px]" />
+                  <FaHome className="text-principal/90 w-[44px] h-[44px] lg:w-[30px] lg:h-[30px]" />
                 </Link>
               </p>
               <h5 className="text-textos/50 text-sm italic hidden md:block">
@@ -106,13 +104,13 @@ export default async function ProductOne({params}: { params: Promise<{ id: strin
   
                 {/* Informações do Produto */}
                 <article className="w-full">
-                  <h2 className="text-3xl lg:text-2xl text-principal/80 font-black pb-3">
+                  <h2 className="text-3xl lg:text-2xl text-principal/90 font-black pb-3 capitalize">
                     {product.title}
                   </h2>
-                  <h3 className="text-textos/80 text-lg lg:text-xl font-semibold font-Lilita_One">
+                  <h3 className="text-textos/90 text-lg lg:text-xl font-semibold font-Lilita_One">
                     Nossa Prioridade:
                   </h3>
-                  <p className="text-textos/80 text-xl lg:text-sm italic mb-8">
+                  <p className="text-textos/90 text-xl lg:text-sm italic mb-8">
                     Um atendimento personalizado e humanizado.
                   </p>
   
@@ -127,14 +125,14 @@ export default async function ProductOne({params}: { params: Promise<{ id: strin
                           url={urlDelLike}
                           handle={handleDeleteLike}
                           icon={
-                            <SlDislike className="text-textos/80 text-4xl lg:text-3xl italic" />
+                            <SlDislike className="text-textos/90 text-4xl lg:text-3xl italic" />
                           }
                         />
                       )}
                       <p className="bg-principal text-textos2 text-4xl lg:text-3xl text-center font-bold w-16 h-16 lg:w-10 lg:h-10 shadow-xl rounded-full">
                         {likes.length}
                       </p>
-                      <h4 className="text-textos/80 text-4xl lg:text-3xl font-bold">
+                      <h4 className="text-textos/90 text-4xl lg:text-3xl font-bold">
                         Likes
                       </h4>
                     </Suspense>
@@ -142,17 +140,17 @@ export default async function ProductOne({params}: { params: Promise<{ id: strin
   
                   {/* Descrição do Produto */}
                   <section className="mt-4">
-                    <h3 className="text-textos/80 text-3xl lg:text-xl font-bold">
+                    <h3 className="text-textos/90 text-3xl lg:text-xl font-bold">
                       Descrição
                     </h3>
-                    <p className="text-textos/80 text-sm italic mb-1">
+                    <p className="text-textos/90 text-sm italic mb-1">
                       {product.description}
                     </p>
                   </section>
   
                   {/* Redes Sociais */}
                   <section className="mt-4">
-                    <h3 className="text-textos/80 text-3xl lg:text-xl font-bold mb-2">
+                    <h3 className="text-textos/90 text-3xl lg:text-xl font-bold mb-2">
                       Redes Sociais
                     </h3>
                     <CardRedesSociais
@@ -164,17 +162,17 @@ export default async function ProductOne({params}: { params: Promise<{ id: strin
   
                 {/* Seção Planejamento */}
                 <aside className="lg:px-4 w-full">
-                  <h3 className="text-principal/80 text-3xl lg:text-2xl font-black">
+                  <h3 className="text-principal/90 text-3xl lg:text-2xl font-black">
                     Planeje seus sonhos.
                   </h3>
-                  <p className="text-textos/80 text-xl lg:text-sm italic mb-2">
+                  <p className="text-textos/90 text-xl lg:text-sm italic mb-2">
                     Nós te ajudamos a realizá-lo.
                   </p>
-                  <div className="m-auto relative w-[380px] h-[315px] md:w-[700px] md:h-[515px] lg:w-[260px] lg:h-[205px]">
+                  <div className="m-auto relative w-[390px] h-[315px] md:w-[700px] md:h-[515px] lg:w-[260px] lg:h-[205px]">
                     <Image src={img} alt="Logo da empresa" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" quality={100} />
                   </div>
                   <CardNavProducts />
-                  <p className="text-textos/80 italic text-xl lg:text-base text-justify">
+                  <p className="text-textos/90 italic text-xl lg:text-base text-justify">
                     Atendemos com excelência toda a região de São Paulo. 
                     Oferecemos produtos fabricados em mármore, granitos e 
                     diversas outras pedras ornamentais.
