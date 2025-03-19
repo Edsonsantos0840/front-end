@@ -1,13 +1,13 @@
 import ProductUpdate from "@/app/(dashboard)/components/form/UpdateProduct";
-// import LoadingSuspense from "@/app/(home)/LoadingSuspense";
-// import { Suspense } from "react";
+import LoadingSuspense from "@/app/(home)/LoadingSuspense";
+import { Suspense } from "react";
 
-export default function UpdateProduct({ params }: { params: { updateId: string } }) {
+export default function UpdateProduct({ params }) {
   const { updateId } = params;
 
   return (
-    // <Suspense fallback={<LoadingSuspense/>}>
+    <Suspense fallback={<LoadingSuspense/>}>
       <ProductUpdate updateId={updateId} />
-    // </Suspense>
+    </Suspense>
   );
 }
