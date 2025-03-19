@@ -19,7 +19,7 @@ export default function UserLogin() {
 
   console.log(state);
   return (
-    <main className="alinha6 gap-4 bg-cover bg-center px-2 bg-[url('/assets/form4.jpg')] h-screen lg:h-[100vh] w-full">
+    <main className="alinha6 gap-4 bg-cover bg-center px-2 bg-[url('/assets/1086.jpg')] h-screen lg:h-[100vh] w-full">
     <div className="flex bg-white/90 rounded-2xl shadow-2xl w-full lg:w-[60vw]">
       
       <aside className="bg-principal md:w-[35vw] w-[30vw] hidden md:flex flex-col justify-center items-center gap-7 rounded-tl-2xl rounded-bl-2xl px-2 py-16">
