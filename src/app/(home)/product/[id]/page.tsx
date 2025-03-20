@@ -124,7 +124,7 @@ export default async function ProductOne({
                     {/* Seção de Interação (Likes e Dislikes) */}
                     <section className="flex lg:justify-around items-center gap-4 mt-8">
                       <Suspense fallback={<LoadingSuspense />}>
-                        <div>
+                        <div className="flex items-center gap-4">
                           {" "}
                           <LikeRegister id={product._id} user={user} />
                           {user.name && (
