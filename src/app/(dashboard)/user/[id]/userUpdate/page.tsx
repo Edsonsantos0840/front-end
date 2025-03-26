@@ -57,7 +57,7 @@ function UserUpdate({ params }: { params: Promise<{ id: string }> }) {
       {/* Lado direito: formulário de edição */}
       <article className="w-[30vw] px-6 py-4">
         <GenericForm
-          fields={getFieldsUpdateUser(id, user)}
+          fields={getFieldsUpdateUser(user)}
           formTile="Editar Usuário"
           action={dispach}
           img={img}

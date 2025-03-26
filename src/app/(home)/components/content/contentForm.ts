@@ -73,11 +73,11 @@ export const getFieldsUpdateProduct = ( updateProduct:ProdutoProps): FieldConfig
     defaultValue: updateProduct.description
   },
 ];
-export const getFieldsUpdateUser = (id: string, user: UserProps): FieldConfig[] => [
+export const getFieldsUpdateUser = ( user: UserProps): FieldConfig[] => [
   {
     type: "hidden",
     name: "_id",
-    value: id,
+    defaultValue: user._id,
     required: true,
   },
   {
