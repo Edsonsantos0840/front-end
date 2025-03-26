@@ -20,7 +20,7 @@ export default function DashboardCardProduct({
 }: {
   product: ProdutoProps[];
 }) {
-  const urlDel = `${process.env.BASE_URL}/product`;
+  const urlDel = `https://back-end-marmore.onrender.com/product`;
   //função de scroll
   const { containerRef } = useScroll();
   //lista de icons
