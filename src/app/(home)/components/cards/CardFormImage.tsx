@@ -10,7 +10,7 @@ export default function CardFormImage({ img }: { img: string[] }) {
   const { previews, handleImageChange } = UsePreviewImage();
   
   return (
-    <section className="flex items-center justify-center gap-2 lg:gap-1 mt-2">
+    <section className="flex items-center justify-center gap-2 lg:gap-2 mt-2">
       {img.map((imageKey) => (
         <label
           key={imageKey}
@@ -23,7 +23,7 @@ export default function CardFormImage({ img }: { img: string[] }) {
             className="hidden"
           />
           {previews[imageKey] ? (
-            <figure className="relative w-[220px] h-[220px] lg:w-[70px] lg:h-[70px]">
+            <figure className="relative w-[220px] h-[220px] lg:w-[80px] lg:h-[80px]">
               <Image
                 src={previews[imageKey] as string}
                 alt={`Prévia da ${imageKey}`}
@@ -34,7 +34,7 @@ export default function CardFormImage({ img }: { img: string[] }) {
               />
             </figure>
           ) : (
-            <MdImageSearch color="#b91c1c54" className="w-[140px] h-[140px] lg:w-[70px] lg:h-[70px]" />
+            <MdImageSearch color="#b91c1c54" className="w-[140px] h-[140px] lg:w-[80px] lg:h-[80px]" />
           )}
           <span className="text-gray-600 text-lg lg:text-sm mt-2">
           {imageKey}
