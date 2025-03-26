@@ -47,7 +47,7 @@ function ProductRegister() {
         </Link>
       </div>
   
-      <section className="w-[40vw] px-6 py-2">
+      <section className="w-[40vw] px-6 lg:px-0 py-2">
         {/* Formulário para cadastrar um produto */}
         <GenericForm
           fields={fieldsProducts}
