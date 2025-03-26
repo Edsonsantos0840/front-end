@@ -137,7 +137,7 @@ export default async function ProductOne({
                             />
                           )}
                         </div>
-                        <p className="bg-principal text-textos2 text-4xl lg:text-3xl text-center font-bold w-16 h-16 lg:w-10 lg:h-10 shadow-xl rounded-full">
+                        <p className="bg-principal text-textos2 text-4xl lg:text-3xl text-center font-bold w-16 h-16 lg:w-10 lg:h-10 p-1 shadow-xl rounded-full">
                           {likes.length}
                         </p>
                         <h4 className="text-textos/90 text-4xl lg:text-3xl font-bold">
