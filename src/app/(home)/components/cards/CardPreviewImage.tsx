@@ -24,7 +24,7 @@ export default function CardPreviewImage({img, current1, current2, current3, cur
         {img.map((imageKey, index) => (
           <label
             key={imageKey}
-            className="cursor-pointer border-dashed border-[1px] border-[#b91c1c]/15 lg:text-sm lg:my-3 hover:scale-105 flex flex-col justify-center items-center  p-2 ml-4 "
+            className="cursor-pointer border-dashed border-[1px] border-[#b91c1c]/15 lg:text-sm lg:my-1 hover:scale-105 flex flex-col justify-center items-center  p-2 ml-4 lg:p-1 "
           >
             <input
               type="file"
@@ -34,23 +34,23 @@ export default function CardPreviewImage({img, current1, current2, current3, cur
             />
 
             {previews[imageKey] ? (
-              <figure className="relative w-[220px] h-[220px] md:w-[80px] md:h-[80px] ">
+              <figure className="relative w-[220px] h-[220px] md:w-[70px] md:h-[70px] ">
                 <Image
                   src={previews[imageKey] as string}
                   alt={`Prévia da ${imageKey}`}
                   fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 23vw"
                   quality={100}
                   className="rounded-md"
                 />
               </figure>
             ) : (
-              <figure className="relative w-[220px] h-[220px] md:w-[80px] md:h-[80px]">
+              <figure className="relative w-[220px] h-[220px] md:w-[70px] md:h-[70px]">
                 <Image
                   src={currentImage[index] || ""}
                   alt={`Prévia da imagem`}
                   fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 23vw"
                   quality={100}
                   className="rounded-md"
                 />
