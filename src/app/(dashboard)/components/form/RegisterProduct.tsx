@@ -29,7 +29,7 @@ function ProductRegister() {
   
         <div>
           {/* Título secundário */}
-          <h4 className="text-textos2/90 text-xl">Editar Produtos</h4>
+          <h4 className="text-textos2/90 text-xl">Cadastrar Produtos</h4>
         </div>
   
         {/* Título principal  */}
