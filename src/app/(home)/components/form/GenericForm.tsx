@@ -80,7 +80,7 @@ export default function GenericForm({
             id={field.name}
             name={field.name}
             required={field.required}
-            className="pl-10 pr-4 py-4 lg:py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-center w-full"
+            className="pl-10 pr-4 py-4 lg:py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500  w-full"
             defaultValue={field.defaultValue} 
           >
             <option value="">--- Selecione ---</option>
