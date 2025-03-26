@@ -34,7 +34,7 @@ export default function CardPreviewImage({img, current1, current2, current3, cur
             />
 
             {previews[imageKey] ? (
-              <figure className="relative w-[220px] h-[220px] md:w-[70px] md:h-[70px] ">
+              <figure className="relative w-[220px] h-[220px] md:w-[80px] md:h-[80px] ">
                 <Image
                   src={previews[imageKey] as string}
                   alt={`Prévia da ${imageKey}`}
@@ -45,7 +45,7 @@ export default function CardPreviewImage({img, current1, current2, current3, cur
                 />
               </figure>
             ) : (
-              <figure className="relative w-[220px] h-[220px] md:w-[70px] md:h-[70px]">
+              <figure className="relative w-[220px] h-[220px] md:w-[80px] md:h-[80px]">
                 <Image
                   src={currentImage[index] || ""}
                   alt={`Prévia da imagem`}
