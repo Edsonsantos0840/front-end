@@ -27,7 +27,7 @@ function ProductUpdate({ updateId }: { updateId: string }) {
 
   if (updateProduct)
     return (
-      <main className="alinha6 py-6 gap-4 w-full h-screen bg-cover bg-center bg-[url('/assets/wallpaperRed.jpg')]">
+      <main className="alinha6 py-6 gap-4 w-full h-screen bg-cover bg-center bg-[url('/assets/1086.jpg')]">
       <div className="flex bg-white/90 rounded-2xl shadow-2xl">
         <header className="bg-principal w-[25vw] alinha2 gap-3 rounded-tl-2xl rounded-bl-2xl">
           {/* Ícone da Shopify com alt para acessibilidade */}

@@ -21,7 +21,7 @@ function ProductRegister() {
   useMessages(state); 
 
   return (
-    <main className="alinha6 py-6 gap-4 w-full bg-cover h-screen bg-center bg-[url('/assets/wallpaperRed.jpg')]">
+    <main className="alinha6 py-6 gap-4 w-full bg-cover h-screen bg-center bg-[url('/assets/1086.jpg')] ">
     <section className="flex bg-white/90 rounded-2xl shadow-2xl">
       <div className="bg-principal w-[25vw] alinha2 gap-7 rounded-tl-2xl rounded-bl-2xl">
         {/* Ícone da Shopify com alt para acessibilidade */}

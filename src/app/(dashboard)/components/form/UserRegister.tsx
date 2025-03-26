@@ -21,7 +21,7 @@ function UserRegister() {
   const img = ["image"];
 
   return (
-    <main className="alinha6 gap-4 bg-cover bg-center py-6 px-2 bg-[url('/assets/form4.jpg')] h-screen lg:h-auto w-full">
+    <main className="alinha6 gap-4 bg-cover bg-center py-6 px-2 bg-[url('/assets/1086.jpg')] h-screen lg:h-auto w-full ">
     <div className="flex bg-white/90 rounded-2xl shadow-2xl w-full lg:w-[60vw]">
       
       {/* Área de informações do formulário (lateral esquerda) */}
