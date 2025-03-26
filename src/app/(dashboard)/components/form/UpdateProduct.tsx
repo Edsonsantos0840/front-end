@@ -56,7 +56,7 @@ function ProductUpdate({ updateId }: { updateId: string }) {
         <section className="w-[40vw] px-6 py-2">
           {/* Formulário para editar o produto */}
           <GenericForm
-            fields={getFieldsUpdateProduct(updateId, updateProduct )}
+            fields={getFieldsUpdateProduct( updateProduct )}
             formTile="Editar Produto"
             action={dispach}
             update

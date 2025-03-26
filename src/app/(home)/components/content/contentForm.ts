@@ -45,11 +45,11 @@ const fieldsLogin: FieldConfig[] = [
   },
 ];
 
-export const getFieldsUpdateProduct = (updateId: string, updateProduct:ProdutoProps): FieldConfig[] => [
+export const getFieldsUpdateProduct = ( updateProduct:ProdutoProps): FieldConfig[] => [
   {
     type: "hidden",
     name: "_id",
-    value: updateId,
+    defaultValue: updateProduct._id,
   },
   {
     label: "Título",

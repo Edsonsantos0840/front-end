@@ -22,7 +22,7 @@ export async function UploadProductSubmit(
   const token = (await cookies()).get("MA_MARMORE")?.value;
   const imageFields = ["image1", "image2", "image3", "image4"];
   const imageUrls: string[] = [];
-
+console.log(_id)
 // Faz upload das imagens e armazena as URLs retornadas
 for (const field of imageFields) {
   const image = formData.get(field);
@@ -83,6 +83,6 @@ if (message.length > 0) {
   } catch (error) {
     console.error("Erro ao atualizar o produto", error);
   }
-  revalidatePath(`process.env.BASE_URL}/product/${_id}`)
+  revalidatePath(`${process.env.BASE_URL}/product/${_id}`)
   redirect(`/product/${_id}`)
 }
