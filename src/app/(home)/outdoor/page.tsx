@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Outdoor() {
-  const url = `${process.env.BASE_URL}/products/category/banheiro`;
+  const url = `${process.env.BASE_URL}/products/category/exteriores`;
   //busca dados do produto
   const { data: product } = await FetchGet<ProdutoProps[]>(url);
 //exibe quando não há produtos
