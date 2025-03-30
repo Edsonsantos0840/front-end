@@ -1,6 +1,4 @@
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
-
-
 export interface ProdutoProps {
   _id: string;
   title: string;
@@ -11,7 +9,7 @@ export interface ProdutoProps {
   category: string;
   description: string;
   comments: [];
-  likes:[];
+  likes: { _id: string }[];
   createdAt: Date;
   updatedAt: Date;
 }
