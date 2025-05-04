@@ -10,7 +10,7 @@ import { MdDashboardCustomize } from "react-icons/md";
 import { GiPresent } from "react-icons/gi";
 //componentes
 import Link from "next/link";
-import { Suspense } from "react";
+// import { Suspense } from "react";
 
 
 export default async function NavBar() {
@@ -22,7 +22,7 @@ export default async function NavBar() {
       <aside>
         <nav className="flex alinha4 p-2 max-w-[1200px]  md:m-auto">
           <Menu />
-          <Suspense fallback={"Carregando..."}>
+{/*           <Suspense fallback={"Carregando..."}> */}
             {user.tipo === "admin" && (
               <ul className="hidden md:flex gap-8 font-Ysabea font-bold text-base">
                 <li>
@@ -133,7 +133,7 @@ export default async function NavBar() {
                 </li>
               )}
             </ul>
-          </Suspense>
+{/*           </Suspense> */}
         </nav>
       </aside>
     </header>
