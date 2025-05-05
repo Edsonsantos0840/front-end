@@ -95,7 +95,7 @@ export default async function ProductOne({
 
                     {/* Informações do Produto */}
                     <article className="w-full lg:text-center">
-                      <h2 className="text-3xl lg:text-xl text-principal/90 font-black pb-3 capitalize">
+                      <h2 className="text-2xl lg:text-xl text-principal/90 font-black pb-3 capitalize">
                         {product.title}
                       </h2>
                       <h3 className="text-textos/90 text-lg lg:text-xl font-semibold font-Lilita_One">
@@ -123,7 +123,7 @@ export default async function ProductOne({
                               />
                             )}
                           </div>
-                          <p className="bg-principal flex justify-center items-center text-textos2 text-4xl lg:text-3xl  font-bold w-16 h-16 lg:w-11 lg:h-10 lg:leading-[2.8rem] shadow-xl rounded-full">
+                          <p className="bg-principal flex justify-center items-center text-textos2 text-3xl   font-bold w-14 h-14 lg:w-11 lg:h-10 lg:leading-[2.8rem] shadow-xl rounded-full">
                             {product.likes.length}
                           </p>
                           <h4 className="text-textos/90 text-4xl lg:text-3xl font-bold">

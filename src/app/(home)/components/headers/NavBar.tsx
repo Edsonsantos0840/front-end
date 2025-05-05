@@ -4,13 +4,10 @@ import { Block } from "@/app/middleware/blockedPage";
 import { logOut } from "@/app/functions/auth/logOut";
 //icons
 import { FiLogIn, FiLogOut } from "react-icons/fi";
-import { IoBagAdd } from "react-icons/io5";
-import { IoIosPerson, IoMdPersonAdd } from "react-icons/io";
-import { MdDashboardCustomize } from "react-icons/md";
-import { GiPresent } from "react-icons/gi";
 //componentes
 import Link from "next/link";
-import { Suspense } from "react";
+import { NavBarFields } from "../fields/NavFields";
+// import { Suspense } from "react";
 
 
 export default async function NavBar() {
@@ -22,64 +19,24 @@ export default async function NavBar() {
       <aside>
         <nav className="flex alinha4 p-2 max-w-[1200px]  md:m-auto">
           <Menu />
-          <Suspense fallback={"Carregando..."}>
+          {/* <Suspense fallback={"Carregando..."}> */}
             {user.tipo === "admin" && (
               <ul className="hidden md:flex gap-8 font-Ysabea font-bold text-base">
-                <li>
-                  <Link
-                    href={"/home"}
-                    className=" alinha2 hover:scale-125 transition-all ease-in-out duration-300"
-                  >
-                    <MdDashboardCustomize size={30} color="var(--corFundo2)" />
-                    <span className="text-sm font-light text-gray-200">
-                      Dashboard
-                    </span>
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href={"/user"}
-                    className=" alinha2 hover:scale-125 transition-all ease-in-out duration-300"
-                  >
-                    <IoIosPerson size={30} color="var(--corFundo2)" />
-                    <span className="text-sm font-light text-gray-200">
-                      Usuários
-                    </span>
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href={"/product"}
-                    className=" alinha2 hover:scale-125 transition-all ease-in-out duration-300"
-                  >
-                    <GiPresent size={30} color="var(--corFundo2)" />
-                    <span className="text-sm font-light text-gray-200">
-                      Produtos
-                    </span>
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href={"/productRegister"}
-                    className=" alinha2 hover:scale-125 transition-all ease-in-out duration-300"
-                  >
-                    <IoBagAdd size={30} color="var(--corFundo2)" />{" "}
-                    <span className="text-sm font-light text-gray-200">
-                      cadastro
-                    </span>
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href={"/userRegister"}
-                    className=" alinha2 hover:scale-125 transition-all ease-in-out duration-300"
-                  >
-                    <IoMdPersonAdd size={30} color="var(--corFundo2)" />
-                    <span className="text-sm font-light text-gray-200">
-                      Cadastro
-                    </span>
-                  </Link>
-                </li>
+                {
+                  NavBarFields.map((item, index) => (
+                    <li key={`${index}-${item.href}`}>
+                    <Link
+                      href={item.href}
+                      className=" alinha2 hover:scale-125 transition-all ease-in-out duration-300"
+                    >
+                      {item.icon}
+                      <span className="text-sm font-light text-gray-200">
+                       {item.text}
+                      </span>
+                    </Link>
+                  </li>
+                  ))
+                }
               </ul>
             )}
 
@@ -133,7 +90,7 @@ export default async function NavBar() {
                 </li>
               )}
             </ul>
-          </Suspense>
+          {/* </Suspense> */}
         </nav>
       </aside>
     </header>

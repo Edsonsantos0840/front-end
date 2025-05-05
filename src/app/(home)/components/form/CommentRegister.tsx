@@ -64,7 +64,7 @@ export default function CommentRegister({
       {/* Botão para enviar o comentário */}
       <button
         onClick={handleCommentClick}
-        className="w-24 bg-principal text-textos2 py-2 rounded-md hover:bg-principal2"
+        className="w-32 bg-principal text-textos2 py-2 rounded-md hover:bg-principal2"
         type="submit"
         aria-label="Comentar"
       >

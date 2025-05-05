@@ -12,7 +12,8 @@ export default async function Header() {
         <figure className="w-full alinha4  ">
           <Link
             href={"/"}
-            className=" w-[180px] h-[64px] lg:w-[270px] lg:h-[100px] object-cover bg-cover  relative"
+            rel="noopener noreferrer"
+            className=" w-[280px] h-[116px] lg:w-[270px] lg:h-[100px] object-cover bg-cover  relative"
           >
             <Image
               src={"/logo.png"}
@@ -24,7 +25,7 @@ export default async function Header() {
             />
           </Link>
         </figure>
-        <BtnContact classEdit="md:px-4 w-full md:w-[30%] lg:w-[20%]" />
+        <BtnContact classEdit="hidden md:block md:px-4 w-full md:w-[30%] lg:w-[20%]" />
       </div>
     </Container>
   );

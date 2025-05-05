@@ -2,13 +2,7 @@
 //meus componentes
 import Container from "./components/containers/Container";
 import CardInfo from "./components/cards/CardInfo";
-import marmore from "../../../public/assets/marmore1.5d36561f34bb749fe7d8.png";
-import granito from "../../../public/assets/granito1.da2922cafeb913d8cbb9.png";
-import onix from "../../../public/assets/onix1.3d32bc3520a208c1d36f.png";
 import CardPhotos from "./components/cards/CardPhotos";
-import requinte from "../../../public/assets/requinte.jpg";
-import sofisticação from "../../../public/jacob-wall-J35x4qL0mS0-unsplash.jpg";
-import qualidade from "../../../public/Design sem nome (6).png";
 // componente que importa animação
 import { motion } from "framer-motion";
 
@@ -69,9 +63,9 @@ export default function Home() {
         </h2>
 
         <div className="alinha lg:flex-row gap-4">
-          {[{ title: "MÁRMORE", image: marmore }, 
-            { title: "GRANITO", image: granito }, 
-            { title: "ÔNIX", image: onix }].map(({ title, image }, index) => (
+          {[{ title: "MÁRMORE", image: '/assets/marmore1.5d36561f34bb749fe7d8.png' }, 
+            { title: "GRANITO", image: '/assets/granito1.da2922cafeb913d8cbb9.png' }, 
+            { title: "ÔNIX", image: '/assets/onix1.3d32bc3520a208c1d36f.png' }].map(({ title, image }, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0.3 }}
@@ -113,7 +107,7 @@ export default function Home() {
             transition={{ duration: 1.2 }}
           >
             <figure>
-              <CardPhotos image={requinte} title="REQUINTE" extend />
+              <CardPhotos image='/assets/requinte.jpg' title="REQUINTE" extend />
               <figcaption className="sr-only">Placa de mármore requintada</figcaption>
             </figure>
           </motion.div>
@@ -128,7 +122,7 @@ export default function Home() {
             transition={{ duration: 1.2 }}
           >
             <figure>
-              <CardPhotos image={sofisticação} title="SOFISTICAÇÃO" extend />
+              <CardPhotos image='/jacob-wall-J35x4qL0mS0-unsplash.jpg' title="SOFISTICAÇÃO" extend />
               <figcaption className="sr-only">Exemplo de sofisticação no uso do mármore</figcaption>
             </figure>
           </motion.div>
@@ -163,7 +157,7 @@ export default function Home() {
             transition={{ duration: 1.2 }}
           >
             <figure>
-              <CardPhotos image={qualidade} title="MAIOR QUALIDADE" extend />
+              <CardPhotos image='/Design sem nome (6).png' title="MAIOR QUALIDADE" extend />
               <figcaption className="sr-only">Peça de mármore com acabamento de alta qualidade</figcaption>
             </figure>
           </motion.div>
