@@ -19,7 +19,8 @@ export default async function NavBar() {
       <aside>
         <nav className="flex alinha4 p-2 max-w-[1200px]  md:m-auto">
           <Menu />
-          {/* <Suspense fallback={"Carregando..."}> */}
+        
+{/*        <Suspense fallback={"Carregando..."}> */}
             {user.tipo === "admin" && (
               <ul className="hidden md:flex gap-8 font-Ysabea font-bold text-base">
                 {
