@@ -1,7 +1,7 @@
 "use client";
 //componentes
 import Link from "next/link";
-import { useActionState } from "react";
+import { Suspense, useActionState } from "react";
 //meus componentes
 import { RegisterSubmit } from "@/app/functions/handleSubmit/HandleRegister";
 import GenericForm from "../../../(home)/components/form/GenericForm";
@@ -22,6 +22,8 @@ function UserRegister() {
 
   return (
     <main className="alinha6 gap-4 bg-cover bg-center py-6 px-2 bg-[url('/assets/1086.jpg')] h-screen lg:h-auto w-full ">
+      <Suspense fallback={<div>Carregando...</div>}>
+      
     <div className="flex bg-white/90 rounded-2xl shadow-2xl w-full lg:w-[60vw]">
       
       {/* Área de informações do formulário (lateral esquerda) */}
@@ -60,6 +62,7 @@ function UserRegister() {
         <CardRegisterLogin />
       </section>
     </div>
+      </Suspense>
   </main>
   
   );
