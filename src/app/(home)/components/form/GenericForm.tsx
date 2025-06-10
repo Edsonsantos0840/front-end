@@ -130,9 +130,9 @@ export default function GenericForm({
     <CardPreviewImage
       img={img || []}
       current1={image1 || ""}
-      current2={image2}
-      current3={image3}
-      current4={image4}
+      current2={image2 || ""}
+      current3={image3 || ""}
+      current4={image4 || ""}
     />
   ) : (
     <CardFormImage img={img || []} />

@@ -78,14 +78,14 @@ export const getFieldsUpdateUser = ( user: UserProps): FieldConfig[] => [
     type: "hidden",
     name: "_id",
     defaultValue: user._id,
-    required: true,
+    required: false,
   },
   {
     label: "Nome",
     type: "text",
     name: "name",
     placeholder: "Digite seu Nome",
-    required: true,
+    required: false,
     defaultValue: user.name
   },
   {
@@ -93,7 +93,7 @@ export const getFieldsUpdateUser = ( user: UserProps): FieldConfig[] => [
     type: "email",
     name: "email",
     placeholder: "Digite seu e-mail",
-    required: true,
+    required: false,
     defaultValue: user.email
   },
 ];
@@ -104,21 +104,21 @@ const fieldsProducts: FieldConfig[] = [
     type: "text",
     name: "title",
     placeholder: "Digite o título do produto",
-    required: true,
+    required: false,
   },
   {
     label: "Categoria",
     type: "select",
     name: "category",
     options: category,
-    required: true,
+    required: false,
   },
   {
     label: "Descrição",
     type: "text",
     name: "description",
     placeholder: "Descreva o produto",
-    required: true,
+    required: false,
   },
 ];
 
